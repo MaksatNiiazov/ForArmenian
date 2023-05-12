@@ -1,0 +1,210 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+
+
+      <div class="page">
+         <div class="page__top-block top-block top-block_settings-right top-block_padding top-block_events">
+            <div class="top-block__image -ai"><img src="{% static 'img/top-block/image.jpg' %}" alt=""></div>
+            <div class="top-block__container -container">
+               <div class="top-block__body">
+                  <h2 class="top-block__title top-title top-title_mb top-title_ads" data-me="767.98, .top-block__body, 2">Event</h2>
+                  <div class="top-block__search search search_search search_events search_inp search_cafe-single search_top">
+                     <div class="search__body">
+                        <form action="#" class="search__row">
+                           <div class="search__inputs">
+                              <div class="search__wrap">
+                                 <div class="search__item">
+                                    <div class="search__label">From</div>
+                                    <div class="search__input"><input class="-req -date" autocomplete="off" type="date" name="fromDate"
+                                          data-value="Your keyword"></div>
+                                 </div>
+                                 <div class="search__item">
+                                    <div class="search__label">To</div>
+                                    <div class="search__input"><input class="-req -date" autocomplete="off" type="date" name="toDate"
+                                          data-value="Your keyword"></div>
+                                 </div>
+                              </div>
+                              <div class="search__item">
+                                 <div class="search__label">Location</div>
+                                 <div class="search__select">
+                                    <select name="location" class="select-search" data-custom-select>
+                                       <option value="Los Angelos">Los Angelos1</option>
+                                    </select>
+                                 </div>
+                              </div>
+                              <button type="submit" class="search__btn"><span>Search</span><span
+                                    class="-icon-search"></span></button>
+                           </div>
+                           <div class="search__setting -input-form-filter" data-me="767.98, .search__inputs, 2">
+                              <label class="search__input-check">
+                                 <input type="checkbox" name="open-now">
+                                 <span></span>
+                                 <span class="text-form-filter">Open now</span>
+                              </label>
+                           </div>
+                        </form>
+                     </div>
+                  </div>
+                  <div class="top-block__row top-block__row_ads">
+                     <!-- <div class="top-block__breadcrumbs breadcrumbs-top-block" data-me="767.98, .top-block__body, first">
+                        <ul class="breadcrumbs-top-block__list">
+                           <li><a href="">Home</a></li>
+                           <li>Events</li>
+                        </ul>
+                     </div> -->
+                     <div class="top-block__short short-filter">
+                        <div class="short-filter__label">Short by</div>
+                        <div class="short-filter__select">
+                           <select name="short" class="short-filter-select" data-custom-select>
+                              <option value="Most relevant">Most relevant</option>
+                           </select>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+               <div class="top-block__map"><iframe src="https://www.google.com/maps/embed?pb=!1m10!1m8!1m3!1d6699051.043275679!2d21.940572607847184!3d34.9310098493962!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sru!2sua!4v1657230954283!5m2!1sru!2sua" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe></div>
+            </div>
+         </div>
+         <div class="page__events-page events-page">
+            <div class="events-page__container -container">
+               <div class="events-page__main">
+                  <div class="events-page__side">
+                     <div class="events-page__filter" data-me="767.98, .top-block__row, first">
+                        <a href="" class="events-page__openner filter-openner filter-openner_hide filter-openner_lock">
+                           <span class="-icon-filter"></span> Filter
+                        </a>
+                        <form action="#" class="events-page__form form-filter -event-change form-filter_abc">
+                           <a href="" class="form-filter__close form-filter__close_lock"><img src="img/icons/close.svg" alt=""></a>
+                           <h3 class="form-filter__title">Filter</h3>
+                           <div class="form-filter__main">
+                              <div class="form-filter__item">
+                                 <div class="form-filter__items items-filter-categories">
+                                    <ul class="items-filter-categories__list">
+                                       <li>
+                                          <label class="items-filter-categories__item">
+                                             <input type="checkbox" name="categories">
+                                             <span>
+                                                Раздел №1 (123)
+                                             </span>
+                                          </label>
+                                       </li>
+                                    </ul>
+                                 </div>
+                              </div>
+                              <div class="form-filter__ads -ai"><img src="{% static 'img/ads/image-01.jpg' %}" alt=""></div>
+                           </div>
+                        </form>
+                     </div>
+                     <div class="events-page__image"><img src="img/useful/ads.jpg" alt=""></div>
+                  </div>
+                  <div class="events-page__body events-page__body_grid">
+                      {% for object in object_list|slice:':1' %}
+                          <div class="events-page__item item-events-page item-events-page_big">
+                        <a href="{% url 'events-detail' object.pk %}" class="item-events-page__preview">
+                           <div class="item-events-page__image -ai"><img src="{{ object.photos.photo_1  }}" alt=""></div>
+                        </a>
+                        <div class="item-events-page__body">
+                           <div class="item-events-page__header">
+                              <div class="item-events-page__actions">
+                                 <a href="" class="item-events-page__share"><span class="-icon-share"></span></a>
+                                 <a href="" class="item-events-page__like"><span class="-icon-like"></span></a>
+                              </div>
+                              <h3 class="item-events-page__title -title-useful-item">{{ object.title }}</h3>
+                           </div>
+                           <div class="item-events-page__categories label-categories">{{ object.category }}</div>
+                           <div class="item-events-page__text">{{ object.description|truncatechars:60 }}</div>
+                           <div class="item-events-page__row">
+                              <div class="item-events-page__info info-item-events-page">
+                                 <div class="info-item-events-page__item"><span class="-icon-map"></span>{{ object.address }}</div>
+                                 <div class="info-item-events-page__item"><span class="-icon-calendar"></span>{{ object.date }}</div>
+                                 <div class="info-item-events-page__item"><span class="-icon-time"></span>{{ object.start_time }}</div>
+                              </div>
+                           </div>
+                           <a href="{{ object.ticket_link }}" class="item-events-page__btn btn-more-product" data-me="991.98, .item-events-page_big .item-events-page__row, last">Buy ticket</a>
+                           <div class="item-events-page__footer">
+                              <a href="" class="item-events-page__link">Read more</a>
+                              <div class="item-events-page__actions">
+                                 <a href="" class="item-events-page__share"><span class="-icon-share"></span></a>
+                                  {% include 'includes/like_list.html' %}
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+                      {% endfor %}
+                  {% for object in object_list|slice:'1:3' %}
+                       <div class="events-page__item item-events-page">
+                        <a href="" class="item-events-page__preview">
+                            {% for img in object.imgs.all|slice:':1' %}
+                                   <div class="item-events-page__image -ai"><img src="{{ img.img.url }}" alt=""></div>
+                            {% endfor %}
+                        </a>
+                        <div class="item-events-page__body">
+                           <h3 class="item-events-page__title -title-useful-item">{{ object.title }}</h3>
+                           <div class="item-events-page__row">
+                              <div class="item-events-page__info info-item-events-page">
+                                 <div class="info-item-events-page__item"><span class="-icon-map"></span>{{ object.address }}</div>
+                                 <div class="info-item-events-page__item"><span class="-icon-calendar"></span>{{ object.date }}</div>
+                                 <div class="info-item-events-page__item"><span class="-icon-time"></span>{{ object.start_time }}</div>
+                              </div>
+                              <a href="{{ object.ticket_link }}" class="item-events-page__btn btn-more-product">Buy ticket</a>
+                           </div>
+                           <div class="item-events-page__footer">
+                              <a href="" class="item-events-page__link">Read more</a>
+                              <div class="item-events-page__actions">
+                                 <a href="" class="item-events-page__share"><span class="-icon-share"></span></a>
+                                  {% include 'includes/like_list.html' %}
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+
+                  {% endfor %}
+                  </div>
+               </div>
+               <div class="events-page__row">
+                   {% for object in object_list|slice:'3:7' %}
+                     <div class="events-page__item item-events-page">
+                     <a href="" class="item-events-page__preview">
+                           {% for img in object.imgs.all|slice:':1' %}
+                               <div class="item-events-page__image -ai"><img src="{{ img.img.url }}" alt=""></div>
+                        {% endfor %}
+                     </a>
+                     <div class="item-events-page__body">
+                        <h3 class="item-events-page__title -title-useful-item">{{ object.title }}</h3>
+                        <div class="item-events-page__row">
+                           <div class="item-events-page__info info-item-events-page">
+                                <div class="info-item-events-page__item"><span class="-icon-map"></span>{{ object.address }}</div>
+                                 <div class="info-item-events-page__item"><span class="-icon-calendar"></span>{{ object.date }}</div>
+                                 <div class="info-item-events-page__item"><span class="-icon-time"></span>{{ object.start_time }}</div>
+                              </div>
+                              <a href="{{ object.ticket_link }}" class="item-events-page__btn btn-more-product">Buy ticket</a>
+                           </div>
+                        <div class="item-events-page__footer">
+                           <a href="" class="item-events-page__link">Read more</a>
+                           <div class="item-events-page__actions">
+                              <a href="" class="item-events-page__share"><span class="-icon-share"></span></a>
+                            {% include 'includes/like_list.html' %}
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+                   {% endfor %}
+               </div>
+               <div class="events-page__footer">
+                  <a href="" class="events-page__btn btn-more">Shoe More</a>
+               </div>
+            </div>
+         </div>
+         <div class="page__question question question_events">
+            <div class="question__container -container">
+               <h2 class="question__title title">Do you have something to sell?</h2>
+               <div class="question__subtitle subtitle">This is where businesses in Bangladesh trade, numerous business
+                  and industry services offered<br> to trade and consumers.</div>
+               <a href="" class="question__btn btn">Submit on ad</a>
+            </div>
+         </div>
+      </div>
+
+{% endblock %}

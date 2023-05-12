@@ -1,0 +1,209 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Profile page{% endblock %}
+
+
+{% block content %}
+      <div class="page">
+         <div class="page__top-block top-block top-block_padding top-block_submit">
+            <div class="top-block__image -ai"><img src="../../static/img/top-block/image.jpg" alt=""></div>
+            <div class="top-block__container -container">
+               <div class="top-block__body">
+                  <h2 class="top-block__title top-title">Submit auto</h2>
+                  <!-- <div class="top-block__row"> -->
+                     <!-- <div class="top-block__breadcrumbs breadcrumbs-top-block breadcrumbs-top-block_hide">
+                        <ul class="breadcrumbs-top-block__list">
+                           <li><a href="">Home</a></li>
+                           <li>app</li>
+                           <li>for sale</li>
+                        </ul>
+                     </div> -->
+                  <!-- </div> -->
+               </div>
+            </div>
+         </div>
+         <div class="page__submit submit">
+            <div class="submit__container -container">
+               <form method="post" action="#" class="submit-detail__form">
+                  {% csrf_token %}
+                  <div class="submit__main">
+                     <div class="submit__item submit-auto">
+                        <h3 class="submit-auto__title title-submit">Auto info</h3>
+                        <div class="submit-auto__row">
+                           <div class="submit-auto__item">
+                              <h4 class="submit-auto__label label-submit">Heading</h4>
+                              <div class="submit-auto__input -input-submit"><input class="-req" autocomplete="off" type="text" name="vehicle_title" data-value="BMW 3 class, 318"></div>
+                           </div>
+                        </div>
+                        <div class="submit-auto__grid">
+                           <div class="submit-auto__item">
+                              <h4 class="submit-auto__label label-submit">Brand</h4>
+                              <div class="submit-auto__select -select-green">
+                                 <select name="model" class="submit-auto-select" data-custom-select>
+                                     {% for f in form.model %}
+                                        {{ f }}
+                                     {% endfor %}
+                                 </select>
+                              </div>
+                           </div>
+                           <div class="submit-auto__item">
+                              <h4 class="submit-auto__label label-submit">Mileage</h4>
+                              <div class="submit-auto__input -input-green -input-submit"><input class="-req" autocomplete="off" type="number" name="mileage" data-value="12.000"></div>
+                           </div>
+                           <div class="submit-auto__item">
+                              <h4 class="submit-auto__label label-submit">Motor type</h4>
+                              <div class="submit-auto__select -select-green">
+                                 <select name="motor_type" class="submit-auto-select" data-custom-select>
+                                     {% for f in form.category %}
+                                        {{ f }}
+                                     {% endfor %}
+                                 </select>
+                              </div>
+                           </div>
+                           <div class="submit-auto__item">
+                              <h4 class="submit-auto__label label-submit">Model</h4>
+                              <div class="submit-auto__select -select-green">
+                                 <select name="model" class="submit-auto-select" data-custom-select>
+                                     {% for f in form.model %}
+                                        {{ f }}
+                                     {% endfor %}
+                                 </select>
+                              </div>
+                           </div>
+                           <div class="submit-auto__item">
+                              <h4 class="submit-auto__label label-submit">Engine volume</h4>
+                              <div class="submit-auto__input -input-green -input-submit"><input class="-req" autocomplete="off" type="number" name="volume" data-value="518"></div>
+                           </div>
+                           <div class="submit-auto__item">
+                              <h4 class="submit-auto__label label-submit">Power</h4>
+                              <div class="submit-auto__input -input-green -input-submit"><input class="-req" autocomplete="off" type="number" name="power" data-value="3.2"></div>
+                           </div>
+                           <div class="submit-auto__items">
+                              <div class="submit-auto__item">
+                                 <h4 class="submit-auto__label label-submit">Year</h4>
+                                 <div class="submit-auto__select -select-green">
+                                    <select name="year" class="submit-auto-select" data-custom-select>
+                                        {% for f in form.year %}
+                                            {{ f }}
+                                        {% endfor %}
+                                    </select>
+                                 </div>
+                              </div>
+                              <div class="submit-auto__item">
+                                 <h4 class="submit-auto__label label-submit">Carcase type</h4>
+                                 <div class="submit-auto__select -select-green">
+                                    <select name="country" class="submit-auto-select" data-custom-select>
+                                        {% for f in form.carcase_type %}
+                                            {{ f }}
+                                        {% endfor %}
+                                    </select>
+                                 </div>
+                              </div>
+                           </div>
+                           <div class="submit-auto__item">
+                              <h4 class="submit-auto__label label-submit">Drive unit</h4>
+                              <div class="submit-auto__select -select-green">
+                                 <select name="drive_unit" class="submit-auto-select" data-custom-select>
+                                        {% for f in form.drive_unit %}
+                                            {{ f }}
+                                        {% endfor %}
+                                 </select>
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+                     <div class="submit__item submit-lacation">
+                        <h3 class="submit-lacation__title title-submit">Location</h3>
+                        <div class="submit-lacation__row">
+                           <div class="submit-lacation__item">
+                              <h4 class="submit-lacation__label label-submit">Country</h4>
+                              <div class="submit-lacation__select -select-green">
+                                 <select name="country" class="submit-lacation-select" data-custom-select>
+                                    <option value="USA">USA</option>
+                                    <option value="USA">USA</option>
+                                 </select>
+                              </div>
+                           </div>
+                           <div class="submit-lacation__item">
+                              <h4 class="submit-lacation__label label-submit">State</h4>
+                              <div class="submit-lacation__select">
+                                 <select name="state" class="submit-lacation-select" data-custom-select>
+                                    <option value="CA">CA</option>
+                                    <option value="CA">CA</option>
+                                 </select>
+                              </div>
+                           </div>
+                           <div class="submit-lacation__item">
+                              <h4 class="submit-lacation__label label-submit">Address</h4>
+                              <div class="submit-lacation__input -input-submit"><input class="-req" autocomplete="off" type="text" name="address" data-value="Norten str 25"></div>
+                           </div>
+                        </div>
+                        <div class="submit-lacation__map"><iframe src="https://www.google.com/maps/embed?pb=!1m10!1m8!1m3!1d6699051.043275679!2d21.940572607847184!3d34.9310098493962!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sru!2sua!4v1657230954283!5m2!1sru!2sua" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe></div>
+                        <div class="submit-lacation__label label-red">The exact address will help attract interested buyers</div>
+                     </div>
+                     <div class="submit__item submit-price">
+                        <h3 class="submit-price__title title-submit">Price</h3>
+                        <div class="submit-price__row">
+                           <div class="submit-price__input -input-submit"><input class="-req" autocomplete="off" type="number" name="price" data-value="1231321"></div>
+                           <div class="submit-price__select">
+                              <select name="currency" class="submit-price-select" data-custom-select>
+                                 <option value="USD">USD</option>
+                                 <option value="USD">USD</option>
+                              </select>
+                           </div>
+                        </div>
+                     </div>
+                     <div class="submit__item submit-description">
+                        <h3 class="submit-description__title title-submit">Description</h3>
+                        <div class="submit-description__input -input-green"><textarea class="-req" name="about" data-value="About car"></textarea></div>
+                     </div>
+                     <div class="submit__item submit-contacts">
+                        <h3 class="submit-contacts__title title-submit">Contacts</h3>
+                        <div class="submit-contacts__grid">
+                           <div class="submit-contacts__item">
+                              <h4 class="submit-contacts__label label-submit">Name</h4>
+                              <div class="submit-contacts__input -input-green -input-submit"><input class="-req -name" autocomplete="off" type="text" name="name" data-value="John Doe"></div>
+                           </div>
+                           <div class="submit-contacts__item">
+                              <h4 class="submit-contacts__label label-submit">E-mail</h4>
+                              <div class="submit-contacts__input -input-submit"><input class="-req -email" autocomplete="off" type="text" name="email" data-value="example@example.com"></div>
+                           </div>
+                           <div class="submit-contacts__item">
+                              <h4 class="submit-contacts__label label-submit">Phone number</h4>
+                              <div class="submit-contacts__row">
+                                 <div class="submit-contacts__input -input-submit"><input class="-req" autocomplete="off" type="text" name="code-number" value="+1"></div>
+                                 <div class="submit-contacts__input -input-green -input-submit"><input class="-req -tel-code-input" autocomplete="off" type="number" name="phone"></div>
+                              </div>
+                           </div>
+                           <div class="submit-contacts__item">
+                              <h4 class="submit-contacts__label submit-contacts__label_file label-submit">Add photo (max 5) </h4>
+                              <div class="submit-contacts__photos photos-submit-contacts">
+                                 <div class="photos-submit-contacts__items">
+                                    <label class="photos-submit-contacts__input -file-green"><span>+</span><input class="-req -file" accept=".png, .jpg, .jpeg" type="file" max="5" name="file"></label>
+                                    <div class="photos-submit-contacts__item">
+                                       <a href="" class="photos-submit-contacts__action"><span class="-icon-delete"></span></a>
+                                       <a href="" class="photos-submit-contacts__image -ai">
+                                          <img src="../../static/img/news/image-01.jpg" alt="">
+                                       </a>
+                                    </div>
+                                 </div>
+                                 <a href="" class="photos-submit-contacts__delete" data-me="767.98, .submit-contacts__label_file, last">Delete all <span class="-icon-delete-bg"></span></a>
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+                  <div class="submit__footer">
+                     <div class="submit__btns">
+                        <a href="" class="submit__btn submit__btn_preview">Preview</a>
+                        <button type="submit" class="submit__btn submit__btn_add">Place un add</button>
+                     </div>
+                     <div class="submit__label">You can always change the ad parameters in your personal account</div>
+                  </div>
+               </form>
+            </div>
+         </div>
+      </div>
+
+{% endblock %}

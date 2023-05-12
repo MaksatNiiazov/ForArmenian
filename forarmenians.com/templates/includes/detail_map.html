@@ -1,0 +1,47 @@
+ {% load static %}
+
+                  <div class="product__overview overview-product">
+                     <div class="overview-product__row overview-map-product">
+                        <h3 class="overview-map-product__label label-product">Map :</h3>
+                        <div class="overview-map-product__body">
+                           <div class="overview-map-product__map overview-map-product__map_big">
+                            <div id="map" style="height:100%; margin:0px; padding:0px;"></div>
+                           </div>
+                               <div class="overview-map-product__footer">
+                              <div class="overview-map-product__icon"><img src="{% static 'img/icons/car.svg' %}" alt=""></div>
+                              <div class="overview-map-product__text">
+                                 5— min · <a href="">Add a Commute</a>
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+
+ <script>
+        function initMap() {
+            var uluru = {lat: {{ lat }}, lng: {{ lng }}};
+            var map = new google.maps.Map(document.getElementById('map'), {
+                zoom: 16,
+                center: uluru
+            });
+            var marker = new google.maps.Marker({
+                position: uluru,
+                map: map
+            });
+        }
+    </script>
+    <script type="text/javascript" src="http://maps.google.com/maps/api/js?key=AIzaSyDQrL3YT1kr_GlXO_AjJua3DgrySk324gs&callback=initMap"></script>
+
+
+
+
+{##}
+{#<iframe#}
+{#  width="600"#}
+{#  height="450"#}
+{#  style="border:0"#}
+{#  loading="lazy"#}
+{#  allowfullscreen#}
+{#  referrerpolicy="no-referrer-when-downgrade"#}
+{#  src="https://www.google.com/maps/embed/v1/place?key=AIzaSyDQrL3YT1kr_GlXO_AjJua3DgrySk324gs&q=40.7127753,-74.0059728">#}
+{#</iframe>#}

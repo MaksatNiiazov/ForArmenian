@@ -1,0 +1,22 @@
+{% load static %}
+{% if request.user.is_authenticated  %}
+<form action="{% url 'add-like' object.id %}" method="post">
+     {% csrf_token %}
+     {% if like %}
+               <button type="submit" class="product-like" value="" ><img class="like_size" src="{% static 'img/icons/like-on.png' %}" alt=""></button>
+     {% else %}
+               <button type="submit" class="product-like" value="" ><img class="like_size" src="{% static 'img/icons/like-off.png' %}" alt=""></button>
+     {% endif %}
+</form>
+    {% else %}
+    <a href="{% url 'login' %}"><img class="like_size" src="{% static 'img/icons/like-off.png' %}" alt=""></a>
+{% endif %}
+<style>
+.like_size{
+    margin-top: 5px;
+    width: 30px;
+}
+.like_size:active{
+    outline: none;
+}
+</style>

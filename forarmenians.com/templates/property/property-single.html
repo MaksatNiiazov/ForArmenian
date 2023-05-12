@@ -1,0 +1,159 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+
+<body>
+
+   <div class="wrapper">
+      <div class="page">
+         <div class="page__top-block top-block top-block_padding top-block_job-single">
+            <div class="top-block__image -ai"><img src="{% static 'img/top-block/image.jpg' %}" alt=""></div>
+            <div class="top-block__container -container">
+               <div class="top-block__body">
+                  <h2 class="top-block__title top-title" data-me="767.98, .filter__container, first">Property single</h2>
+                  <div class="top-block__search search search_top">
+                     <div class="search__body">
+                        <form action="#" class="search__row">
+                           <div class="search__input"><input class="-req -name" autocomplete="off" type="text" name="keyword"
+                                 data-value="Your keyword"></div>
+                           <button type="submit" class="search__btn"><span>Search</span><span
+                                 class="-icon-search"></span></button>
+                        </form>
+                     </div>
+                  </div>
+                  <!-- <div class="top-block__row"> -->
+                     <!-- <div class="top-block__breadcrumbs breadcrumbs-top-block">
+                        <ul class="breadcrumbs-top-block__list">
+                           <li><a href="">Home</a></li>
+                           <li>Job single</li>
+                        </ul>
+                     </div> -->
+                  <!-- </div> -->
+               </div>
+            </div>
+         </div>
+         <div class="page__product product">
+            <div class="product__container -container">
+               <div class="product__main">
+                  <div class="product__header">
+                     <div class="product__date">{{ object.created_date }}</div>
+                     <div class="product__actions">
+                        <a href="" class="product-share"><span class="-icon-share"></span></a>
+                         {% include 'includes/like.html' %}
+                     </div>
+                  </div>
+                  <div class="product__info info-product info-product_nline">
+                     <div class="info-product__body">
+                        <h2 class="info-product__title info-product__title_job-single">
+                           <span>{{ object.title }}</span>
+                           Sicamous, BC, V0E 2V1  Listing ID: 10161461
+                        </h2>
+                        <div class="info-product__date">{{ object.created_date }}</div>
+                     </div>
+                     <div class="info-product__side">
+                        <div class="info-product__price">${{ object.price }}</div>
+                        <div class="info-product__label info-product__label_hide"></div>
+                     </div>
+                  </div>
+                  <div class="product__photos photos-cafe-single">
+
+                     <div class="photos-cafe-single__grid">
+                         {% if object.photos.photo_1 %}
+                              <div class="photos-cafe-single__image photos-cafe-single__image_big -ai"><img src="{{ object.photos.photo_1.url }}" alt=""></div>
+                         {% endif %}
+                        <div class="photos-cafe-single__subgrid">
+                         {% if object.photos.photo_2 %}
+                            <div class="photos-cafe-single__image photos-cafe-single__image_small -ai"><img src="{{ object.photos.photo_2.url }}" alt=""></div>
+                         {% endif %}
+                        {% if object.photos.photo_3 %}
+                            <div class="photos-cafe-single__image photos-cafe-single__image_small -ai"><img src="{{ object.photos.photo_3.url }}" alt=""></div>
+                         {% endif %}
+                        {% if object.photos.photo_4 %}
+                            <div class="photos-cafe-single__image photos-cafe-single__image_small -ai"><img src="{{ object.photos.photo_4.url }}" alt=""></div>
+                         {% endif %}
+                        {% if object.photos.photo_5 %}
+                            <div class="photos-cafe-single__image photos-cafe-single__image_small -ai"><img src="{{ object.photos.photo_5.url }}" alt=""></div>
+                         {% endif %}
+                        </div>
+                     </div>
+                  </div>
+                  <div class="product__descs">
+                     <div class="product__desc">
+                        <h3 class="product__label label-product label-product_big">Description:</h3>
+                        <p class="product__text">{{ object.description }}</p>
+                     </div>
+                  </div>
+                  <div class="product__overview overview-product">
+                     <div class="overview-product__row overview-product__row_green">
+                        <h3 class="overview-product__label label-product">Special:</h3>
+                        <div class="overview-product__items">
+                           <div class="overview-product__item">
+                              <h4 class="overview-product__title">Quadrature</h4>
+                              <div class="overview-product__subtitle">{{ object.square }}m²</div>
+                           </div>
+                           <div class="overview-product__item">
+                              <h4 class="overview-product__title">Troperty Type</h4>
+                              <div class="overview-product__subtitle">{{ object.property_type }}</div>
+                           </div>
+                             <div class="overview-product__item">
+                              <h4 class="overview-product__title">Rental Period</h4>
+                              <div class="overview-product__subtitle">{{ object.rental_period }}</div>
+                           </div>
+                             <div class="overview-product__item">
+                              <h4 class="overview-product__title">Condition</h4>
+                              <div class="overview-product__subtitle">{{ object.condition }}</div>
+                           </div>
+                        </div>
+                     </div>
+                     <div class="overview-product__row overview-product__row_green">
+                        <h3 class="overview-product__label label-product">Languages:</h3>
+                        <div class="overview-product__items">
+                           <div class="overview-product__item">
+                              <h4 class="overview-product__title">Тumber of floors</h4>
+                              <div class="overview-product__subtitle">{{ object.number_of_floors }}</div>
+                           </div>
+                           <div class="overview-product__item">
+                              <h4 class="overview-product__title">Floor</h4>
+                              <div class="overview-product__subtitle">{{ object.floor }}</div>
+                           </div>
+                            <div class="overview-product__item">
+                              <h4 class="overview-product__title">Bedrooms</h4>
+                              <div class="overview-product__subtitle">{{ object.bedrooms }}</div>
+                           </div>
+                            <div class="overview-product__item">
+                              <h4 class="overview-product__title">Bathrooms</h4>
+                              <div class="overview-product__subtitle">{{ object.bathrooms }}</div>
+                           </div>
+                        </div>
+                     </div>
+                      {% if update %}
+                           <a href="{% url 'property-update' object.pk %}" data-me="991.98, .product__container, last" class="info-product__btn info-product__btn_job-single btn-product btn-product_grey">Update</a>
+                       {% endif %}
+{% include 'includes/detail_map.html' %}
+                  </div>
+                  <a href="" data-me="991.98, .product__container, last" class="info-product__btn info-product__btn_job-single btn-product btn-product_grey">Report ads</a>
+               </div>
+{% include 'includes/detail_product_side.html' %}
+            </div>
+         </div>
+         <div class="page__banner banner-single">
+            <div class="banner-single__container -container">
+               <div class="banner-single__image -ai"><img src="{% static 'img/property/propert single.png' %}" alt=""></div>
+            </div>
+         </div>
+         <div class="page__similar-ads similar-ads similar-ads_abc-single">
+             {% include 'includes/detail_similar_ads.html' %}
+         </div>
+         <div class="page__question question question_job-single">
+            <div class="question__container -container">
+               <h2 class="question__title title">Do you have something to sell?</h2>
+               <div class="question__subtitle subtitle">This is where businesses in Bangladesh trade, numerous business and industry services offered<br> to trade and consumers.</div>
+               <a href="" class="question__btn btn">Submit on ad</a>
+            </div>
+         </div>
+      </div>
+   </div>
+
+
+{% endblock %}

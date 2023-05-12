@@ -1,0 +1,17 @@
+
+<div class="filter__container -container">
+  <div class="filter__short short-filter">
+    <div class="short-filter__label">Sort by</div>
+    <div class="short-filter__select">
+      <form method="get" class="form-inline">
+        <select name="sort" class="form-control short-filter-select" onchange="this.form.submit()">
+          {% for option in ordering_options %}
+          <option value="{{ option }}" {% if option == current_ordering %}selected{% endif %}>{% if option == 'id' %}Newest{% elif option == '-id' %}Oldest{% endif %}
+
+           </option>
+          {% endfor %}
+        </select>
+      </form>
+    </div>
+  </div>
+</div>

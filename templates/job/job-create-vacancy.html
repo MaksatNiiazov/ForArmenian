@@ -1,0 +1,93 @@
+{% extends 'base_create.html' %}
+
+{% block create_content %}
+<form action="{% url 'job-create-vacancy' %}" method="POST" enctype="multipart/form-data">
+    {% csrf_token %}
+    <p>
+    <label for="id_vacancy-title">Title:</label>
+    <input type="text" name="vacancy-title" maxlength="100" required="" id="id_vacancy-title">
+  </p>
+  <p>
+    <label for="id_vacancy-description">Description:</label>
+    <textarea name="vacancy-description" cols="40" rows="10" required="" id="id_vacancy-description"></textarea>
+  </p>
+  <p>
+    <label for="id_vacancy-price">Price:</label>
+    <input type="number" name="vacancy-price" value="0" min="0" id="id_vacancy-price">
+  </p>
+  <p>
+    <label for="id_vacancy-currency">Currency:</label>
+    <input type="text" name="vacancy-currency" value="USD" maxlength="20" id="id_vacancy-currency">
+  </p>
+  <p>
+    <label for="id_vacancy-is_active">Is active:</label>
+    <input type="checkbox" name="vacancy-is_active" id="id_vacancy-is_active" checked="">
+  </p>
+  <p>
+    <label for="id_vacancy-work_graphic">Work graphic:</label>
+    <select name="vacancy-work_graphic" required="" id="id_vacancy-work_graphic">
+        {% for work_graphic in work_graphics %}
+          <option value="{{ work_graphic.id }}">{{ work_graphic.graphic }}</option>
+        {% endfor %}
+</select>
+  </p>
+  <p>
+    <label for="id_vacancy-education">Education:</label>
+    <select name="vacancy-education" required="" id="id_vacancy-education">
+        {% for education in educations %}
+              <option value="{{ education.id }}" selected="">{{ education.education }}</option>
+        {% endfor %}
+
+</select>
+  </p>
+  <p>
+    <label for="id_vacancy-frequency_of_payment">Frequency of payment:</label>
+    <select name="vacancy-frequency_of_payment" required="" id="id_vacancy-frequency_of_payment">
+        {% for fop in fops %}
+          <option value="{{ fop.id }}">{{ fop.fop }}</option>
+        {% endfor %}
+</select>
+  </p>
+  <p>
+    <label for="id_vacancy-salary_from">Salary from:</label>
+    <input type="number" name="vacancy-salary_from" value="1" min="0" required="" id="id_vacancy-salary_from">
+  </p>
+  <p>
+    <label for="id_vacancy-salary_to">Salary to:</label>
+    <input type="number" name="vacancy-salary_to" value="1" min="0" required="" id="id_vacancy-salary_to">
+  </p>
+  <p>
+    <label for="id_vacancy-responsibilities">Responsibilities:</label>
+    <textarea name="vacancy-responsibilities" cols="40" rows="10" required="" id="id_vacancy-responsibilities"></textarea>
+  </p>
+  <p>
+    <label for="id_vacancy-requirements">Requirements:</label>
+    <textarea name="vacancy-requirements" cols="40" rows="10" required="" id="id_vacancy-requirements"></textarea>
+  </p><p>
+    <label for="id_photo-img">Img:</label>
+    <input type="file" name="photo-img" accept="image/*" id="id_photo-img">
+  </p><p>
+    <label for="id_address-address">Address:</label>
+    <input type="text" name="address-address" maxlength="100" id="id_address-address">
+  </p><p>
+    <label for="id_languages-language">Language:</label>
+    <input type="text" name="languages-language" maxlength="50" required="" id="id_languages-language">
+  </p>
+  <p>
+    <label for="id_languages-level">Level:</label>
+    <input type="text" name="languages-level" maxlength="50" required="" id="id_languages-level">
+  </p><p>
+    <label for="id_experience-work_place">Work place:</label>
+    <input type="text" name="experience-work_place" maxlength="300" required="" id="id_experience-work_place">
+  </p>
+  <p>
+    <label for="id_experience-month">Month:</label>
+    <input type="number" name="experience-month" required="" id="id_experience-month">
+  </p>
+  <p>
+    <label for="id_experience-experience">Experience:</label>
+    <textarea name="experience-experience" cols="40" rows="10" required="" id="id_experience-experience"></textarea>
+  </p>
+<button type="submit">Save</button>
+</form>
+{% endblock %}

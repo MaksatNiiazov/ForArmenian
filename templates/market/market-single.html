@@ -1,0 +1,154 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+      <div class="page">
+         <div class="page__top-block top-block top-block_padding">
+            <div class="top-block__image -ai"><img src="{% static 'img/top-block/image.jpg' %}" alt=""></div>
+            <div class="top-block__container -container">
+               <div class="top-block__body">
+                  <h2 class="top-block__title top-title top-title_ads-single" data-me="767.98, .filter__container, first">Vehicle single</h2>
+                  <div class="top-block__search search search_search search_inp search_ads search_top">
+                     <div class="search__body">
+                        <form action="#" class="search__row">
+                           <div class="search__item">
+                              <div class="search__label">Name</div>
+                              <div class="search__input"><input class="-req -name" autocomplete="off" type="text" name="keyword"
+                                    data-value="Your keyword"></div>
+                           </div>
+                           <div class="search__item">
+                              <div class="search__label">Location</div>
+                              <div class="search__select">
+                                 <select name="location" class="select-search" data-custom-select>
+                                    <option value="Los Angelos">Los Angelos1</option>
+                                    <option value="Los Angelos">Los Angelos2</option>
+                                    <option value="Los Angelos">Los Angelos3</option>
+                                 </select>
+                              </div>
+                           </div>
+                           <button type="submit" class="search__btn"><span>Search</span><span
+                                 class="-icon-search"></span></button>
+                        </form>
+                     </div>
+                  </div>
+                  <!-- <div class="top-block__row top-block__row_ads" data-me="767.98, .top-block__body, first"> -->
+                     <!-- <div class="top-block__breadcrumbs breadcrumbs-top-block">
+                        <ul class="breadcrumbs-top-block__list">
+                           <li><a href="">Home</a></li>
+                           <li>Ads single</li>
+                        </ul>
+                     </div> -->
+                  <!-- </div> -->
+               </div>
+            </div>
+         </div>
+         <div class="page__product product">
+            <div class="product__container -container">
+
+
+
+               <div class="product__main">
+                  <div class="product__header">
+                     <div class="product__date">{{ object.created_date }}</div>
+                     <div class="product__actions">
+                        <a href="" class="product-share"><span class="-icon-share"></span></a>
+                        {% include 'includes/like.html' %}
+                     </div>
+                  </div>
+                  <div class="product__sliders">
+                     <div class="product__main-slider main-slider-product">
+                        <div class="main-slider-product__body swiper">
+                           <div class="main-slider-product__wrapper swiper-wrapper">
+                               {% for img in object.imgs.all %}
+                                   <div class="main-slider-product__slide swiper-slide">
+                                     <div class="main-slider-product__image -ai">
+                                        <img src="{{ img.img.url }}" alt="">
+                                     </div>
+                                  </div>
+                               {% endfor %}
+                       </div>
+                        </div>
+                        <div class="main-slider-product__arrows arrows-slider">
+                           <div class="arrows-slider__arrow arrows-slider__arrow_prev"><span class="-icon-arrow-right"></span></div>
+                           <div class="arrows-slider__arrow arrows-slider__arrow_next"><span class="-icon-arrow-right"></span></div>
+                        </div>
+                     </div>
+                     <div class="product__submain-slider submain-slider-product">
+                        <div class="submain-slider-product__body swiper">
+                           <div class="submain-slider-product__wrapper swiper-wrapper">
+                               {% for photo in object.photos.all %}
+                                   <div class="submain-slider-product__slide swiper-slide">
+                                     <div class="submain-slider-product__image -ai">
+                                        <img src="{{ photo.photo.url }}" alt="">
+                                     </div>
+                                    </div>
+                               {% endfor %}
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+                  <div class="product__info info-product">
+                     <div class="info-product__body">
+                        <h2 class="info-product__title">
+                           <span>{{ object.title }}</span>
+                        </h2>
+                        <div class="info-product__date">{{ object.created_date }}</div>
+                        <a href="" class="info-product__link"><span class="-icon-mail"></span>Receive notifications</a>
+                     </div>
+                     <div class="info-product__side">
+                        <div class="info-product__price">${{ object.price }}</div>
+                        <a href="" class="info-product__label"><span>Negotiable</span></a>
+                     </div>
+                  </div>
+                  <div class="product__desc">
+                     <h3 class="product__label label-product label-product_big">Seller comment:</h3>
+                     <p class="product__text">{{ object.description }}</p>
+                  </div>
+                  <div class="product__overview overview-product">
+                     <div class="overview-product__row overview-product__row_white">
+                        <h3 class="overview-product__label label-product">Product Overview:</h3>
+                        <div class="overview-product__items">
+                           <div class="overview-product__item">
+                              <h4 class="overview-product__title">Model</h4>
+                              <div class="overview-product__subtitle">{{ object.model }}</div>
+                           </div>
+                        </div>
+                     </div>
+{#                     <div class="overview-product__row overview-product__row_green">#}
+{#                        <h3 class="overview-product__label label-product">Special Features:</h3>#}
+{#                        <div class="overview-product__items">#}
+{#                           <div class="overview-product__item">#}
+{#                              <h4 class="overview-product__title">Brand</h4>#}
+{#                              <div class="overview-product__subtitle">Toyota Allion</div>#}
+{#                           </div>#}
+{#                           <div class="overview-product__item">#}
+{#                              <h4 class="overview-product__title">Brand</h4>#}
+{#                              <div class="overview-product__subtitle">Toyota Allion</div>#}
+{#                           </div>#}
+{#                        </div>#}
+{#                     </div>#}
+                      <span style="width:120px">
+                        {{ paypal_form.render }}
+                      </span>
+
+                      {% include 'includes/detail_map.html' %}
+                  </div>
+               </div>
+{% include 'includes/detail_product_side.html' %}
+            </div>
+         </div>
+         <div class="page__similar-ads similar-ads">
+{% include 'includes/detail_similar_ads.html' %}
+         </div>
+         <div class="page__question question question_ads-single">
+            <div class="question__container -container">
+               <h2 class="question__title title">Do you have something to sell?</h2>
+               <div class="question__subtitle subtitle">This is where businesses in Bangladesh trade, numerous business and industry services offered<br> to trade and consumers.</div>
+               <a href="" class="question__btn btn">Submit on ad</a>
+            </div>
+         </div>
+      </div>
+
+
+
+{% endblock %}

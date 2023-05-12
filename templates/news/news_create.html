@@ -1,0 +1,10 @@
+{% extends 'base_create.html' %}
+{% block create_content %}
+    <form action="{% url 'news-create' %}" method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+{{ form.as_p }}
+<button type="submit">submit</button>
+        </form>
+
+{% endblock %}
+

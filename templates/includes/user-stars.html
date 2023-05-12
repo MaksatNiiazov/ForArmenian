@@ -1,0 +1,84 @@
+{% load static %}
+
+
+{% if request.user.is_authenticated %}
+    <form action="{% url 'user-rating' %}" method="post" name="rating">
+    {% csrf_token %}
+    <input type="hidden" value="{{ object.id }}" name="ad">
+    <div class="rating rating_star">
+        {% for k, v in star_form.fields.star.choices %}
+            {% if forloop.counter == user_rating %}
+                <input type="radio" id="rating{{ v }}" value="{{ v }}" name="star" checked>
+                <label for="rating{{ v }}">{{ k }}</label>
+            {% else %}
+                <input type="radio" id="rating{{ v }}" value="{{ v }}" name="star">
+                <label for="rating{{ v }}">{{ k }}</label>
+            {% endif %}
+
+        {% endfor %}
+    </div>
+    <span class="rating__label"> {{ user_avg }} </span>
+    ({{ user_rating_count }} review)
+</form>
+{% else %}
+    <a href="{% url 'login' %}">Login to see rating </a>
+{% endif %}
+
+
+
+
+<script>
+    const rating = document.querySelector('form[name=rating]');
+
+rating.addEventListener("change", function (e) {
+    let data = new FormData(this);
+    fetch(`${this.action}`, {
+        method: 'POST',
+        body: data
+    })
+        {#.then(response => alert("Рейтинг установлен"))#}
+        {#.catch(error => alert("Ошибка"))#}
+});
+</script>
+
+<style>
+.rating_star{
+    display: flex;
+    flex-direction: row-reverse;
+}
+
+.rating {
+  overflow: hidden;
+  vertical-align: bottom;
+  display: inline-block;
+  width: 155px;
+  height: 30px;
+}
+
+.rating > input {
+  opacity: 0;
+  margin-right: -100%;
+}
+
+.rating > label {
+  position: relative;
+  display: block;
+  float: right;
+  background: url('{% static 'img/icons/star-off-big.png' %}');
+  background-size: 30px 30px;
+}
+
+.rating > label:before {
+  display: block;
+  opacity: 0;
+  content: '';
+  width: 30px;
+  height: 30px;
+  background: url('{% static 'img/icons/star-on-big.png' %}');
+  background-size: 30px 30px;
+  transition: opacity 0.2s linear;
+}
+
+.rating > label:hover:before,  .rating > label:hover ~ label:before,  .rating:not(:hover) > :checked ~ label:before { opacity: 1; }
+
+</style>

@@ -1,0 +1,207 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+
+
+
+      <div class="page">
+         <div class="page__top-block top-block top-block_padding top-block_services">
+            <div class="top-block__image -ai"><img src="img/top-block/image.jpg" alt=""></div>
+            <div class="top-block__container -container">
+               <div class="top-block__body">
+                  <h2 class="top-block__title top-title top-title_mb top-title_ads" data-me="767.98, .top-block__body, 2">Services</h2>
+                  <div class="top-block__search search search_search search_ads search_inp search_top">
+                     <div class="search__body">
+                        <form action="#" class="search__row">
+                           <div class="search__item">
+                              <div class="search__label">Name</div>
+                              <div class="search__input"><input class="-req -name" autocomplete="off" type="text" name="keyword"
+                                    data-value="Your keyword"></div>
+                           </div>
+                           <div class="search__item">
+                              <div class="search__label">Location</div>
+                              <div class="search__select">
+                                 <select name="location" class="select-search" data-custom-select>
+                                    <option value="Los Angelos">Los Angelos1</option>
+                                 </select>
+                              </div>
+                           </div>
+                           <button type="submit" class="search__btn"><span>Search</span><span
+                                 class="-icon-search"></span></button>
+                        </form>
+                     </div>
+                  </div>
+                  <!-- <div class="top-block__row top-block__row_ads"> -->
+                     <!-- <div class="top-block__breadcrumbs breadcrumbs-top-block">
+                        <ul class="breadcrumbs-top-block__list">
+                           <li><a href="">Home</a></li>
+                           <li>Services</li>
+                        </ul>
+                     </div> -->
+                  <!-- </div> -->
+               </div>
+            </div>
+         </div>
+         <div class="page__services services">
+            <div class="services__container -container">
+               <div class="services__catalog catalog">
+                  <div class="catalog__map"><iframe src="https://www.google.com/maps/embed?pb=!1m10!1m8!1m3!1d6699051.043275679!2d21.940572607847184!3d34.9310098493962!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sru!2sua!4v1657230954283!5m2!1sru!2sua" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe></div>
+                  <div class="catalog__body" data-me="767.98, .catalog__wrap, first">
+                     <a href="" class="catalog__openner filter-openner filter-openner_hide filter-openner_lock">
+                        <span class="-icon-filter"></span> Filter
+                     </a>
+                     <form action="#" class="catalog__form form-filter -event-change form-filter_job">
+                        <a href="" class="form-filter__close form-filter__close_lock"><img src="img/icons/close.svg" alt=""></a>
+                        <h3 class="form-filter__title">Filter</h3>
+                        <div class="form-filter__main">
+                           <div class="form-filter__item">
+                              <div class="form-filter__title-item form-filter__title-item_nicon form-filter-title-item">Price Range</div>
+                              <div class="form-filter__price price-form-filter">
+                                 <div class="price-form-filter__range range-form-filter">
+                                    <div class="range-form-filter__labels">
+                                       <div class="range-form-filter__label range-form-filter__label_min"></div>
+                                       <div class="range-form-filter__label range-form-filter__label_max"></div>
+                                    </div>
+                                    <div class="range-form-filter__slider"></div>
+                                 </div>
+                                 <div class="price-form-filter__row">
+                                    <div class="price-form-filter__values values-form-filter">
+                                       <div class="values-form-filter__col">
+                                          <div class="values-form-filter__label">Min</div>
+                                          <div class="values-form-filter__input"><input id="price-start" class="-req -number" autocomplete="off" type="number" data-value="$0" min="0" max="10000" name="price-min"></div>
+                                       </div>
+                                       <div class="values-form-filter__col">
+                                          <div class="values-form-filter__label">Max</div>
+                                          <div class="values-form-filter__input"><input id="price-end" class="-req -number" autocomplete="off" type="number" data-value="$10,000" min="0" max="10000" name="price-max"></div>
+                                       </div>
+                                    </div>
+                                 </div>
+                              </div>
+                           </div>
+                           <div class="form-filter__item">
+                              <div class="form-filter__title-item form-filter__title-item_nicon form-filter-title-item">График работы</div>
+                              <div class="form-filter__body">
+                                 <ul class="form-filter__list">
+                                    <li class="form-filter__input -input-form-filter">
+                                       <label>
+                                          <input type="checkbox" name="schedule">
+                                          <span></span>
+                                          <span class="text-form-filter">Open now</span>
+                                       </label>
+                                    </li>
+                                 </ul>
+                              </div>
+                           </div>
+                        </div>
+                     </form>
+                  </div>
+                  <div class="catalog__main">
+                     <div class="catalog__wrap">
+                        <div class="catalog__selections selecttions-catalog" data-me="767.98, .catalog__main, first">
+                           <h4 class="selecttions-catalog__title">Your selections</h4>
+                           <div class="selecttions-catalog__items">
+                              <a href="" class="selecttions-catalog__item">
+                                 IT <span class="selecttions-catalog__icon"></span>
+                              </a>
+                           </div>
+                        </div>
+                        <div class="catalog__short short-filter">
+                           <div class="short-filter__label">Short by</div>
+                           <div class="short-filter__select">
+                              <select name="short" class="short-filter-select" data-custom-select>
+                                 <option value="Most relevant">Most relevant</option>
+                                 <option value="Most relevant">Most relevant</option>
+                                 <option value="Most relevant">Most relevant</option>
+                              </select>
+                           </div>
+                        </div>
+                     </div>
+                     <div class="catalog__items">
+
+                         {% for object in object_list %}
+
+                        <div class="catalog__item item-catalog">
+                           <div class="item-catalog__body">
+                              <div class="item-catalog__main">
+                                 <div class="item-catalog__slider slider-item-products-ads slider-item-products-ads_big">
+                                    <div class="slider-item-products-ads__body swiper">
+                                 <div class="slider-item-products-ads__wrapper swiper-wrapper">
+                                    {% for img in object.imgs.all %}
+                                      <div class="slider-item-products-ads__slide swiper-slide">
+                                        <a href="{% url 'services-detail' object.id %}" class="slider-item-products-ads__image -ai"><img src="{{ img.img.url }}" alt=""></a>
+                                     </div>
+                                  {% endfor %}
+
+                              </div>
+                                    </div>
+                                    <a href="" class="slider-item-products-ads__pagination -slider-pagination-row"></a>
+                                 </div>
+                                 <div class="item-catalog__content">
+                                    <div class="item-catalog__row">
+                                       <div class="item-catalog__texts">
+                                          <div class="item-catalog__date">{{ object.created_date }}</div>
+                                          <a href="{% url 'services-detail' object.pk %}" class="item-catalog__title">{{ object.title }}</a>
+                                       </div>
+                                       <div class="item-catalog__actions">
+                                          <a href=""><span class="-icon-share"></span></a>
+                                              {% include 'includes/like_list.html' %}
+
+{#                                          <a href=""><span class="-icon-like"></span></a>#}
+                                       </div>
+                                    </div>
+                                    <div class="item-catalog__row">
+                                       <div class="item-catalog__price"><div>$ {{ object.price }} <span>{{ object.frequency_of_payment }}</span></div></div>
+                                       <div class="item-catalog__user">
+                                          <div class="item-catalog__name">{{ object.created_by.first_name }}</div>
+                                          <div class="item-catalog__rating rating-item-catalog">
+                                             <span class="-icon-star"></span><span class="rating-item-catalog__text">{{ object.sum_of_values }} ({{ object.rating_set.count }} review)</span>
+                                          </div>
+                                       </div>
+                                    </div>
+{#                                    <div class="item-catalog__labels" data-me="767.98, .item-catalog_1 .item-catalog__main, first">#}
+{#                                          <div class="item-catalog__label">English/Native</div>#}
+{#                                          <div class="item-catalog__label">Full time</div>#}
+{#                                          <div class="item-catalog__label">Remote</div>#}
+{#                                    </div>#}
+                                    <div class="item-catalog__address">{{ object.address }}</div>
+                                    <div class="item-catalog__desc">
+                                       <p>{{ object.description }}</p>
+                                    </div>
+                                 </div>
+                              </div>
+                           </div>
+                        </div>
+
+                      {% endfor %}
+
+                     </div>
+                  </div>
+               </div>
+               <div class="services__pagging pagging">
+                  <ul class="pagging__list">
+                     <li class="pagging__item -active">
+                        <a href="">1</a>
+                     </li>
+                     <li class="pagging__item">
+                        <a href="">2</a>
+                     </li>
+                     <li class="pagging__item">
+                        <a href="">3</a>
+                     </li>
+                     <li class="pagging__item pagging__item_e">.</li>
+                     <li class="pagging__item pagging__item_e">.</li>
+                     <li class="pagging__item pagging__item_e">.</li>
+                     <li class="pagging__item pagging__item_e">.</li>
+                     <li class="pagging__item pagging__item_e">.</li>
+                     <li class="pagging__item">
+                        <a href="">16</a>
+                     </li>
+                  </ul>
+               </div>
+            </div>
+         </div>
+      </div>
+
+
+{% endblock %}

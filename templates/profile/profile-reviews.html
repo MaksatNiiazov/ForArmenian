@@ -1,0 +1,117 @@
+{% extends 'base.html' %}
+{% block content %}
+    <div class="container">
+    <div class="tabs-profile__content" data-tab-content="4">
+       <div class="tabs-profile__row row-links-profile row-links-profile_reviews" data-tab="min, 0">
+          <div class="row-links-profile__items -parent-tab-item" data-tab-items>
+             <a href="" class="row-links-profile__item" data-tab-subitem="1">Reviews</a>
+          </div>
+          <div class="row-links-profile__body">
+             <div class="row-links-profile__content" data-tab-content="1">
+                <div class="row-links-profile__reviews reviews-profile">
+                   <div class="reviews-profile__items">
+                       {% for rating in ratings %}
+                         <div class="reviews-profile__item item-product-profile">
+                         <div class="item-product-profile__main">
+                            <div class="item-product-profile__preview">
+                               <a href="" class="item-product-profile__link"></a>
+                               <div class="item-product-profile__image -ai"><img src="{{ rating.ad.imgs.first.img.url }}" alt=""></div>
+                            </div>
+                            <div class="item-product-profile__body">
+                               <a href="" class="item-product-profile__title">{{ rating.ad.title }}</a>
+                               <div class="item-product-profile__footer">
+                                  <div class="item-product-profile__date">{{ rating.ad.created_date }}</div>
+                                  <div class="item-product-profile__view">
+                                     <span>{{ ratings.count }}<span class="-icon-star"></span><span class="-icon-view"></span></span>
+                                  </div>
+                               </div>
+                            </div>
+                         </div>
+                         <div class="item-product-profile__rating rating-item-product-profile">
+{#                                                <div class="rating-item-product-profile__num">{{ rating.get_avg }}<span class="-icon-star"></span></div>#}
+{#                                                <div class="rating-item-product-profile__starts">#}
+{#                                                   <span class="-icon-star"></span>#}
+{#                                                   <span class="-icon-star"></span>#}
+{#                                                   <span class="-icon-star"></span>#}
+{#                                                   <span class="-icon-star"></span>#}
+{#                                                   <span class="-icon-star-bd"></span>#}
+{#                                                </div>#}
+                         </div>
+                      </div>
+                       {% endfor %}
+                   </div>
+                </div>
+             </div>
+{#                                 <div class="row-links-profile__content" data-tab-content="2">#}
+{#                                    <div class="row-links-profile__reviews reviews-profile">#}
+{#                                       <div class="reviews-profile__items">#}
+{#                                          <div class="reviews-profile__item item-product-profile">#}
+{#                                             <div class="item-product-profile__main">#}
+{#                                                <div class="item-product-profile__preview">#}
+{#                                                   <a href="" class="item-product-profile__link"></a>#}
+{#                                                   <div class="item-product-profile__image -ai"><img src="img/product/image.jpg" alt=""></div>#}
+{#                                                </div>#}
+{#                                                <div class="item-product-profile__body">#}
+{#                                                   <a href="" class="item-product-profile__title">Velour Girls' Down Jacket JR</a>#}
+{#                                                   <div class="item-product-profile__settings">#}
+{#                                                      <div class="item-product-profile__setting">Size: <span>XXL</span></div>#}
+{#                                                      <div class="item-product-profile__setting">Color: <span>Navy</span></div>#}
+{#                                                   </div>#}
+{#                                                   <div class="item-product-profile__footer">#}
+{#                                                      <div class="item-product-profile__date">14.11.2001</div>#}
+{#                                                      <div class="item-product-profile__view">#}
+{#                                                         <span>142<span class="-icon-view"></span></span>#}
+{#                                                      </div>#}
+{#                                                   </div>#}
+{#                                                </div>#}
+{#                                             </div>#}
+{#                                             <div class="item-product-profile__rating rating-item-product-profile">#}
+{#                                                <div class="rating-item-product-profile__num">4.5</div>#}
+{#                                                <div class="rating-item-product-profile__starts">#}
+{#                                                   <span class="-icon-star"></span>#}
+{#                                                   <span class="-icon-star"></span>#}
+{#                                                   <span class="-icon-star"></span>#}
+{#                                                   <span class="-icon-star"></span>#}
+{#                                                   <span class="-icon-star-bd"></span>#}
+{#                                                </div>#}
+{#                                             </div>#}
+{#                                          </div>#}
+{#                                          <div class="reviews-profile__item item-product-profile">#}
+{#                                             <div class="item-product-profile__main">#}
+{#                                                <div class="item-product-profile__preview">#}
+{#                                                   <a href="" class="item-product-profile__link"></a>#}
+{#                                                   <div class="item-product-profile__image -ai"><img src="img/product/image.jpg" alt=""></div>#}
+{#                                                </div>#}
+{#                                                <div class="item-product-profile__body">#}
+{#                                                   <a href="" class="item-product-profile__title">Velour Girls' Down Jacket JR</a>#}
+{#                                                   <div class="item-product-profile__settings">#}
+{#                                                      <div class="item-product-profile__setting">Size: <span>XXL</span></div>#}
+{#                                                      <div class="item-product-profile__setting">Color: <span>Navy</span></div>#}
+{#                                                   </div>#}
+{#                                                   <div class="item-product-profile__footer">#}
+{#                                                      <div class="item-product-profile__date">14.11.2001</div>#}
+{#                                                      <div class="item-product-profile__view">#}
+{#                                                         <span>142<span class="-icon-view"></span></span>#}
+{#                                                      </div>#}
+{#                                                   </div>#}
+{#                                                </div>#}
+{#                                             </div>#}
+{#                                             <div class="item-product-profile__rating rating-item-product-profile">#}
+{#                                                <div class="rating-item-product-profile__num">4.5</div>#}
+{#                                                <div class="rating-item-product-profile__starts">#}
+{#                                                   <span class="-icon-star"></span>#}
+{#                                                   <span class="-icon-star"></span>#}
+{#                                                   <span class="-icon-star"></span>#}
+{#                                                   <span class="-icon-star"></span>#}
+{#                                                   <span class="-icon-star-bd"></span>#}
+{#                                                </div>#}
+{#                                             </div>#}
+{#                                          </div>#}
+{#                                       </div>#}
+{#                                    </div>#}
+{#                                 </div>#}
+          </div>
+       </div>
+    </div>
+</div>
+{% endblock %}

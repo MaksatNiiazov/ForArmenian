@@ -1,0 +1,97 @@
+ {% load static %}
+
+                  <div class="product__ad-comments comments-news-single">
+{#                     <form action="#" class="comments-news-single__form form-comments-news-single">#}
+                        <div class="form-comments-news-single__header">
+                           <h3 class="form-comments-news-single__title -title-news-single">Leave a Reaply</h3>
+                           <div class="form-comments-news-single__rating rating-review rating-review_user">
+{#                              <div class="rating-review__body">#}
+{#                                 {% include 'includes/stars.html' %}#}
+{#                                 </div>#}
+                              </div>
+                              <div class="rating-review__label"></div>
+                           </div>
+                           <div class="form-comments-news-single__text -text-news-single -text-news-single_small">Your email address will not be published. Required fields are marked *</div>
+                        </div>
+                     <form action="{% url 'add-comment' object.pk %}", method="post">
+                         {% csrf_token %}
+                        <div class="form-comments-news-single__inputs">
+                           <div class="form-comments-news-single__textarea"><textarea name="comment" class="-req" data-value="Type your comment"></textarea></div>
+                           <div class="form-comments-news-single__footer">
+                               {% if request.user.is_authenticated %}
+                                     <button type="submit" class="form-comments-news-single__btn">Submit Comment</button>
+                                {% else %}
+                                   <a href="{% url 'login' %}">Login for submit comments</a>
+                               {% endif %}
+                           </div>
+                        </div>
+                     </form>
+
+                     <div class="comments-news-single__row">
+                        <h3 class="comments-news-single__title -title-news-single">{{ comments.count }} Comment</h3>
+                        <div class="comments-news-single__comments">
+                            {% for comment in comments|slice:':5' %}
+                           <div class="comments-news-single__comment comment-news-single">
+                              <a href="" class="comment-news-single__image -ai"><img src="{% if comment.user.avatar %} {{ comment.user.avatar.url }} {% else %} {% static 'img/profile_photos/default-avatar.jpg' %} {% endif %} " alt=""></a>
+                              <div class="comment-news-single__body">
+                                 <div class="comment-news-single__header">
+                                    <div class="comment-news-single__texts">
+                                       <a href="" class="comment-news-single__name">{{ comment.user }}</a>
+                                       <div class="comment-news-single__date">{{ comment.created_date }}</div>
+                                    </div>
+{#                                    <a href="" class="comment-news-single__link">Reply</a>#}
+                                 </div>
+                                 <div class="comment-news-single__text -text-news-single -text-news-single_small">{{ comment.comment }}</div>
+{#                                  {% if comment.user is user %}#}
+{#                                        <a href="" class="comment-news-single__link">Delete</a>#}
+{#                                  {% endif %}#}
+                              </div>
+                           </div>
+                            {% endfor %}
+
+                <div id="hidden-fields" style="display: none;">
+                         {% for comment in comments|slice:'5:' %}
+                           <div class="comments-news-single__comment comment-news-single">
+                              <a href="" class="comment-news-single__image -ai"><img src="{% if comment.user.avatar %} {{ comment.user.avatar.url }} {% else %} {% static 'img/profile_photos/default-avatar.jpg' %} {% endif %} " alt=""></a>
+                              <div class="comment-news-single__body">
+                                 <div class="comment-news-single__header">
+                                    <div class="comment-news-single__texts">
+                                       <a href="" class="comment-news-single__name">{{ comment.user }}</a>
+                                       <div class="comment-news-single__date">{{ comment.created_date }}</div>
+                                    </div>
+                                    <a href="" class="comment-news-single__link">Reply</a>
+                                 </div>
+                                 <div class="comment-news-single__text -text-news-single -text-news-single_small">{{ comment.comment }}</div>
+{#                                  {% if comment.user is user %}#}
+{#                                        <a href="" class="comment-news-single__link">Delete</a>#}
+{##}
+{#                                  {% endif %}#}
+                              </div>
+
+
+                           </div>
+
+                            {% endfor %}
+                        </div>
+
+
+                        </div>
+
+                     </div>
+                  <span id="show-fields">Show more</span>
+                  </div>
+
+
+<script>
+document.getElementById("show-fields").addEventListener("click", function() {
+  let fields = document.getElementById("hidden-fields");
+  let button = document.getElementById("show-fields");
+  if (fields.style.display === "none") {
+    fields.style.display = "block";
+    button.innerHTML = "Show less";
+  } else {
+    fields.style.display = "none";
+    button.innerHTML = "Show more";
+  }
+});
+</script>

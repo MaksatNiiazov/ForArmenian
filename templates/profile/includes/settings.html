@@ -1,0 +1,52 @@
+{% load static %}
+
+<div class="tabs-profile__settings settings-profile">
+  <div class="settings-profile__row">
+     <h3 class="settings-profile__title">Change Settings</h3>
+<form action="{% url 'profile-update' %}" method="post" class="settings-profile__form form-settings-profile">
+  {% csrf_token %}
+  <div class="settings-profile__photo photo-settings-profile">
+    <div class="photo-settings-profile__image -ai">
+      <img src="{{ user.avatar.url }}" alt="">
+    </div>
+    <label class="photo-settings-profile__icon">
+      <input type="file" name="avatar" class="-req -file" accept=".png, .jpg, .jpeg">
+      <span class="-icon-camera"></span>
+    </label>
+  </div>
+  <div class="form-settings-profile__items">
+    <div class="form-settings-profile__item">
+      <h4 class="form-settings-profile__label">First Name</h4>
+      <div class="form-settings-profile__input">
+        <input autocomplete="off" type="text" class="-req -name" name="name" value="{{ user.first_name }}">
+      </div>
+    </div>
+    <div class="form-settings-profile__item">
+      <h4 class="form-settings-profile__label">Last Name</h4>
+      <div class="form-settings-profile__input">
+        <input autocomplete="off" type="text" class="-req -name" name="last-name" value="{{ user.last_name }}">
+      </div>
+    </div>
+    <div class="form-settings-profile__item form-settings-profile__item_email">
+      <h4 class="form-settings-profile__label">Email</h4>
+      <div class="form-settings-profile__input">
+        <input autocomplete="off" type="text" class="-req -email" name="email" value="{{ user.email }}">
+      </div>
+    </div>
+    <div class="form-settings-profile__item form-settings-profile__item_phone">
+      <h4 class="form-settings-profile__label">Phone Number</h4>
+      <div class="form-settings-profile__input">
+        <input autocomplete="off" type="text" class="-req -phone" name="phone" value="{{ user.phone_number }}">
+      </div>
+    </div>
+  </div>
+  <button type="submit" class="form-settings-profile__btn btn-profile">Save</button>
+</form>
+  </div>
+  <div class="settings-profile__row">
+     <h3 class="settings-profile__title">Change Password</h3>
+     <form action="#" class="settings-profile__form form-settings-profile form-settings-profile_password">
+         <a href="{% url 'password_change' %}"><button type="button" class="form-settings-profile__btn btn-profile">Change Password</button></a>
+     </form>
+  </div>
+</div>

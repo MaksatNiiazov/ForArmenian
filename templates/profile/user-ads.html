@@ -1,0 +1,393 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+
+
+<div class="tabs-profile__ads ads-profile container">
+<h2> {{ object.first_name }} {{ object.last_name }} ads: </h2>
+
+      <div class="tabs-profile__row row-links-profile" data-tab="min, 0">
+
+         <div class="row-links-profile__items -parent-tab-item" data-tab-items>
+      {% if not properties and not vehicles and not jobs_v and not jobs_r and not markets and not services and not cafes and not abcs and not usefuls and not events and not entreteiments %}
+         <a href="" class="row-links-profile__item" data-tab-subitem="1">Ads <span></span></a>
+
+          {% else %}
+           {% if properties %}
+             <a href="" class="row-links-profile__item" data-tab-subitem="1">Properties <span>{{ properties.count }}</span></a>
+         {% endif %}
+         {% if vehicles %}
+            <a href="" class="row-links-profile__item" data-tab-subitem="2">Vehicles<span>{{ vehicles.count }}</span></a>
+         {% endif %}
+         {% if jobs_v %}
+            <a href="" class="row-links-profile__item" data-tab-subitem="3">Vacancies<span>{{ jobs_v.count }}</span></a>
+         {% endif %}
+         {% if jobs_r %}
+            <a href="" class="row-links-profile__item" data-tab-subitem="4">Resumes<span>{{ jobs_r.count }}</span></a>
+         {% endif %}
+         {% if markets %}
+            <a href="" class="row-links-profile__item" data-tab-subitem="5">Market<span>{{ markets.count }}</span></a>
+         {% endif %}
+         {% if services %}
+            <a href="" class="row-links-profile__item" data-tab-subitem="6">Services<span>{{ services.count }}</span></a>
+         {% endif %}
+                  {% if cafes %}
+            <a href="" class="row-links-profile__item" data-tab-subitem="7">Cafes<span>{{ cafes.count }}</span></a>
+         {% endif %}
+                  {% if abcs %}
+            <a href="" class="row-links-profile__item" data-tab-subitem="8">ABC<span>{{ abcs.count }}</span></a>
+         {% endif %}
+                  {% if usefuls %}
+            <a href="" class="row-links-profile__item" data-tab-subitem="9">Useful<span>{{ usefuls.count }}</span></a>
+         {% endif %}
+                  {% if events %}
+            <a href="" class="row-links-profile__item" data-tab-subitem="10">Events<span>{{ events.count }}</span></a>
+         {% endif %}
+                  {% if entreteiments %}
+            <a href="" class="row-links-profile__item" data-tab-subitem="11">Entreteiments<span>{{ entreteiments.count }}</span></a>
+         {% endif %}
+
+{% endif %}
+
+
+         </div>
+         <div class="row-links-profile__body">
+         {% if not properties and not vehicles and not jobs_v and not jobs_r and not markets and not services and not cafes and not abcs and not usefuls and not events and not entreteiments %}
+
+             <div class="row-links-profile__content" data-tab-content="1">
+                               <div class="row-links-profile__reviews reviews-profile">
+                                   <p>You have no active ads</p>
+               </div>
+            </div>
+
+            {% else %}
+             <div class="row-links-profile__content" data-tab-content="1">
+                               <div class="row-links-profile__reviews reviews-profile">
+                  <div class="reviews-profile__items">
+                      {% for object in properties %}
+                      <div class="reviews-profile__item item-product-profile">
+            <div class="item-product-profile__main">
+               <div class="item-product-profile__preview">
+                  <a href="{% url 'property-detail' object.pk %}" class="item-product-profile__link"></a>
+                  <div class="item-product-profile__image -ai"><img src="{{ object.imgs.first.img.url }}" alt=""></div>
+               </div>
+               <div class="item-product-profile__body">
+                  <a href="" class="item-product-profile__title">{{ object.title }}</a>
+                  <div class="item-product-profile__settings">
+                     <div class="item-product-profile__setting">Type: <span>{{ object.property_type }}</span></div>
+                     <div class="item-product-profile__setting">Rental period: <span>{{ object.rental_period }}</span></div>
+                  </div>
+                  <div class="item-product-profile__footer">
+                     <div class="item-product-profile__date">{{ object.created_date }}</div>
+                     <div class="item-product-profile__view">
+{#                        <span>142<span class="-icon-view"></span></span>#}
+                     </div>
+                  </div>
+               </div>
+            </div>
+            </div>
+                      {% endfor %}
+                  </div>
+               </div>
+            </div>
+            <div class="row-links-profile__content" data-tab-content="2">
+                            <div class="row-links-profile__reviews reviews-profile">
+            <div class="reviews-profile__items">
+            {% for object in vehicles %}
+            <div class="reviews-profile__item item-product-profile">
+            <div class="item-product-profile__main">
+               <div class="item-product-profile__preview">
+                  <a href="{% url 'vehicle-detail' object.pk %}" class="item-product-profile__link"></a>
+                  <div class="item-product-profile__image -ai"><img src="{{ object.imgs.first.img.url }}" alt=""></div>
+               </div>
+               <div class="item-product-profile__body">
+                  <a href="{% url 'vehicle-detail' object.id %}" class="item-product-profile__title">{{ object.title }}</a>
+                  <div class="item-product-profile__settings">
+                     <div class="item-product-profile__setting">Model: <span>{{ object.model }}</span></div>
+                     <div class="item-product-profile__setting">Year: <span>{{ object.year }}</span></div>
+                  </div>
+                  <div class="item-product-profile__footer">
+                     <div class="item-product-profile__date">{{ object.created_date }}</div>
+                     <div class="item-product-profile__view">
+{#                        <span>142<span class="-icon-view"></span></span>#}
+                     </div>
+                  </div>
+               </div>
+            </div>
+            </div>
+            {% endfor %}
+            </div>
+            </div>
+            </div>
+            <div class="row-links-profile__content" data-tab-content="3">
+                            <div class="row-links-profile__reviews reviews-profile">
+            <div class="reviews-profile__items">
+            {% for object in jobs_v %}
+            <div class="reviews-profile__item item-product-profile">
+            <div class="item-product-profile__main">
+               <div class="item-product-profile__preview">
+                  <a href="{% url 'job-detail-vacancy' object.pk %}" class="item-product-profile__link"></a>
+                  <div class="item-product-profile__image -ai"><img src="{{ object.imgs.first.img.url }}" alt=""></div>
+               </div>
+               <div class="item-product-profile__body">
+                  <a href="" class="item-product-profile__title">{{ object.title }}</a>
+                  <div class="item-product-profile__settings">
+                     <div class="item-product-profile__setting">Size: <span>XXL</span></div>
+                     <div class="item-product-profile__setting">Color: <span>Navy</span></div>
+                  </div>
+                  <div class="item-product-profile__footer">
+                     <div class="item-product-profile__date">14.11.2001</div>
+                     <div class="item-product-profile__view">
+{#                        <span>142<span class="-icon-view"></span></span>#}
+                     </div>
+                  </div>
+               </div>
+            </div>
+            </div>
+            {% endfor %}
+            </div>
+            </div>
+            </div>
+            <div class="row-links-profile__content" data-tab-content="4">
+                            <div class="row-links-profile__reviews reviews-profile">
+            <div class="reviews-profile__items">
+            {% for object in jobs_r %}
+            <div class="reviews-profile__item item-product-profile">
+            <div class="item-product-profile__main">
+               <div class="item-product-profile__preview">
+                  <a href="{% url 'job-detail-resume' object.pk %}" class="item-product-profile__link"></a>
+                  <div class="item-product-profile__image -ai"><img src="{{ object.imgs.first.img.url }}" alt=""></div>
+               </div>
+               <div class="item-product-profile__body">
+                  <a href="{% url 'job-detail-resume' object.id %}" class="item-product-profile__title">{{ object.title }}</a>
+                  <div class="item-product-profile__settings">
+                     <div class="item-product-profile__setting">Size: <span>XXL</span></div>
+                     <div class="item-product-profile__setting">Color: <span>Navy</span></div>
+                  </div>
+                  <div class="item-product-profile__footer">
+                     <div class="item-product-profile__date">14.11.2001</div>
+                     <div class="item-product-profile__view">
+{#                        <span>142<span class="-icon-view"></span></span>#}
+                     </div>
+                  </div>
+               </div>
+            </div>
+            </div>
+            {% endfor %}
+            </div>
+            </div>
+            </div>
+            <div class="row-links-profile__content" data-tab-content="5">
+                        <div class="row-links-profile__reviews reviews-profile">
+        <div class="reviews-profile__items">
+        {% for object in markets %}
+        <div class="reviews-profile__item item-product-profile">
+        <div class="item-product-profile__main">
+           <div class="item-product-profile__preview">
+              <a href="{% url 'market-detail' object.pk %}" class="item-product-profile__link"></a>
+              <div class="item-product-profile__image -ai"><img src="{{ object.imgs.first.img.url }}" alt=""></div>
+           </div>
+           <div class="item-product-profile__body">
+              <a href="{% url 'market-detail' object.id %}" class="item-product-profile__title">{{ object.title }}</a>
+              <div class="item-product-profile__settings">
+                 <div class="item-product-profile__setting">{{ object.description|truncatechars:50|safe }}</div>
+              </div>
+              <div class="item-product-profile__footer">
+                 <div class="item-product-profile__date">{{ object.created_date }}</div>
+                 <div class="item-product-profile__view">
+                    <span>142<span class="-icon-view"></span></span>
+                 </div>
+              </div>
+           </div>
+        </div>
+        </div>
+        {% endfor %}
+        </div>
+        </div>
+            </div>
+            <div class="row-links-profile__content" data-tab-content="6">
+            <div class="row-links-profile__reviews reviews-profile">
+            <div class="reviews-profile__items">
+            {% for object in services %}
+            <div class="reviews-profile__item item-product-profile">
+            <div class="item-product-profile__main">
+               <div class="item-product-profile__preview">
+                  <a href="{% url 'services-detail' object.pk %}" class="item-product-profile__link"></a>
+                  <div class="item-product-profile__image -ai"><img src="{{ object.imgs.first.img.url }}" alt=""></div>
+               </div>
+               <div class="item-product-profile__body">
+                  <a href="{% url 'services-detail' object.id %}" class="item-product-profile__title">{{ object.title }}</a>
+                  <div class="item-product-profile__settings">
+                     <div class="item-product-profile__setting">Category: <span>{{ object.category }}</span></div>
+                     <div class="item-product-profile__setting">Time: <span>{{ object.start_time }} / {{ object.end_time }}</span></div>
+                  </div>
+                  <div class="item-product-profile__footer">
+                     <div class="item-product-profile__date">{{ object.created_date }}</div>
+                     <div class="item-product-profile__view">
+{#                        <span>142<span class="-icon-view"></span></span>#}
+                     </div>
+                  </div>
+               </div>
+            </div>
+            </div>
+            {% endfor %}
+            </div>
+            </div>
+            </div>
+             <div class="row-links-profile__content" data-tab-content="7">
+            <div class="row-links-profile__reviews reviews-profile">
+            <div class="reviews-profile__items">
+            {% for object in cafes %}
+            <div class="reviews-profile__item item-product-profile">
+            <div class="item-product-profile__main">
+               <div class="item-product-profile__preview">
+                  <a href="{% url 'cafe-detail' object.pk %}" class="item-product-profile__link"></a>
+                  <div class="item-product-profile__image -ai"><img src="{{ object.imgs.first.img.url }}" alt=""></div>
+               </div>
+               <div class="item-product-profile__body">
+                  <a href="{% url 'cafe-detail' object.id %}" class="item-product-profile__title">{{ object.title }}</a>
+                  <div class="item-product-profile__settings">
+                     <div class="item-product-profile__setting">Size: <span>XXL</span></div>
+                     <div class="item-product-profile__setting">Color: <span>Navy</span></div>
+                  </div>
+                  <div class="item-product-profile__footer">
+                     <div class="item-product-profile__date">{{ object.created_date }}</div>
+                     <div class="item-product-profile__view">
+{#                        <span>142<span class="-icon-view"></span></span>#}
+                     </div>
+                  </div>
+               </div>
+            </div>
+            </div>
+            {% endfor %}
+            </div>
+            </div>
+            </div>
+            <div class="row-links-profile__content" data-tab-content="8">
+            <div class="row-links-profile__reviews reviews-profile">
+            <div class="reviews-profile__items">
+            {% for object in abcs %}
+            <div class="reviews-profile__item item-product-profile">
+            <div class="item-product-profile__main">
+               <div class="item-product-profile__preview">
+                  <a href="{% url 'abc-detail' object.pk %}" class="item-product-profile__link"></a>
+                  <div class="item-product-profile__image -ai"><img src="{{ object.imgs.first.img.url }}" alt=""></div>
+               </div>
+               <div class="item-product-profile__body">
+                  <a href="{% url 'abc-detail' object.id %}" class="item-product-profile__title">{{ object.title }}</a>
+                  <div class="item-product-profile__settings">
+                     <div class="item-product-profile__setting">Size: <span>XXL</span></div>
+                     <div class="item-product-profile__setting">Color: <span>Navy</span></div>
+                  </div>
+                  <div class="item-product-profile__footer">
+                     <div class="item-product-profile__date">{{ object.created_date }}</div>
+                     <div class="item-product-profile__view">
+{#                        <span>142<span class="-icon-view"></span></span>#}
+                     </div>
+                  </div>
+               </div>
+            </div>
+            </div>
+            {% endfor %}
+            </div>
+            </div>
+            </div>
+            <div class="row-links-profile__content" data-tab-content="9">
+            <div class="row-links-profile__reviews reviews-profile">
+            <div class="reviews-profile__items">
+            {% for object in usefuls %}
+            <div class="reviews-profile__item item-product-profile">
+            <div class="item-product-profile__main">
+               <div class="item-product-profile__preview">
+                  <a href="{% url 'useful-detail' object.pk %}" class="item-product-profile__link"></a>
+                  <div class="item-product-profile__image -ai"><img src="{{ object.imgs.first.img.url }}" alt=""></div>
+               </div>
+               <div class="item-product-profile__body">
+                  <a href="{% url 'useful-detail' object.id %}" class="item-product-profile__title">{{ object.title }}</a>
+                  <div class="item-product-profile__settings">
+                     <div class="item-product-profile__setting">Size: <span>XXL</span></div>
+                     <div class="item-product-profile__setting">Color: <span>Navy</span></div>
+                  </div>
+                  <div class="item-product-profile__footer">
+                     <div class="item-product-profile__date">{{ object.created_date }}</div>
+                     <div class="item-product-profile__view">
+{#                        <span>142<span class="-icon-view"></span></span>#}
+                     </div>
+                  </div>
+               </div>
+            </div>
+            </div>
+            {% endfor %}
+            </div>
+            </div>
+            </div>
+            <div class="row-links-profile__content" data-tab-content="10">
+            <div class="row-links-profile__reviews reviews-profile">
+            <div class="reviews-profile__items">
+            {% for object in events %}
+            <div class="reviews-profile__item item-product-profile">
+            <div class="item-product-profile__main">
+               <div class="item-product-profile__preview">
+                  <a href="{% url 'events-detail' object.pk %}" class="item-product-profile__link"></a>
+                  <div class="item-product-profile__image -ai"><img src="{{ object.imgs.first.img.url }}" alt=""></div>
+               </div>
+               <div class="item-product-profile__body">
+                  <a href="{% url 'events-detail' object.id %}" class="item-product-profile__title">{{ object.title }}</a>
+                  <div class="item-product-profile__settings">
+                     <div class="item-product-profile__setting">Size: <span>XXL</span></div>
+                     <div class="item-product-profile__setting">Color: <span>Navy</span></div>
+                  </div>
+                  <div class="item-product-profile__footer">
+                     <div class="item-product-profile__date">{{ object.created_date }}</div>
+                     <div class="item-product-profile__view">
+{#                        <span>142<span class="-icon-view"></span></span>#}
+                     </div>
+                  </div>
+               </div>
+            </div>
+            </div>
+            {% endfor %}
+            </div>
+            </div>
+            </div>
+            <div class="row-links-profile__content" data-tab-content="11">
+            <div class="row-links-profile__reviews reviews-profile">
+            <div class="reviews-profile__items">
+            {% for object in entreteiments %}
+            <div class="reviews-profile__item item-product-profile">
+            <div class="item-product-profile__main">
+               <div class="item-product-profile__preview">
+                  <a href="{% url 'entertainments-detail' object.pk %}" class="item-product-profile__link"></a>
+                  <div class="item-product-profile__image -ai"><img src="{{ object.imgs.first.img.url }}" alt=""></div>
+               </div>
+               <div class="item-product-profile__body">
+                  <a href="{% url 'entertainments-detail' object.id %}" class="item-product-profile__title">{{ object.title }}</a>
+                  <div class="item-product-profile__settings">
+                     <div class="item-product-profile__setting">Size: <span>XXL</span></div>
+                     <div class="item-product-profile__setting">Color: <span>Navy</span></div>
+                  </div>
+                  <div class="item-product-profile__footer">
+                     <div class="item-product-profile__date">{{ object.created_date }}</div>
+                     <div class="item-product-profile__view">
+{#                        <span>142<span class="-icon-view"></span></span>#}
+                     </div>
+                  </div>
+               </div>
+            </div>
+            </div>
+            {% endfor %}
+            </div>
+            </div>
+            </div>
+
+         {% endif %}
+
+
+         </div>
+      </div>
+   </div>
+
+
+
+{% endblock %}

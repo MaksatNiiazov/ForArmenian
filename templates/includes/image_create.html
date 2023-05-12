@@ -1,0 +1,64 @@
+<div id="image-upload-container"></div>
+
+<button id="add-image" type="button">AddImage</button>
+
+<script>
+const addImageBtn = document.getElementById('add-image');
+const imageUploadContainer = document.getElementById('image-upload-container');
+const maxNumOfFields = 5;
+let currNumOfFields = 0;
+
+addImageBtn.addEventListener('click', function() {
+  if (currNumOfFields < maxNumOfFields) {
+    currNumOfFields++;
+
+    const newImageUpload = document.createElement('div');
+    newImageUpload.classList.add('image-upload');
+    newImageUpload.innerHTML = `
+      <div class="image-upload-header">
+        <label for="id_photo-img-${currNumOfFields}">Img ${currNumOfFields}:</label>
+        <button class="remove-image-btn">Remove</button>
+      </div>
+      <input type="file" name="photo-img" accept="image/*" id="id_photo-img-${currNumOfFields}">
+      <div class="image-preview"></div>
+    `;
+    imageUploadContainer.appendChild(newImageUpload);
+
+    const fileInput = newImageUpload.querySelector('input[type="file"]');
+    const imagePreview = newImageUpload.querySelector('.image-preview');
+    const removeBtn = newImageUpload.querySelector('.remove-image-btn');
+
+    fileInput.addEventListener('change', function() {
+      showSelectedImagePreview(fileInput, imagePreview);
+    });
+
+    removeBtn.addEventListener('click', function() {
+      newImageUpload.remove();
+      currNumOfFields--;
+    });
+  }
+});
+
+function showSelectedImagePreview(fileInput, imagePreview) {
+  imagePreview.innerHTML = '';
+  for (let i = 0; i < fileInput.files.length; i++) {
+    const file = fileInput.files[i];
+    const img = document.createElement('img');
+    img.src = URL.createObjectURL(file);
+    img.alt = file.name;
+    imagePreview.appendChild(img);
+  }
+}
+</script>
+<style>
+    #add-image{
+        padding: 10px;
+        box-shadow: 0 0 2px black;
+        border-radius: 10px;
+    }
+    .remove-image-btn{
+        padding: 2px 5px;
+        box-shadow: 0 0 2px black;
+        border-radius: 5px;
+    }
+</style>

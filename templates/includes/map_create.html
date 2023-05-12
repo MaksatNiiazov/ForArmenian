@@ -1,0 +1,10 @@
+{% load static %}
+   <div>
+      <label for="city">City:</label>
+      <input type="text" id="city" name="city" value="Los Angeles">
+    </div>
+    <div id="map" style="height: 400px;"></div>
+    <div>
+      <input type="hidden" id="coordinates" name="coordinates", value="{{ object.address.location.location }}">
+    </div>
+    <script src="{% static 'location_field/map/map.js' %}"></script>

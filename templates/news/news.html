@@ -1,0 +1,171 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+      <div class="page">
+         <div class="page__top-block top-block top-block_padding top-block_news">
+            <div class="top-block__image -ai"><img src="{% static 'img/top-block/news.png' %}" alt=""></div>
+            <div class="top-block__container -container">
+               <div class="top-block__body">
+                  <h2 class="top-block__title top-title top-title_ads-single">News</h2>
+                  <div class="top-block__search search search_top">
+                     <div class="search__body">
+                        <form method="get" action="{% url 'news' %}" class="search__row">
+                           <div class="search__input"><input class="-req -name" autocomplete="off" type="text" name="keyword"
+                                 data-value="Your keyword" value="{{ request.GET.keyword }}"></div>
+                           <button type="submit" class="search__btn"><span>Search</span><span
+                                 class="-icon-search"></span></button>
+                        </form>
+
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </div>
+         <div class="page__articles articles">
+            <div class="articles__container -container">
+{#               <form action="#" class="articles__form form-articles -event-change">#}
+{#                  <label>#}
+{#                     <input type="checkbox" name="news">#}
+{#                     <span class="form-articles__item">Новости Армении</span>#}
+{#                  </label>#}
+{#                  <label>#}
+{#                     <input type="checkbox" name="news">#}
+{#                     <span class="form-articles__item">Новости LA</span>#}
+{#                  </label>#}
+{#                  <label>#}
+{#                     <input type="checkbox" name="news">#}
+{#                     <span class="form-articles__item">Мировые новости</span>#}
+{#                  </label>#}
+{#                  <label>#}
+{#                     <input type="checkbox" name="news">#}
+{#                     <span class="form-articles__item">Важные</span>#}
+{#                  </label>#}
+{#                  <label>#}
+{#                     <input type="checkbox" name="news">#}
+{#                     <span class="form-articles__item">Политика</span>#}
+{#                  </label>#}
+{#                  <label>#}
+{#                     <input type="checkbox" name="news">#}
+{#                     <span class="form-articles__item">Экономика</span>#}
+{#                  </label>#}
+{#                  <label>#}
+{#                     <input type="checkbox" name="news">#}
+{#                     <span class="form-articles__item">Спорт</span>#}
+{#                  </label>#}
+{#                  <label>#}
+{#                     <input type="checkbox" name="news">#}
+{#                     <span class="form-articles__item">Авто</span>#}
+{#                  </label>#}
+{#                  <label>#}
+{#                     <input type="checkbox" name="news">#}
+{#                     <span class="form-articles__item">Наука</span>#}
+{#                  </label>#}
+{#                  <label>#}
+{#                     <input type="checkbox" name="news">#}
+{#                     <span class="form-articles__item">Культура</span>#}
+{#                  </label>#}
+{#               </form>#}
+               <div class="articles-items__wrap">
+                  <div class="articles__articles articles-items">
+                    {% for object in object_list %}
+                        {% if forloop.first %}
+                      <div class="articles-items__item articles-item articles-item_big -articles-item-bg">
+                        <a href="" class="articles-item__link"></a>
+                        <a href="{% url 'news-detail' object.id %}" class="articles-item__image -ai"><img src="{{ object.photo.url }}" alt=""></a>
+                        <div class="articles-item__body">
+                           <h4 class="articles-item__subtitle">
+                               {{ object.categories.first }}
+                              <span class="articles-item__actions">
+                                 <a href="" class="item-content__share"><span class="-icon-share"></span></a>
+                                  {% include 'includes/like_list.html' %}
+                              </span>
+                           </h4>
+                           <h3 class="articles-item__title">{{ object.title }}</h3>
+                           <div class="articles-item__text">{{ object.description|safe|truncatechars:300 }}</div>
+                           <div class="articles-item__footer">
+                              <a href="{% url 'news-detail' object.pk %}" class="articles-item__more">Read More article</a>
+                              <a href="{{ object.link }}" class="articles-item__more">{{ object.news_source }}</a>
+                           </div>
+                        </div>
+                     </div>
+
+
+                        {% endif %}
+                    {% endfor %}
+
+
+                      {% for object in important_news|slice:'1:' %}
+
+
+                          <div class="articles-items__item articles-item -articles-item-bg">
+                        <a href="" class="articles-item__link"></a>
+                        <a href="{% url 'news-detail' object.id %}" class="articles-item__image -ai"><img src="{{ object.photo.url }}" alt=""></a>
+                        <div class="articles-item__body articles-item__body_small">
+                           <h4 class="articles-item__subtitle">
+                              {{ object.created_date }}
+                              <span class="articles-item__actions">
+                                 <a href="" class="item-content__share"><span class="-icon-share"></span></a>
+                                 <a href="" class="item-content__like"><span class="-icon-like"></span></a>
+                              </span>
+                           </h4>
+                           <h3 class="articles-item__title">{{ object.title }}</h3>
+                           <div class="articles-item__text">{{ object.description|safe|truncatechars:120|striptags }}1</div>
+                           <div class="articles-item__footer">
+                              <a href="{% url 'news-detail' object.pk %}" class="articles-item__more">Read More article</a>
+                              <a href="{{ object.link }}" class="articles-item__more">{{ object.news_source }}</a>
+                           </div>
+                        </div>
+                     </div>
+
+                      {% endfor %}
+                  </div>
+                  <div class="articles__footer">
+                     <a href="" class="articles__more btn-more">Show More News</a>
+                  </div>
+               </div>
+               <div class="articles-items__wrap">
+                  <div class="articles-items__header">
+                     <div class="articles-items__title">Важные</div>
+                  </div>
+                  <div class="articles__articles articles-items">
+                     {% for object in object_list %}
+                     {% if object.important %}
+                     <div class="articles-items__item articles-item -articles-item-bg">
+                        <a href="" class="articles-item__link"> object.link </a>
+                        <a href="" class="articles-item__image -ai"><img src="{{ object.photo.url }}" alt=""></a>
+                        <div class="articles-item__body articles-item__body_small">
+                           <h4 class="articles-item__subtitle">
+                              {{ object.created_date }}
+                              <span class="articles-item__actions">
+                                 <a href="" class="item-content__share"><span class="-icon-share"></span></a>
+                                 <a href="" class="item-content__like"><span class="-icon-like"></span></a>
+                              </span>
+                           </h4>
+                           <h3 class="articles-item__title">{{ object.title }}</h3>
+                           <div class="articles-item__text">{{ object.description|truncatechars:120|striptags }}</div>
+                           <div class="articles-item__footer">
+                              <a href="{% url 'news-detail' object.pk %}" class="articles-item__more">Read More article</a>
+                              <a href="{{ object.link }}" class="articles-item__more">{{ object.news_source }}</a>
+                           </div>
+                        </div>
+                     </div>
+                     {% endif %}
+                     {% endfor %}
+
+                  </div>
+
+               </div>
+            </div>
+                  {% include 'includes/paginate.html' %}
+
+         </div>
+         <div class="page__question question question_news">
+            <div class="question__container -container">
+               <h2 class="question__title title">Do you have something to sell?</h2>
+               <div class="question__subtitle subtitle">This is where businesses in Bangladesh trade, numerous business and industry services offered<br> to trade and consumers.</div>
+               <a href="" class="question__btn btn">Submit on ad</a>
+            </div>
+         </div>
+      </div>
+
+{% endblock %}

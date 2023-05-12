@@ -1,0 +1,59 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Sign up{% endblock %}
+
+{% block navigation %}
+
+{% endblock %}
+{% block content %}
+      <div class="page">
+         <div class="page__login login login_registration">
+            <div class="login__container -container">
+               <div class="login__form">
+                  <form method="post" class="login-form">
+                     {% csrf_token %}
+
+
+                     <div class="login-form__main">
+                        <div class="login-form__inputs">
+                           <div class="login-form__top">
+                               {% for field in form %}
+                                    <div class="login-form__item">
+                                        <h4 class="login-form__label">{{ field.label_tag }}</h4>
+                                        <div class="login-form__input">{{ field }}</div>
+                                    </div>
+
+                                    {% for error in field.errors %}
+                                      <p style="color: red">{{ error }}</p>
+                                    {% endfor %}
+
+                                {% endfor %}
+                           </div>
+                           <div class="login-form__checkbox -input-form-filter">
+                              <label>
+                                 <input type="checkbox" class="-req -checkbox" name="checkbox">
+                                 <span></span>
+                                 <span>I have read, understood and I agree to the <a href="">Terms of Use</a> of forarmenians</span>
+                              </label>
+                           </div>
+                        </div>
+                        <div class="login-form__actions">
+                           <button type="submit" class="login-form__btn">REGISTRATION</button>
+                           <div class="login-form__reg">Already have un account? <a href="{% url 'login' %}" class="-link-form">LOGIN</a></div>
+                        </div>
+                     </div>
+                  </form>
+               </div>
+               <div class="login__body">
+                  <div class="login__image -ai"><img src="{% static 'img/login/image.jpeg' %}" alt=""></div>
+                  <div class="login__label" data-me="991.98, .login-form__main,first">
+                     <span>REGISTRATION</span>
+                     Welcome to our page
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+   </div>
+{% endblock %}

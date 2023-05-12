@@ -1,0 +1,117 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+
+   <div class="file-popup" data-popup>
+      <div class="file-popup__body" data-popup-body>
+         <div class="file-popup__content" data-popup-content>
+            <a href="" class="file-popup__close -close-popup" data-popup-close></a>
+            <form action="#" class="file-popup__form form-file-popup">
+               <a href="" class="form-file-popup__link">Отправить резюме с сайта</a>
+               <label class="form-file-popup__btn">
+                  <input type="file" name="file" class="form-file-popup__file">
+                  Загрузить файл
+               </label>
+            </form>
+         </div>
+      </div>
+   </div>
+   <div class="wrapper">
+      <div class="page">
+         <div class="page__top-block top-block top-block_padding top-block_job-single">
+            <div class="top-block__image -ai"><img src="img/top-block/image.jpg" alt=""></div>
+            <div class="top-block__container -container">
+               <div class="top-block__body">
+                  <h2 class="top-block__title top-title" data-me="767.98, .filter__container, first">Job single</h2>
+                  <div class="top-block__search search search_top">
+                     <div class="search__body">
+                        <form action="#" class="search__row">
+                           <div class="search__input"><input class="-req -name" autocomplete="off" type="text" name="keyword"
+                                 data-value="Your keyword"></div>
+                           <button type="submit" class="search__btn"><span>Search</span><span
+                                 class="-icon-search"></span></button>
+                        </form>
+                     </div>
+                  </div>
+                  <!-- <div class="top-block__row"> -->
+                     <!-- <div class="top-block__breadcrumbs breadcrumbs-top-block">
+                        <ul class="breadcrumbs-top-block__list">
+                           <li><a href="">Home</a></li>
+                           <li>Job single</li>
+                        </ul>
+                     </div> -->
+                  <!-- </div> -->
+               </div>
+            </div>
+         </div>
+         <div class="page__product product">
+            <div class="product__container -container">
+
+
+               <div class="product__main">
+                  <div class="product__header">
+                     <div class="product__date">{{ object.created_by}}</div>
+                     <div class="product__actions">
+                        <a href="" class="product-hr">HR+</a>
+                        <a href="" class="product-share"><span class="-icon-share"></span></a>
+                        {% include 'includes/like.html' %}
+                     </div>
+                  </div>
+                  <div class="product__info info-product info-product_nline">
+                     <div class="info-product__body">
+                        <h2 class="info-product__title info-product__title_job-single">
+                           <span>{{ object.title }}</span>
+                           Sicamous, BC, V0E 2V1  Listing ID: 10161461
+                        </h2>
+                        <div class="info-product__date">{{ object.created_date }}</div>
+                        <div class="info-product__links info-product__links_job-single" data-me="767.98, .info-product, last">
+                           <a href="" data-popup-link=".file-popup" class="info-product__link info-product__link_red"></span>Send my resume</a>
+                        </div>
+                     </div>
+                     <div class="info-product__side">
+                        <div class="info-product__price">${{ object.price }} <span>/{{ object.frequency_of_payment }}</span></div>
+                        <div class="info-product__label info-product__label_hide"></div>
+                     </div>
+                  </div>
+{#                  <div class="product__photos photos-product">#}
+{#                     <div class="photos-product__images">#}
+{#                      #}
+{#                     </div>#}
+{#                     <a href="" class="photos-product__link">more photos</a>#}
+{#                  </div>#}
+                  <div class="product__descs">
+                     <div class="product__desc">
+                        <h3 class="product__label label-product label-product_big">Responsibilities:</h3>
+                        <p class="product__text">{{ object.responsibilities }}</p>
+                     </div>
+                     <div class="product__desc">
+                        <h3 class="product__label label-product label-product_big">Requirements:</h3>
+                        <p class="product__text">{{ object.requirements }}</p>
+                     </div>
+                  </div>
+{% include 'includes/detail_map.html' %}
+                  <a href="" data-me="991.98, .product__container, last" class="info-product__btn info-product__btn_job-single btn-product btn-product_grey">Report ads</a>
+               </div>
+            {% include 'includes/detail_product_side.html' %}
+            </div>
+         </div>
+         <div class="page__banner banner-single">
+            <div class="banner-single__container -container">
+               <div class="banner-single__image -ai"><img src="{% static 'img/work/banner.png' %}" alt=""></div>
+            </div>
+         </div>
+         <div class="page__similar-ads similar-ads similar-ads_job-single">
+    {% include 'includes/detail_similar_ads.html' %}
+         </div>
+         <div class="page__question question question_job-single">
+            <div class="question__container -container">
+               <h2 class="question__title title">Do you have something to sell?</h2>
+               <div class="question__subtitle subtitle">This is where businesses in Bangladesh trade, numerous business and industry services offered<br> to trade and consumers.</div>
+               <a href="" class="question__btn btn">Submit on ad</a>
+            </div>
+         </div>
+      </div>
+
+   </div>
+{% endblock %}

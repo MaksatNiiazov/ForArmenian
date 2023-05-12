@@ -1,0 +1,222 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Profile page{% endblock %}
+{% block content %}
+      <div class="page">
+         <div class="page__profile profile" style="margin-top: 0">
+            <div class="profile__message message-error-profile -activ">
+               <div class="message-error-profile__icon"></div>
+               <div class="message-error-profile__text">An error occurred. Please try again</div>
+               <a href="" class="message-error-profile__close"></a>
+            </div>
+            <div class="profile__container -container">
+               <div class="profile__main">
+                  <div class="profile__tabs tabs-profile" data-tab="min, 0">
+                     <div class="tabs-profile__items -parent-tab-item" data-tab-items>
+                        <a href="" class="tabs-profile__item" data-tab-item="1">Messages <span></span></a>
+                        <a href="" class="tabs-profile__item" data-tab-item="2">Ads<span></span></a>
+                        <a href="" class="tabs-profile__item" data-tab-item="3">Reviews<span></span></a>
+                        <a href="" class="tabs-profile__item" data-tab-item="4">Settings<span></span></a>
+                        <a href="{% url 'logout' %}" class="tabs-profile__item">Logout</a>
+                     </div>
+                     <div class="tabs-profile__body">
+                        <div class="tabs-profile__content" data-tab-content="1">
+                            {% include 'profile/includes/chat.html' %}
+                        </div>
+                         <div class="tabs-profile__content" data-tab-content="2">
+                             <div class="tabs-profile__ads ads-profile ads-profile_emptly">
+                              <a href="" class="ads-profile__btn btn-profile" data-popup-link=".submit-popup-categories">+ Add new product</a>
+                              {% include 'profile/includes/ads.html' %}
+                             </div>
+                        </div>
+                        <div class="tabs-profile__content" data-tab-content="3">
+                            {% include 'profile/includes/ratings.html' %}
+                        </div>
+                        <div class="tabs-profile__content" data-tab-content="4">
+                            {% include 'profile/includes/settings.html' %}
+                        </div>
+                     </div>
+               </div>
+                  </div>
+               </div>
+            </div>
+         </div>
+<!-- POPUP -->
+      <div class="page">
+         <div class="submit-popup-categories submit-popup-categories_categories -open" data-popup>
+            <div class="submit-popup-categories__body" data-popup-body>
+               <div class="submit-popup-categories__content" data-popup-content>
+                  <a href="" class="submit-popup-categories__close" data-popup-close><span class="-icon-arrow-right"></span></a>
+                  <h3 class="submit-popup-categories__title title-submit-popup title-submit-popup_big">Choose categories</h3>
+                  <div class="submit-popup-categories__items">
+                      <div class="submit-popup-categories__item item-submit-popup-categories">
+                           <a href="{% url 'property-create' %}" class="item-submit-popup-categories__link"></a>
+                           <div class="item-submit-popup-categories__images">
+                              <img src="{% static 'img/parts/icon-03.svg' %}" alt="">
+                              <div class="item-submit-popup-categories__image">
+                                 <img src="{% static 'img/parts/icon-03.svg' %}" alt="">
+                              </div>
+                              <div class="item-submit-popup-categories__image">
+                                 <img src="{% static 'img/parts/icon-03.svg' %}" alt="">
+                              </div>
+                           </div>
+                           <div class="item-submit-popup-categories__content">
+                              <div class="item-submit-popup-categories__label">Property</div>
+                           </div>
+                     </div>
+                      <div class="submit-popup-categories__item item-submit-popup-categories">
+                           <a href="{% url 'vehicle-create' %}" class="item-submit-popup-categories__link"></a>
+                           <div class="item-submit-popup-categories__images">
+                              <img src="{% static 'img/submit-popup-categories/image.svg' %}" alt="">
+                              <div class="item-submit-popup-categories__image">
+                                 <img src="{% static 'img/submit-popup-categories/image.svg' %}" alt="">
+                              </div>
+                              <div class="item-submit-popup-categories__image">
+                                 <img src="{% static 'img/submit-popup-categories/image.svg' %}" alt="">
+                              </div>
+                           </div>
+                           <div class="item-submit-popup-categories__content">
+                              <div class="item-submit-popup-categories__label">Vehicle</div>
+                           </div>
+                     </div>
+                      <div class="submit-popup-categories__item item-submit-popup-categories">
+                           <a href="{% url 'job-create-resume' %}" class="item-submit-popup-categories__link"></a>
+                           <div class="item-submit-popup-categories__images">
+                              <img src="{% static '/img/parts/icon-02.svg' %}" alt="">
+                              <div class="item-submit-popup-categories__image">
+                                 <img src="{% static '/img/parts/icon-02.svg' %}" alt="">
+                              </div>
+                              <div class="item-submit-popup-categories__image">
+                                 <img src="{% static '/img/parts/icon-02.svg' %}" alt="">
+                              </div>
+                           </div>
+                           <div class="item-submit-popup-categories__content">
+                              <div class="item-submit-popup-categories__label">Resume</div>
+                           </div>
+                     </div>
+                      <div class="submit-popup-categories__item item-submit-popup-categories">
+                           <a href="{% url 'job-create-vacancy' %}" class="item-submit-popup-categories__link"></a>
+                           <div class="item-submit-popup-categories__images">
+                              <img src="{% static '/img/parts/icon-02.svg' %}" alt="">
+                              <div class="item-submit-popup-categories__image">
+                                 <img src="{% static '/img/parts/icon-02.svg' %}" alt="">
+                              </div>
+                              <div class="item-submit-popup-categories__image">
+                                 <img src="{% static '/img/parts/icon-02.svg' %}" alt="">
+                              </div>
+                           </div>
+                           <div class="item-submit-popup-categories__content">
+                              <div class="item-submit-popup-categories__label">Vacancy</div>
+                           </div>
+             </div>
+                      <div class="submit-popup-categories__item item-submit-popup-categories">
+                           <a href="" class="item-submit-popup-categories__link"></a>
+                           <div class="item-submit-popup-categories__images">
+                              <img src="{% static 'img/parts/icon-04.svg' %}" alt="">
+                              <div class="item-submit-popup-categories__image">
+                                 <img src="{% static 'img/parts/icon-04.svg' %}" alt="">
+                              </div>
+                              <div class="item-submit-popup-categories__image">
+                                 <img src="{% static 'img/parts/icon-04.svg' %}" alt="">
+                              </div>
+                           </div>
+                           <div class="item-submit-popup-categories__content">
+                              <div class="item-submit-popup-categories__label">Market</div>
+                           </div>
+                     </div>
+                      <div class="submit-popup-categories__item item-submit-popup-categories">
+                           <a href="" class="item-submit-popup-categories__link"></a>
+                           <div class="item-submit-popup-categories__images">
+                              <img src="{% static 'img/parts/icon-05.svg' %}" alt="">
+                              <div class="item-submit-popup-categories__image">
+                                 <img src="{% static 'img/parts/icon-05.svg' %}" alt="">
+                              </div>
+                              <div class="item-submit-popup-categories__image">
+                                 <img src="{% static 'img/parts/icon-05.svg' %}" alt="">
+                              </div>
+                           </div>
+                           <div class="item-submit-popup-categories__content">
+                              <div class="item-submit-popup-categories__label">Services</div>
+                           </div>
+                     </div>
+                      <div class="submit-popup-categories__item item-submit-popup-categories">
+                           <a href="{% url 'cafe-create' %}" class="item-submit-popup-categories__link"></a>
+                           <div class="item-submit-popup-categories__images">
+                              <img src="{% static 'img/icons/icons8-здание-ресторана-100.png' %}" style="width: 50px" alt="">
+                              <div class="item-submit-popup-categories__image">
+                                 <img src="{% static 'img/icons/icons8-здание-ресторана-100.png' %}" style="width: 50px" alt="">
+                              </div>
+                              <div class="item-submit-popup-categories__image">
+                                 <img src="{% static 'img/icons/icons8-здание-ресторана-100.png' %}" style="width: 50px" alt="">
+                              </div>
+                           </div>
+                           <div class="item-submit-popup-categories__content">
+                              <div class="item-submit-popup-categories__label">Cafe</div>
+                           </div>
+                     </div>
+                      <div class="submit-popup-categories__item item-submit-popup-categories">
+                           <a href="{% url 'abc-create' %}" class="item-submit-popup-categories__link"></a>
+                           <div class="item-submit-popup-categories__images">
+                              <img src="{% static 'img/parts/icon-05.svg' %}" alt="">
+                              <div class="item-submit-popup-categories__image">
+                                 <img src="{% static 'img/parts/icon-05.svg' %}" alt="">
+                              </div>
+                              <div class="item-submit-popup-categories__image">
+                                 <img src="{% static 'img/parts/icon-05.svg' %}" alt="">
+                              </div>
+                           </div>
+                           <div class="item-submit-popup-categories__content">
+                              <div class="item-submit-popup-categories__label">ABC</div>
+                           </div>
+                     </div>
+                      <div class="submit-popup-categories__item item-submit-popup-categories">
+                           <a href="{% url 'useful-create' %}" class="item-submit-popup-categories__link"></a>
+                           <div class="item-submit-popup-categories__images">
+                              <img src="{% static 'img/icons/icons8-натуральная-еда-100.png' %}" style="width: 50px" alt="">
+                              <div class="item-submit-popup-categories__image">
+                                 <img src="{% static 'img/icons/icons8-натуральная-еда-100.png' %}" style="width: 50px" alt="">
+                              </div>
+                              <div class="item-submit-popup-categories__image">
+                                 <img src="{% static 'img/icons/icons8-натуральная-еда-100.png' %}" style="width: 50px" alt="">
+                              </div>
+                           </div>
+                           <div class="item-submit-popup-categories__content">
+                              <div class="item-submit-popup-categories__label">Useful Resurces</div>
+                           </div>
+                     </div>
+                      <div class="submit-popup-categories__item item-submit-popup-categories">
+                           <a href="{% url 'event-create' %}" class="item-submit-popup-categories__link"></a>
+                           <div class="item-submit-popup-categories__images">
+                              <img src="{% static 'img/icons/icons8-планировщик-100.png' %}" style="width: 50px"  alt="">
+                              <div class="item-submit-popup-categories__image">
+                                 <img src="{% static 'img/icons/icons8-планировщик-100.png' %}" style="width: 50px"  alt="">
+                              </div>
+                              <div class="item-submit-popup-categories__image">
+                                 <img src="{% static 'img/icons/icons8-планировщик-100.png' %}" style="width: 50px"  alt="">
+                              </div>
+                           </div>
+                           <div class="item-submit-popup-categories__content">
+                              <div class="item-submit-popup-categories__label">Event</div>
+                           </div>
+                     </div>
+                      <div class="submit-popup-categories__item item-submit-popup-categories">
+                           <a href="{% url 'entertainments-create' %}" class="item-submit-popup-categories__link"></a>
+                           <div class="item-submit-popup-categories__images">
+                              <img src="{% static 'img/icons/icons8-тематический-парк-100.png' %}" style="width: 50px" alt="">
+                              <div class="item-submit-popup-categories__image">
+                                 <img src="{% static 'img/icons/icons8-тематический-парк-100.png' %}" style="width: 50px" alt="">
+                              </div>
+                              <div class="item-submit-popup-categories__image">
+                                 <img src="{% static 'img/icons/icons8-тематический-парк-100.png' %}" style="width: 50px" alt="">
+                              </div>
+                           </div>
+                           <div class="item-submit-popup-categories__content">
+                              <div class="item-submit-popup-categories__label">Entertainments</div>
+                           </div>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+{% endblock %}

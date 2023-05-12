@@ -1,0 +1,69 @@
+{% extends 'base_create.html' %}
+
+{% block create_content %}
+<form action="{% url 'market-update' object.id %}" method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+{% include 'includes/image_update.html' %}
+
+    <p>
+    <label for="id_ad-title">Title:</label>
+    <input type="text" name="ad-title" maxlength="100" required="" id="id_ad-title" value="{{ object.title }}">
+  </p>
+  <p>
+    <label for="id_ad-description">Description:</label>
+    <textarea name="ad-description" cols="40" rows="10" required="" id="id_ad-description">{{ object.description }}</textarea>
+  </p>
+  <p>
+    <label for="id_ad-price">Price:</label>
+    <input type="number" name="ad-price" value="{{ object.price }}" min="0" id="id_ad-price">
+  </p>
+  <p>
+    <label for="id_ad-currency">Currency:</label>
+    <input type="text" name="ad-currency" value="{{ object.currency }}" maxlength="20" id="id_ad-currency">
+  </p>
+  <p>
+    <label for="id_ad-sticker">Sticker:</label>
+    <select name="ad-sticker" required="" id="id_ad-sticker">
+{% for sticker in stickers %}
+    {% if sticker == object.sticker %}
+          <option value="{{ sticker.id }}" selected>{{ sticker.sticker }}</option>
+    {% endif %}
+  <option value="{{ sticker.id }}">{{ sticker.sticker }}</option>
+{% endfor %}
+</select>
+  </p>
+  <p>
+    <label for="id_ad-is_new">Is new:</label>
+    <input type="checkbox" name="ad-is_new" id="id_ad-is_new" checked="{% if object.is_new %}checked{% endif %}">
+  </p>
+  <p>
+    <label for="id_ad-category">Category:</label>
+    <select name="ad-category" required="" id="id_ad-category">
+{% for category in categories %}
+    {% if category == object.category %}
+      <option value="{{ category.id }}" selected>{{ category.category }}</option>
+    {% endif %}
+  <option value="{{ category.id }}">{{ category.category }}</option>
+{% endfor %}
+</select>
+  </p>
+  <p>
+    <label for="id_ad-time_to_develop">Time to develop:</label>
+    <input type="text" name="ad-time_to_develop" maxlength="50" required="" id="id_ad-time_to_develop" value="{{ object.time_to_develop }}">
+  </p><p>
+    <label for="id_country__address-country">Country:</label>
+    <input type="text" name="country__address-country" maxlength="100" required="" id="id_country__address-country" value="{{ object.address.country }}">
+  </p><p>
+    <label for="id_state__address-state">State:</label>
+    <input type="text" name="state__address-state" maxlength="100" required="" id="id_state__address-state" value="{{ object.address.state }}">
+  </p><p>
+    <label for="id_address__address-address">Address:</label>
+    <input type="text" name="address__address-address" maxlength="100" id="id_address__address-address" value="{{ object.address.address }}">
+  </p>
+    {% include 'includes/map_create.html' %}
+    <input type="submit" value="Save"/>
+</form>
+{% endblock %}
+
+
+

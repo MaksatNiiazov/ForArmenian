@@ -1,0 +1,10 @@
+{% extends 'base_create.html' %}
+
+{% block create_content %}
+<form action="{% url 'vehicle-update' object.id %}" method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    {% include 'includes/image_update.html' %}
+    {{ form.as_p }}
+    <input type="submit" value="Save"/>
+</form>
+{% endblock %}

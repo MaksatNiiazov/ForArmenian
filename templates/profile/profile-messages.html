@@ -1,0 +1,129 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+    <div class="container">
+            <div class="tabs-profile__content" data-tab-content="1">
+               <div class="tabs-profile__message message-profile">
+                  <div class="message-profile__body -scroll-profile" data-scroll>
+                     <ul class="message-profile__list" data-scroll-content>
+                        {% for chat in messages %}
+                      <a href="{% url 'chat_room' chat.id %}" class="">
+                        <li class="message-profile__item item-message-profile">
+                           <div class="item-message-profile__row">
+                              <div class="item-message-profile__profile">
+                              {% for user in chat.chats.all %}
+                                 {% if user.user != request.user %}
+                                     <div class="item-message-profile__avatar -ai"><img src="{{ user.user.avatar }}" alt=""></div>
+                                     <div class="item-message-profile__name">{{ user.user.first_name }} {{ user.user.last_name }}</div>
+                                  {% endif %}
+                              {% endfor %}
+                              </div>
+                                 <div class="item-message-profile__main">
+                                 <div class="item-message-profile__info info-message-profile">
+                                     <a href="{% url 'chat_room' chat.id %}">
+                                    <div class="info-message-profile__pic -ai"><img src="{{ chat.ad.imgs.first.img.url }}" alt=""></div>
+                                         </a>
+                                    <div class="info-message-profile__body">
+                                       <div class="info-message-profile__title">
+                                           <a href="{% url 'chat_room' chat.id %}">
+                                               {{ chat.ad.title }}
+                                           </a>
+                                          <span class="info-message-profile__price">${{ chat.ad.price }}</span>
+                                           </div>
+                                       <div class="info-message-profile__text">{{ chat.messages.last.content }}</div>
+                                    </div>
+                                 </div>
+                                 <div class="item-message-profile__date">{{ chat.messages.last.date_added }}</div>
+                              </div>
+                           </div>
+{#                                       <div class="item-message-profile__chat chat-item-message-profile">#}
+{#                                          <div class="chat-item-message-profile__header">#}
+{#                                             <a href="" class="chat-item-message-profile__close"><span class="-icon-arrow-right-big"></span></a>#}
+{#                                             <div class="chat-item-message-profile__name">{{ user.first_name }} {{ user.last_name }}</div>#}
+{#                                          </div>#}
+{#                                          <div class="chat-item-message-profile__main -scroll-profile" data-scroll>#}
+{#                                             <div class="chat-item-message-profile__content" data-scroll-content>#}
+{#                                                <div class="chat-item-message-profile__row chat-item-message-profile__row_left">#}
+{#                                                   <div class="chat-item-message-profile__avatar -ai"><img src="{{ user.avatar.url }}" alt=""></div>#}
+{#                                                   <div class="chat-item-message-profile__messages">#}
+{#                                                      <div class="chat-item-message-profile__message">#}
+{#                                                         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit ut aliquam???</p>#}
+{#                                                         <div class="chat-item-message-profile__bottom">#}
+{#                                                            <div class="chat-item-message-profile__time">11:35</div>#}
+{#                                                         </div>#}
+{#                                                      </div>#}
+{#                                                      <div class="chat-item-message-profile__message">#}
+{#                                                         <p>Lorem ipsum dolor sit amet</p>#}
+{#                                                         <div class="chat-item-message-profile__bottom">#}
+{#                                                            <div class="chat-item-message-profile__time">11:35</div>#}
+{#                                                         </div>#}
+{#                                                      </div>#}
+{#                                                   </div>#}
+{#                                                </div>#}
+{#                                                <div class="chat-item-message-profile__row chat-item-message-profile__row_right">#}
+{#                                                   <div class="chat-item-message-profile__messages">#}
+{#                                                      <div class="chat-item-message-profile__message">#}
+{#                                                         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit ut aliquam???</p>#}
+{#                                                         <div class="chat-item-message-profile__bottom">#}
+{#                                                            <div class="chat-item-message-profile__time">11:35</div>#}
+{#                                                            <div class="chat-item-message-profile__view"><img src="img/icons/view.svg" alt=""></div>#}
+{#                                                         </div>#}
+{#                                                      </div>#}
+{#                                                   </div>#}
+{#                                                   <div class="chat-item-message-profile__avatar -ai"><img src="{{ user.avatar.url }}" alt=""></div>#}
+{#                                                </div>#}
+{#                                                <div class="chat-item-message-profile__row chat-item-message-profile__row_left">#}
+{#                                                   <div class="chat-item-message-profile__avatar -ai"><img src="{{ user.avatar.url }}" alt=""></div>#}
+{#                                                   <div class="chat-item-message-profile__messages">#}
+{#                                                      <div class="chat-item-message-profile__message">#}
+{#                                                         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit ut aliquam???</p>#}
+{#                                                         <div class="chat-item-message-profile__bottom">#}
+{#                                                            <div class="chat-item-message-profile__time">11:35</div>#}
+{#                                                         </div>#}
+{#                                                      </div>#}
+{#                                                      <div class="chat-item-message-profile__message">#}
+{#                                                         <p>Lorem ipsum dolor sit amet</p>#}
+{#                                                         <div class="chat-item-message-profile__bottom">#}
+{#                                                            <div class="chat-item-message-profile__time">11:35</div>#}
+{#                                                         </div>#}
+{#                                                      </div>#}
+{#                                                   </div>#}
+{#                                                </div>#}
+{#                                                <div class="chat-item-message-profile__row chat-item-message-profile__row_right">#}
+{#                                                   <div class="chat-item-message-profile__messages">#}
+{#                                                      <div class="chat-item-message-profile__message">#}
+{#                                                         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit ut aliquam???</p>#}
+{#                                                         <div class="chat-item-message-profile__bottom">#}
+{#                                                            <div class="chat-item-message-profile__time">11:35</div>#}
+{#                                                            <div class="chat-item-message-profile__view"><img src="img/icons/view.svg" alt=""></div>#}
+{#                                                         </div>#}
+{#                                                      </div>#}
+{#                                                      <div class="chat-item-message-profile__message">#}
+{#                                                         <p>Lorem ipsum dolor sit amet</p>#}
+{#                                                         <div class="chat-item-message-profile__bottom">#}
+{#                                                            <div class="chat-item-message-profile__time">11:35</div>#}
+{#                                                            <div class="chat-item-message-profile__view"><img src="img/icons/view.svg" alt=""></div>#}
+{#                                                         </div>#}
+{#                                                      </div>#}
+{#                                                   </div>#}
+{#                                                   <div class="chat-item-message-profile__avatar -ai"><img src="{{ user.avatar.url }}" alt=""></div>#}
+{#                                                </div>#}
+{#                                             </div>#}
+{#                                          </div>#}
+{#                                          <form action="#" class="chat-item-message-profile__form form-chat-item-message-profile">#}
+{#                                             <div class="form-chat-item-message-profile__input"><textarea name="message" class="-req" data-value="Message"></textarea></div>#}
+{#                                             <div class="form-chat-item-message-profile__footer">#}
+{#                                                <button type="submit" class="form-chat-item-message-profile__btn"><img src="img/icons/arrow-right.svg" alt=""></button>#}
+{#                                             </div>#}
+{#                                          </form>#}
+{#                                       </div>#}
+                        </li>
+                      </a>
+                       {% endfor %}
+
+                     </ul>
+                  </div>
+               </div>
+            </div>
+        </div>
+{% endblock %}

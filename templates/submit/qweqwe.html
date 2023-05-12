@@ -1,0 +1,79 @@
+
+
+
+<script>
+const addImageButton = document.querySelector('#add-image');
+const imageUploadContainer = document.querySelector('#image-upload-container');
+const maxNumOfFields = 5;
+let currNumOfFields = {{ images.count }};
+
+addImageButton.addEventListener('click', function() {
+  if (currNumOfFields < maxNumOfFields) {
+    currNumOfFields++;
+
+    const newImageUpload = document.createElement('div');
+    newImageUpload.classList.add('image-upload');
+    newImageUpload.innerHTML = `
+      <label for="id_photo-img-${currNumOfFields}">Img ${currNumOfFields}:</label>
+      <input type="file" name="photo-img" accept="image/*" id="id_photo-img-${currNumOfFields}">
+      <div class="image-preview"></div>
+      <button class="remove-image-btn">Remove</button>
+    `;
+    imageUploadContainer.appendChild(newImageUpload);
+
+    const fileInput = newImageUpload.querySelector('input[type="file"]');
+    const imagePreview = newImageUpload.querySelector('.image-preview');
+    const removeBtn = newImageUpload.querySelector('.remove-image-btn');
+
+    fileInput.addEventListener('change', function() {
+      showSelectedImagePreview(fileInput, imagePreview);
+    });
+
+    removeBtn.addEventListener('click', function(e) {
+      e.preventDefault();
+      if (confirm('Are you sure you want to remove this image?')) {
+        newImageUpload.remove();
+      }
+    });
+  }
+});
+
+function showSelectedImagePreview(fileInput, imagePreview) {
+  imagePreview.innerHTML = '';
+  for (let i = 0; i < fileInput.files.length; i++) {
+    const file = fileInput.files[i];
+    const img = document.createElement('img');
+    img.src = URL.createObjectURL(file);
+    img.alt = file.name;
+    imagePreview.appendChild(img);
+  }
+}
+
+imageUploadContainer.addEventListener('click', function(e) {
+  if (e.target.classList.contains('remove-image-btn')) {
+    const imageUpload = e.target.parentNode;
+    if (confirm('Are you sure you want to remove this image?')) {
+      imageUpload.remove();
+    }
+  }
+});
+
+imageUploadContainer.addEventListener('change', function(e) {
+  const fileInput = e.target;
+  const imagePreview = fileInput.parentNode.querySelector('.image-preview');
+  showSelectedImagePreview(fileInput, imagePreview);
+});
+</script>
+
+
+<style>
+  #add-image {
+    padding: 10px;
+    box-shadow: 0 0 2px black;
+    border-radius: 10px;
+  }
+</style>
+
+<input class="submit" type="submit" value="add">
+</form>
+{% endblock %}

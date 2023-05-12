@@ -1,0 +1,329 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+      <div class="page">
+         <div class="page__top-block top-block top-block_padding top-block_property-catalog">
+            <div class="top-block__image -ai"><img src="{% static 'img/top-block/property.png' %}" alt=""></div>
+            <div class="top-block__container -container">
+               <div class="top-block__body">
+                  <h2 class="top-block__title top-title top-title_mb">Property</h2>
+                  <div class="top-block__search search search_top">
+                     <div class="search__body">
+                        <form action="{{ request.path }}" method="get" class="search__row">
+                           <div class="search__input"><input class="-req -name" autocomplete="off" type="text" name="keyword"
+                                 data-value="Your keyword" value="{{ request.GET.keyword }}"></div>
+                           <button type="submit" class="search__btn"><span>Search</span><span
+                                 class="-icon-search"></span></button>
+                        </form>
+                     </div>
+                  </div>
+                  <!-- <div class="top-block__row"> -->
+                     <!-- <div class="top-block__breadcrumbs breadcrumbs-top-block">
+                        <ul class="breadcrumbs-top-block__list">
+                           <li><a href="">Home</a></li>
+                           <li>Property</li>
+                        </ul>
+                     </div> -->
+                  <!-- </div> -->
+               </div>
+            </div>
+         </div>
+         <div class="page__property property">
+            <div class="property__container -container">
+               <div class="property__catalog catalog catalog_property">
+                  <div class="catalog__map"><iframe src="https://www.google.com/maps/embed?pb=!1m10!1m8!1m3!1d6699051.043275679!2d21.940572607847184!3d34.9310098493962!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sru!2sua!4v1657230954283!5m2!1sru!2sua" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe></div>
+                  <div class="catalog__body" data-me="767.98, .catalog__wrap, first">
+                     <a href="" class="catalog__openner filter-openner filter-openner_hide filter-openner_lock">
+                        <span class="-icon-filter"></span> Filter
+                     </a>
+                     <form action="{{ request.path }}" class="catalog__form form-filter form-filter_property -event-change">
+
+                        <a href="" class="form-filter__close form-filter__close_lock"><img src="{% static 'img/icons/close.svg' %}" alt=""></a>
+                        <h3 class="form-filter__title">Filter</h3>
+                        <div class="form-filter__main">
+                           <div class="form-filter__item">
+                              <div class="form-filter__btns">
+                                 <label class="form-filter__btn">
+                                    <input value="1" type="checkbox" name="type-property" {% if cat %}checked{% endif %}>
+                                    <span>Buy</span>
+                                 </label>
+                                 <label class="form-filter__btn">
+                                    <input value="2" type="checkbox" name="type-property"{% if not cat %}checked{% endif %}>
+                                    <span>Rent</span>
+                                 </label>
+                              </div>
+                           </div>
+                           <div class="form-filter__item">
+                              <div class="form-filter__title-item form-filter__title-item_nicon form-filter-title-item">Price Range</div>
+                              <div class="form-filter__price price-form-filter">
+                                 <div class="price-form-filter__range range-form-filter">
+                                    <div class="range-form-filter__labels">
+                                       <div class="range-form-filter__label range-form-filter__label_min"></div>
+                                       <div class="range-form-filter__label range-form-filter__label_max"></div>
+                                    </div>
+                                    <div class="range-form-filter__slider"></div>
+                                 </div>
+                                 <div class="price-form-filter__row">
+                                    <div class="price-form-filter__values values-form-filter">
+                                       <div class="values-form-filter__col">
+                                          <div class="values-form-filter__label">Min</div>
+                                          <div class="values-form-filter__input"><input id="price-start" class="-req -number" autocomplete="off" type="number" data-value="$0" min="0" max="10000" name="price_min" placeholder="0" value="{{ request.GET.price_min }}"></div>
+                                       </div>
+                                       <div class="values-form-filter__col">
+                                          <div class="values-form-filter__label">Max</div>
+                                          <div class="values-form-filter__input"><input id="price-end" class="-req -number" autocomplete="off" type="number" data-value="10,000" min="0" max="100000" name="price_max" placeholder="10000" value="{{ request.GET.price_max }}"></div>
+                                       </div>
+                                    </div>
+                                 </div>
+                              </div>
+                           </div>
+                           <div class="form-filter__item">
+                              <div class="form-filter__title-item form-filter__title-item_nicon form-filter-title-item">Condition of goods</div>
+                              <div class="form-filter__body">
+                                 <ul class="form-filter__list">
+                                     {% for condition in condition %}
+                                         <li class="form-filter__input -input-form-filter">
+                                           <label>
+                                              <input type="checkbox" name="condition" value="{{ condition.id }}">
+                                              <span></span>
+                                              <span class="text-form-filter">{{ condition.condition }}</span>
+                                           </label>
+                                        </li>
+                                     {% endfor %}
+                                 </ul>
+                              </div>
+                           </div>
+                           <div class="form-filter__item">
+                              <div class="form-filter__title-item form-filter__title-item_nicon form-filter-title-item">Category</div>
+                              <div class="form-filter__body">
+                                 <ul class="form-filter__list form-filter__list_mb">
+                                     {% for category in categories %}
+                                     <li class="form-filter__input -input-form-filter">
+                                       <label>
+                                          <input type="checkbox" value="{{ category.id }}" name="category">
+                                          <span></span>
+                                          <span class="text-form-filter">{{ category.property_category }}</span>
+                                       </label>
+                                    </li>
+                                     {% endfor %}
+                                 </ul>
+                              </div>
+                           </div>
+                           <div class="form-filter__item">
+                              <div class="form-filter__title-item form-filter__title-item_nicon form-filter-title-item">Number of rooms</div>
+                              <div class="form-filter__body">
+                                 <ul class="form-filter__list form-filter__list_mb">
+                                     {% for bedroom in bedrooms %}
+                                        <li class="form-filter__input -input-form-filter">
+                                           <label>
+                                              <input type="checkbox" name="rooms" value="{{ bedroom.id }}">
+                                              <span></span>
+                                              <span class="text-form-filter">{{ bedroom.bedrooms }}</span>
+                                           </label>
+                                        </li>
+                                     {% endfor %}
+                                 </ul>
+                              </div>
+                           </div>
+                           <div class="form-filter__item">
+                              <div class="form-filter__title-item form-filter__title-item_nicon form-filter-title-item">Number of bathrooms</div>
+                              <div class="form-filter__body">
+                                 <ul class="form-filter__list form-filter__list_mb">
+                                     {% for bathroom in bathrooms %}
+                                         <li class="form-filter__input -input-form-filter">
+                                           <label>
+                                              <input type="checkbox" name="bathrooms" value="{{ bathroom.id }}">
+                                              <span></span>
+                                              <span class="text-form-filter">{{ bathroom.bathroom }}</span>
+                                           </label>
+                                        </li>
+                                     {% endfor %}
+                                 </ul>
+                              </div>
+                           </div>
+                           <div class="form-filter__item">
+                              <div class="form-filter__title-item form-filter__title-item_nicon form-filter-title-item">Floor</div>
+                              <div class="form-filter__body form-filter__body_mb">
+                                 <div class="form-filter__values values-form-filter">
+                                    <div class="values-form-filter__col">
+                                       <div class="values-form-filter__input"><input autocomplete="off" class="-req -number -number-min" type="number" min="1" placeholder="1" name="floor_min" value="{{ request.GET.floor_min }}"></div>
+                                    </div>
+                                    <div class="values-form-filter__col">
+                                       <div class="values-form-filter__input"><input autocomplete="off" class="-req -number -number-max" type="number" min="1" placeholder="30" name="floor_max" value="{{ request.GET.floor_max }}"></div>
+                                    </div>
+                                 </div>
+                              </div>
+                           </div>
+                           <div class="form-filter__item">
+                              <div class="form-filter__title-item form-filter__title-item_nicon form-filter-title-item">Number of floors in the house</div>
+                              <div class="form-filter__body form-filter__body_mb">
+                                 <div class="form-filter__values values-form-filter">
+                                    <div class="values-form-filter__col">
+                                       <div class="values-form-filter__input"><input autocomplete="off" class="-req -number -number-min" type="number" min="1" name="quantity_floor_min" placeholder="1" value="{{ request.GET.quantity_floor_min }}"></div>
+                                    </div>
+                                    <div class="values-form-filter__col">
+                                       <div class="values-form-filter__input"><input autocomplete="off" class="-req -number -number-max" type="number" min="1" name="quantity_floor_max" placeholder="30" value="{{ request.GET.quantity_floor_max }}"></div>
+                                    </div>
+                                 </div>
+                              </div>
+                           </div>
+                           <div class="form-filter__item">
+                              <div class="form-filter__title-item form-filter__title-item_nicon form-filter-title-item">Square</div>
+                              <div class="form-filter__body">
+                                 <ul class="form-filter__list form-filter__list_mb">
+                                    {% for sq in square %}
+                                        <li class="form-filter__input -input-form-filter">
+                                           <label>
+                                              <input type="checkbox" name="square", value="{{ sq.id }}">
+                                              <span></span>
+                                              <span class="text-form-filter">{{ sq.square }}</span>
+                                           </label>
+                                        </li>
+                                    {% endfor %}
+                                 </ul>
+                              </div>
+                           </div>
+                           <div class="form-filter__item">
+                              <div class="form-filter__title-item form-filter__title-item_nicon form-filter-title-item">Rental period</div>
+                              <div class="form-filter__body">
+                                 <ul class="form-filter__list form-filter__list_mb">
+                                     {% for periods in rental_period %}
+                                         <li class="form-filter__input -input-form-filter">
+                                           <label>
+                                              <input type="radio" name="time" value="{{ periods.id }}">
+                                              <span></span>
+                                              <span class="text-form-filter">{{ periods.rental_period }}</span>
+                                           </label>
+                                        </li>
+                                     {% endfor %}
+
+                                 </ul>
+                              </div>
+                           </div>
+                        </div>
+                        <br>
+                        <button type="submit" value="Submit" class="btn btn-outline-danger">Filter</button>
+                        <a href="{{ request.path }}" class="btn btn-outline-danger">Clear filter</a>
+                     </form>
+                  </div>
+                  <div class="catalog__main">
+                     <div class="catalog__header">
+                        <!-- <a href="" class="item-filter-items__item">Type property</a>
+                        <a href="" class="item-filter-items__item">Location</a>
+                        <a href="" class="item-filter-items__item">Price</a> -->
+{#                        <div class="catalog__items-locations item-filter-items" data-me="767.98, .catalog__main, first">#}
+{#                           <h4 class="item-filter-items__title">Sherman Oaks</h4>#}
+{#                           <ul class="item-filter-items__row">#}
+{#                              <div class="item-filter-items__col" bis_skin_checked="1">#}
+{#                                 <label class="item-filter-items__link">#}
+{#                                    <input type="checkbox" name="type-property">#}
+{#                                    <span>Glendale (32)</span>#}
+{#                                 </label>#}
+{#                              </div>#}
+{#                              <div class="item-filter-items__col" bis_skin_checked="1">#}
+{#                                 <label class="item-filter-items__link">#}
+{#                                    <input type="checkbox" name="type-property">#}
+{#                                    <span>Glendale (32)</span>#}
+{#                                 </label>#}
+{#                                 <label class="item-filter-items__link">#}
+{#                                    <input type="checkbox" name="type-property">#}
+{#                                    <span>Glendale (32)</span>#}
+{#                                 </label>#}
+{#                                 <label class="item-filter-items__link">#}
+{#                                    <input type="checkbox" name="type-property">#}
+{#                                    <span>Glendale (32)</span>#}
+{#                                 </label>#}
+{#                              </div>#}
+{#                           </ul>#}
+{#                        </div>#}
+                        <!-- <div class="short-filter">
+                           <div class="short-filter__label">Short by</div>
+                           <div class="short-filter__select">
+                              <select name="short" class="short-filter-select" data-custom-select>
+                                 <option value="Most relevant">Most relevant</option>
+                                 <option value="Most relevant">Most relevant</option>
+                                 <option value="Most relevant">Most relevant</option>
+                              </select>
+                           </div>
+                        </div> -->
+                        <div class="catalog__wrap">
+                           <div class="catalog__selections selecttions-catalog" data-me="767.98, .catalog__header, first">
+{#                              <h4 class="selecttions-catalog__title">Your selections</h4>#}
+{#                              <div class="selecttions-catalog__items">#}
+{#                                 <a href="" class="selecttions-catalog__item">#}
+{#                                    IT <span class="selecttions-catalog__icon"></span>#}
+{#                                 </a>#}
+{#                              </div>#}
+                           </div>
+            {% include 'includes/sort_filter.html' %}
+                        </div>
+                     </div>
+                     <div class="catalog__items">
+                         {% for object in object_list %}
+                             <div class="catalog__item item-catalog">
+                           <div class="item-catalog__body">
+                              <div class="item-catalog__main">
+                                 <div class="item-catalog__slider slider-item-products-ads slider-item-products-ads_big">
+                                    <div class="slider-item-products-ads__body swiper">
+                                      <div class="slider-item-products-ads__wrapper swiper-wrapper">
+                                    {% for img in object.imgs.all %}
+                                      <div class="slider-item-products-ads__slide swiper-slide">
+                                        <a href="{% url 'property-detail' object.id %}" class="slider-item-products-ads__image -ai"><img src="{{ img.img.url }}" alt=""></a>
+                                     </div>
+                                  {% endfor %}
+                              </div>
+                                    </div>
+                                    <a href="" class="slider-item-products-ads__pagination -slider-pagination-row"></a>
+                                 </div>
+                                 <div class="item-catalog__content">
+                                    <div class="item-catalog__row">
+                                       <div class="item-catalog__texts">
+                                          <div class="item-catalog__date">{{ object.created_date }}</div>
+                                          <a href="{% url 'property-detail' object.pk %}" class="item-catalog__title">{{ object.title }}</a>
+                                       </div>
+                                       <div class="item-catalog__actions">
+                                          <a href=""><span class="-icon-share"></span></a>
+                                           {% include 'includes/like_list.html' %}
+{#                                          <a href=""><span class="-icon-like"></span></a>#}
+                                       </div>
+                                    </div>
+                                    <div class="item-catalog__row">
+                                       <div class="item-catalog__price"><div>$ {{ object.price }}</div></div>
+                                       <div class="item-catalog__user">
+                                          <div class="item-catalog__name">{{ object.created_by.first_name }}</div>
+                                          <div class="item-catalog__rating rating-item-catalog">
+                                             <span class="-icon-star"></span><span class="rating-item-catalog__text">{{ object.sum_of_values }} ({{ object.rating_set.count }} review)</span>
+                                          </div>
+                                       </div>
+                                    </div>
+                                    <div class="item-catalog__labels" data-me="767.98, .item-catalog_1 .item-catalog__main, first">
+                                          <div class="item-catalog__label">{{ object.square }}</div>
+                                          <div class="item-catalog__label">{{ object.condition }}</div>
+                                          <div class="item-catalog__label">{{ object.rental_period }}</div>
+                                    </div>
+                                    <div class="item-catalog__address">{{ object.address }}</div>
+                                    <div class="item-catalog__desc">
+                                       <p>{{ object.description|truncatechars:255 }}</p>
+                                    </div>
+                                 </div>
+                              </div>
+                           </div>
+                        </div>
+
+                         {% endfor %}
+                     </div>
+                  </div>
+               </div>
+         {% include 'includes/paginate.html' %}
+            </div>
+         </div>
+         <div class="page__question question question_property-catalog">
+            <div class="question__container -container">
+               <h2 class="question__title title">Do you have something to sell?</h2>
+               <div class="question__subtitle subtitle">This is where businesses in Bangladesh trade, numerous business and industry services offered<br> to trade and consumers.</div>
+               <a href="" class="question__btn btn">Submit on ad</a>
+            </div>
+         </div>
+      </div>
+{% endblock %}

@@ -1,0 +1,128 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+
+
+      <div class="page">
+         <div class="page__top-block top-block top-block_settings-right top-block_padding top-block_cafe-single">
+            <div class="top-block__image -ai"><img src="{% static 'img/top-block/location.png' %}" alt=""></div>
+            <div class="top-block__container -container">
+               <div class="top-block__body">
+                  <h2 class="top-block__title top-title" data-me="767.98, .filter__container, first">Cafe/Restaurant</h2>
+                  <div class="top-block__search search search_search search_inp search_ads search_cafe-single search_top">
+                     <div class="search__body">
+                        <form action="#" class="search__row">
+                           <div class="search__inputs">
+                              <div class="search__item">
+                                 <div class="search__label">Name</div>
+                                 <div class="search__input"><input class="-req -name" autocomplete="off" type="text" name="keyword"
+                                       data-value="Your keyword"></div>
+                              </div>
+                              <div class="search__item">
+                                 <div class="search__label">Location</div>
+                                 <div class="search__select">
+                                    <select name="location" class="select-search" data-custom-select>
+                                       <option value="Los Angelos">Los Angelos1</option>
+                                       <option value="Los Angelos">Los Angelos2</option>
+                                       <option value="Los Angelos">Los Angelos3</option>
+                                    </select>
+                                 </div>
+                              </div>
+                              <button type="submit" class="search__btn"><span>Search</span><span
+                                    class="-icon-search"></span></button>
+                           </div>
+                           <div class="search__setting -input-form-filter" data-me="767.98, .search__inputs, 2">
+                              <label class="search__input-check">
+                                 <input type="checkbox" name="open-now">
+                                 <span></span>
+                                 <span class="text-form-filter">Open now</span>
+                              </label>
+                           </div>
+                        </form>
+                     </div>
+                  </div>
+                  <!-- <div class="top-block__row"> -->
+                     <!-- <div class="top-block__breadcrumbs breadcrumbs-top-block">
+                        <ul class="breadcrumbs-top-block__list">
+                           <li><a href="">Home</a></li>
+                           <li><a href="">Cafe reasourant</a></li>
+                           <li>Under Son Cafe</li>
+                        </ul>
+                     </div> -->
+                  <!-- </div> -->
+               </div>
+            </div>
+         </div>
+         <div class="page__product product product_cafe-single">
+            <div class="product__container -container">
+               <div class="product__main">
+                  <div class="product__header">
+                      {% include 'includes/product_rating.html' %}
+                  </div>
+                  <div class="product__info info-product info-product_nline">
+                     <div class="info-product__body">
+                        <h2 class="info-product__title">
+                           <span>{{ object.title }}</span>
+                           {{ object.address }}
+                        </h2>
+                     </div>
+                  </div>
+
+                  <div class="product__photos-cafe-single photos-cafe-single">
+                       <div class="photos-cafe-single__grid">
+                         {% for img in object.imgs.all|slice:':1' %}
+                           <div class="photos-cafe-single__image photos-cafe-single__image_big -ai"><img src="{{ img.img.url }}" alt=""></div>
+                         {% endfor %}
+
+                        <div class="photos-cafe-single__subgrid">
+                            {% for img in object.imgs.all|slice:'1:' %}
+                                <div class="photos-cafe-single__image photos-cafe-single__image_small -ai"><img src="{{ img.img.url  }}" alt=""></div>
+                            {% endfor %}
+                        </div>
+                     </div>
+                  </div>
+                  <div class="product__descs">
+                     <div class="product__desc">
+                        <h3 class="product__label label-product label-product_big">Description:</h3>
+                        <p class="product__text">{{ object.description }}</p>
+                     </div>
+                  </div>
+                     <div class="overview-product__row overview-product__row_green">
+                        <h3 class="overview-product__label label-product">Special Features:</h3>
+                        <div class="overview-product__items">
+                           <div class="overview-product__item">
+                              <h4 class="overview-product__title">Kitchen</h4>
+                               {% for kitchen in object.kitchens.all %}
+                                      <div class="overview-product__subtitle">{{ kitchen.kitchen }}</div>
+
+                               {% endfor %}
+                           </div>
+                           <div class="overview-product__item">
+                              <h4 class="overview-product__title">Work Time</h4>
+                              <div class="overview-product__subtitle">{{ object.start_time|time:"H:i" }} : {{ object.end_time|time:"H:i" }}</div>
+                           </div>
+                        <div class="overview-product__item">
+                              <h4 class="overview-product__title">Specifics</h4>
+                            {% for specific in object.specifics.all %}
+                              <div class="overview-product__subtitle">{{ specific.specific }}</div>
+                            {% endfor %}
+
+                           </div>
+                        </div>
+                     </div>
+
+               {% include 'includes/detail_map.html' %}
+               {% include 'includes/detail_comments.html' %}
+                {% include 'includes/detail_product_side.html' %}
+            </div>
+            </div>
+         </div>
+         <div class="page__similar-ads similar-ads similar-ads_cafe-single">
+             {% include 'includes/detail_similar_ads.html' %}
+         </div>
+      </div>
+
+
+
+{% endblock %}

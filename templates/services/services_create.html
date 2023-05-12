@@ -1,0 +1,60 @@
+{% extends 'base_create.html' %}
+
+{% block create_content %}
+
+<form action="{% url 'services-create' %}" method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+{% include 'includes/image_create.html' %}
+
+    <p>
+    <label for="id_ad-title">Title:</label>
+    <input type="text" name="ad-title" maxlength="100" required="" id="id_ad-title">
+  </p>
+  <p>
+    <label for="id_ad-description">Description:</label>
+    <textarea name="ad-description" cols="40" rows="10" required="" id="id_ad-description"></textarea>
+  </p>
+  <p>
+    <label for="id_ad-price">Price:</label>
+    <input type="number" name="ad-price" value="0" min="0" id="id_ad-price">
+  </p>
+  <p>
+    <label for="id_ad-currency">Currency:</label>
+    <input type="text" name="ad-currency" value="USD" maxlength="20" id="id_ad-currency">
+  </p>
+  <p>
+    <label for="id_ad-category">Category:</label>
+    <select name="ad-category" required="" id="id_ad-category">
+        {% for category in categories %}
+          <option value="{{ category.id }}">{{ category.category }}</option>
+        {% endfor %}
+</select>
+  </p>
+  <p>
+    <label for="id_ad-start_time">Start time:</label>
+    <input type="time" name="ad-start_time" id="id_ad-start_time">
+  </p>
+  <p>
+    <label for="id_ad-end_time">End time:</label>
+    <input type="time" name="ad-end_time" id="id_ad-end_time">
+  </p>
+  <p>
+    <label for="id_ad-frequency_of_payment">Frequency of payment:</label>
+    <input type="text" name="ad-frequency_of_payment" value="per time" maxlength="50" required="" id="id_ad-frequency_of_payment">
+  </p><p>
+    <label for="id_country__address-country">Country:</label>
+    <input type="text" name="country__address-country" maxlength="100" required="" id="id_country__address-country">
+  </p><p>
+    <label for="id_state__address-state">State:</label>
+    <input type="text" name="state__address-state" maxlength="100" required="" id="id_state__address-state">
+  </p><p>
+    <label for="id_address__address-address">Address:</label>
+    <input type="text" name="address__address-address" maxlength="100" id="id_address__address-address">
+  </p>
+    {% include 'includes/map_create.html' %}
+    <input type="submit" value="Save">
+</form>
+
+
+{% endblock %}
+

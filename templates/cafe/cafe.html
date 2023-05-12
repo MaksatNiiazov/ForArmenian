@@ -1,0 +1,236 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<head>
+<style>
+      /* Style for the input fields */
+      input[type=number] {
+        padding: 6px 12px;
+        width: 50px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        box-sizing: border-box;
+        margin: 10px;
+        text-align: center;
+        display: inline-block;
+        -moz-appearance: textfield;
+      }
+      .min-max-input {
+         display: inline-block;
+      }
+      input[type=number]::-webkit-inner-spin-button,
+      input[type=number]::-webkit-outer-spin-button {
+        -webkit-appearance: none;
+        margin: 0;
+      }
+</style>
+</head>
+<body>
+      <div class="page">
+         <div class="page__top-block top-block top-block_settings-right top-block_padding top-block_cafe">
+            <div class="top-block__image -ai"><img src="{% static 'img/top-block/location.png' %}" alt=""></div>
+            <div class="top-block__container -container">
+               <div class="top-block__body">
+                  <h2 class="top-block__title top-title top-title_ads">Cafe/Restaurant</h2>
+                  <div class="top-block__search search search_search search_inp search_ads search_cafe-single search_top">
+                     <div class="search__body">
+                        <form action="{% url 'cafe' %}" class="search__row">
+                           <div class="search__inputs">
+                              <div class="search__item">
+                                 <div class="search__label">Name</div>
+                                 <div class="search__input"><input class="-req -name" autocomplete="off" type="text" name="keyword"
+                                       data-value="Your keyword" value="{{ request.GET.keyword }}"></div>
+                              </div>
+                              <div class="search__item">
+                                 <div class="search__label">Location</div>
+                                 <div class="search__select">
+                                    <select name="location" class="select-search" data-custom-select>
+                                       <option value="">All</option>
+                                        {% for location in locations %}
+                                            {% if location.id in selected_location %}
+                                            <option selected value="{{ location.id}}">{{location.country}}/{{location.state}}</option>
+                                            {% else %}
+                                            <option value="{{ location.id }}">{{location.country}}/{{location.state}}</option>
+                                            {% endif %}
+                                        {% endfor %}
+                                    </select>
+                                 </div>
+                              </div>
+                              <button type="submit" class="search__btn"><span>Search</span><span
+                                    class="-icon-search"></span></button>
+                           </div>
+                           <div class="search__setting -input-form-filter" data-me="767.98, .search__inputs, 2">
+                              <label class="search__input-check">
+                                 <input type="checkbox" name="open"
+                                 {% if request.GET.open %}checked{% endif %}>
+                                 <span></span>
+                                 <span class="text-form-filter">Open now</span>
+                              </label>
+                           </div>
+                        </form>
+                     </div>
+                  </div>
+                  <!-- <div class="top-block__row top-block__row_ads"> -->
+                     <!-- <div class="top-block__breadcrumbs breadcrumbs-top-block">
+                        <ul class="breadcrumbs-top-block__list">
+                           <li><a href="">Home</a></li>
+                           <li>Cafe/Restaurant</li>
+                        </ul>
+                     </div> -->
+                  <!-- </div> -->
+               </div>
+               <div class="top-block__map"><iframe src="https://www.google.com/maps/embed?pb=!1m10!1m8!1m3!1d6699051.043275679!2d21.940572607847184!3d34.9310098493962!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sru!2sua!4v1657230954283!5m2!1sru!2sua" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe></div>
+            </div>
+         </div>
+         <div class="page__filter filter filter_abc">
+                {% include 'includes/sort_filter.html' %}
+         </div>
+         <div class="page__products-cafe products-cafe">
+            <div class="products-cafe__container -container">
+               <div class="market__catalog catalog">
+                  <div class="filter__body"  data-me="767.98, .filter__container, first">
+                     <a href="" class="filter__openner filter-openner filter-openner_hide filter-openner_lock">
+                        <span class="-icon-filter"></span> Filter
+                     </a>
+                     <form  action="{% url 'cafe' %}" method="get" class="filter__form form-filter -event-change form-filter_abc">
+                        <a href="" class="form-filter__close form-filter__close_lock"><img src="{% static 'img/icons/close.svg' %}" alt=""></a>
+                        <h3 class="form-filter__title">Filter</h3>
+                        <div class="form-filter__main">
+                           <div class="form-filter__item">
+                              <h5 class="category__title">Category</h5>
+                              <div class="form-filter__items items-filter-categories">
+                                 <ul class="items-filter-categories__list">
+                                    {% for category in categories %}
+                                    <li>
+                                       <label class="items-filter-categories__item">
+                                          <input type="checkbox" id="example" name="categories" value="{{ category.id }}"
+                                                 {% if category.id in selected_categories %}checked{% endif %}>
+                                          <span>
+                                             {{ category.title }}
+                                          </span>
+                                       </label>
+                                    </li>
+                                    {% endfor %}
+                                 </ul>
+                              </div>
+                           </div>
+                           <div class="form-filter__item">
+                              <h5 class="category__title">Price Range</h5>
+                                <div class="form-filter__items items-filter-categories">
+                                   <div class="min-max-input">
+                                    <label for="min_price">Min</label>
+                                    <input type="number" id="min_price" name="min_price" min="0" value="{{request.GET.min_price}}">
+                                   </div>
+                                   <div class="min-max-input">
+                                    <label for="max_price">Max</label>
+                                    <input type="number" id="max_price" name="max_price" min="0" value="{{request.GET.max_price}}">
+                                   </div>
+                                </div>
+                           </div>
+                           <div class="form-filter__item">
+                              <h5 class="category__title">Features of the restaurant</h5>
+                              <div class="form-filter__items items-filter-categories">
+                                 <ul class="items-filter-categories__list">
+                                    {% for feature in features %}
+                                    <li>
+                                       <label class="items-filter-categories__item">
+                                          <input type="checkbox" name="features" value="{{ feature.specific }}"
+                                          {% if feature.specific in selected_features %}checked{% endif %}>
+                                          <span>
+                                             {{ feature.specific }}
+                                          </span>
+                                       </label>
+                                    </li>
+                                    {% endfor %}
+                                 </ul>
+                              </div>
+                           </div>
+                           <div class="form-filter__item">
+                              <h5 class="category__title">Kitchen</h5>
+                              <div class="form-filter__items items-filter-categories">
+                                 <ul class="items-filter-categories__list">
+                                    {% for kitchen in kitchens %}
+                                    <li>
+                                       <label class="items-filter-categories__item">
+                                          <input type="checkbox" name="kitchens" value="{{ kitchen.kitchen }}"
+                                          {% if kitchen.kitchen in selected_kitchens %}checked{% endif %}>
+                                          <span>
+                                             {{ kitchen.kitchen }}
+                                          </span>
+                                       </label>
+                                    </li>
+                                    {% endfor %}
+                                 </ul>
+                              </div>
+                           </div>
+                        </div>
+                        <button type="submit" value="Submit" class="btn btn-outline-danger">Filter</button>
+                         <a href="{{ request.path }}" class="btn btn-outline-danger">Clear filter</a>
+                     </form>
+                  </div>
+                  <div class="catalog__grid catalog__grid_col2">
+                      {% for object in object_list %}
+                          <div class="products-cafe__item item-products-ads item-products-ads_cafe">
+                        <div class="item-products-ads__slider slider-item-products-ads">
+                           <div class="slider-item-products-ads__body swiper">
+                              <div class="slider-item-products-ads__wrapper swiper-wrapper">
+                                  {% for img in object.imgs.all %}
+                                      <div class="slider-item-products-ads__slide swiper-slide">
+                                        <a href="{% url 'cafe-detail' object.id %}" class="slider-item-products-ads__image -ai"><img src="{{ img.img.url }}" alt=""></a>
+                                     </div>
+                                  {% endfor %}
+                              </div>
+                           </div>
+                           <a href="" class="slider-item-products-ads__pagination -slider-pagination-row"></a>
+                        </div>
+                        <div class="item-products-ads__content item-content">
+                           <div class="item-content__meta">
+                              <div class="item-content__info">
+                                 <span><span class="-icon-map"></span>{{ object.address.address }}</span>
+                              </div>
+                           </div>
+                           <div class="item-content__row">
+                              <a href="{{ object.get_absolute_url }}" class="item-content__title">{{ object.title }}</a>
+                           </div>
+                           <div class="item-content__category">{{ object.type }}</div>
+                           <div class="item-content__settings settings-item">
+                              <div class="settings-item__item">
+                                 <h4 class="settings-item__title"><b>$$-$$$</b></h4>
+                                 <div class="settings-item__text">{{ object.price }}$ - {{object.max_price}}$</div>
+                              </div>
+                              <div class="settings-item__item">
+                                 <h4 class="settings-item__title"><b>Kitchen</b></h4>
+                                  {% for kitchen in object.kitchens.all %}
+                                       <div class="settings-item__text">{{ kitchen.kitchen }}</div>
+                                  {% endfor %}
+                              </div>
+                              <div class="settings-item__item">
+                                 <h4 class="settings-item__title"><b>Work time</b></h4>
+                                 <div class="settings-item__text">{{ object.start_time|time:"H:i" }} : {{ object.end_time|time:"H:i" }}</div>
+                              </div>
+                           </div>
+                           <div class="item-content__footer item-content__footer_df">
+                              <div class="item-content__rating"><span class="-icon-star"></span>{{ object.sum_of_values }} ({{ object.rating_set.count }} review)</div>
+                              <div class="item-content__actions">
+                                 <a href="" class="item-content__share"><span class="-icon-share"></span></a>
+{% include 'includes/like_list.html' %}
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+                      {% endfor %}
+                  </div>
+               </div>
+            </div>
+         {% include 'includes/paginate.html' %}
+         </div>
+         <div class="page__question question question_cafe">
+            <div class="question__container -container">
+               <h2 class="question__title title">Do you have something to sell?</h2>
+               <div class="question__subtitle subtitle">This is where businesses in Bangladesh trade, numerous business and industry services offered<br> to trade and consumers.</div>
+               <a href="" class="question__btn btn">Submit on ad</a>
+            </div>
+         </div>
+      </div>
+</body>
+{% endblock %}

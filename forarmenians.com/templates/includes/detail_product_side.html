@@ -1,0 +1,220 @@
+  {% load static %}
+
+               <div class="product__side">
+                  <div class="product__seller info-seller-product">
+                     <h3 class="info-seller-product__title title-product">Company Information</h3>
+                     <a href="" data-popup-link=".seller-popup" class="info-seller-product__profile">
+                        <span class="info-seller-product__avatar -ai"><img src="{% if object.created_by.avatar %} {{ object.created_by.avatar.url }} {% else %} {% static 'img/profile_photos/default-avatar.jpg' %} {% endif %}" alt=""></span>
+                        <div class="info-seller-product__profile-info">
+                           <span class="info-seller-product__name">{{ object.created_by.first_name }} {{ object.created_by.last_name }}</span>
+                           <div class="info-seller-product__rating"><span class="-icon-star"></span>4.7 (145 review)</div>
+                        </div>
+                     </a>
+                     <a href="tel:" class="info-seller-product__btn info-seller-product__btn_phone btn-product btn-product_green">{{ object.created_by.phone_number|slice:":7" }}XXX <span class="-icon-tel"></span></a>
+                     <a href="mailto:" class="info-seller-product__btn info-seller-product__btn_mail btn-product btn-product_red">{{ object.created_by.email }} <span class="-icon-mail"></span></a>
+                     <div class="info-seller-product__social">
+                        <a href="" class="info-seller-product__icon"><img src="{% static 'img/icons/instagram.svg"' %}" alt=""></a>
+                        <a href="" class="info-seller-product__icon"><img src="{% static 'img/icons/website.svg"' %}" alt=""></a>
+                        <a href="" class="info-seller-product__icon"><img src="{% static 'img/icons/telegram.svg"' %}" alt=""></a>
+                        <a href="" class="info-seller-product__icon"><img src="{% static 'img/icons/viber.svg"' %}" alt=""></a>
+                        <a href="" class="info-seller-product__icon"><img src="{% static 'img/icons/youtube.svg"' %}" alt=""></a>
+                        <a href="" class="info-seller-product__icon"><img src="{% static 'img/icons/whatsapp.svg"' %}" alt=""></a>
+                        <a href="" class="info-seller-product__icon"><img src="{% static 'img/icons/facebook.svg"' %}" alt=""></a>
+                     </div>
+                  </div>
+                  <form action="#" class="product__form form-contact-product">
+                     <h3 class="form-contact-product__title title-product">Contact Seller</h3>
+                     <div class="form-contact-product__items">
+                        <div class="form-contact-product__item">
+                           <label>
+                              <h4 class="form-contact-product__label">Email *</h4>
+                              <span class="form-contact-product__input"><input autocomplete="off" type="text" class="-req -email" name="email" data-value="Your email"></span>
+                           </label>
+                        </div>
+                        <div class="form-contact-product__item">
+                           <label>
+                              <h4 class="form-contact-product__label">Name *</h4>
+                              <span class="form-contact-product__input"><input autocomplete="off" type="text" class="-req -name" name="email" data-value="Your Name"></span>
+                           </label>
+                        </div>
+                        <div class="form-contact-product__item">
+                           <label>
+                              <h4 class="form-contact-product__label">Message *</h4>
+                              <span class="form-contact-product__textarea"><textarea autocomplete="" type="text" class="-req" name="email" data-value="Type your message"></textarea></span>
+                           </label>
+                        </div>
+                     </div>
+                     <button type="submit" class="form-contact-product__btn btn-product btn-product_green">Send Message</button>
+                  </form>
+                  <div class="product__ads ads-product">
+                     <h3 class="ads-product__title title-product">Popular ads</h3>
+                     <div class="ads-product__items">
+                        <div class="ads-product__item">
+                           <a href="" class="ads-product__link"></a>
+                           <div class="ads-product__image -ai"><img src="{% static 'img/product/popular-ads-01.jpg' %}" alt=""></div>
+                           <div class="ads-product__body">
+                              <div class="ads-product__label">AppleiMac 21.5Inc Core</div>
+                              <div class="ads-product__text">Dhaka, Desktop Computers</div>
+                              <div class="ads-product__footer">
+                                 <div class="ads-product__price">$620</div>
+                                 <div class="ads-product__date">1 day</div>
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+
+     <div class="seller-popup" data-popup>
+      <div class="seller-popup__body" data-popup-body>
+         <div class="seller-popup__content" data-popup-content>
+            <a href="" class="seller-popup__close" data-popup-close><span class="-icon-arrow-right"></span></a>
+            <div class="seller-popup__side">
+               <div class="seller-popup__profile">
+                  <div class="seller-popup__avatar -ai"><img src="{% if object.created_by.avatar %}{{ object.created_by.avatar.url }}{% else %}{% static 'img/profile_photos/default-avatar.jpg' %}{% endif %}" alt=""></div>
+                  <div class="seller-popup__name">{{ object.created_by.first_name }} {{ object.created_by.last_name }}</div>
+               </div>
+               <div class="seller-popup__rating rating-review">
+                  <div class="rating-review__starts">
+                     <span class="-icon-star"></span>
+                     <span class="-icon-star"></span>
+                     <span class="-icon-star"></span>
+                     <span class="-icon-star-bd"></span>
+                     <span class="-icon-star-emptly"></span>
+                  </div>
+                  <div class="rating-review__label">
+                     3.5
+                     <span>(145 review)</span>
+                  </div>
+               </div>
+               <div class="seller-popup__items">
+                  <div class="seller-popup__item item-review">
+                     <div class="item-review__line"></div>
+                     <div class="item-review__label"><span>4.8</span> Responsible</div>
+                  </div>
+                  <div class="seller-popup__item item-review">
+                     <div class="item-review__line"></div>
+                     <div class="item-review__label"><span>4.8</span> Responsible</div>
+                  </div>
+                  <div class="seller-popup__item item-review">
+                     <div class="item-review__line"></div>
+                     <div class="item-review__label"><span>4.8</span> Responsible</div>
+                  </div>
+                  <div class="seller-popup__item item-review">
+                     <div class="item-review__line"></div>
+                     <div class="item-review__label"><span>4.8</span> Responsible</div>
+                  </div>
+                  <div class="seller-popup__item item-review">
+                     <div class="item-review__line"></div>
+                     <div class="item-review__label"><span>4.8</span> Responsible</div>
+                  </div>
+               </div>
+            </div>
+            <div class="seller-popup__main">
+               <div class="seller-popup__products products-seller-popup">
+                  <div class="products-seller-popup__title">
+                     <span>Seller's Ads</span>
+                     {{ ads.count }}
+                  </div>
+                  <div class="products-seller-popup__items">
+                      {% for ad in ads|slice:":6"%}
+                       <div class="products-seller-popup__item item-products-ads">
+                        <div class="item-products-ads__slider slider-item-products-ads slider-item-products-ads_nh">
+                           <div class="slider-item-products-ads__body swiper">
+                              <div class="slider-item-products-ads__wrapper swiper-wrapper">
+                                  {% if ad.photos.photo_1 %}
+                                   <div class="slider-item-products-ads__slide swiper-slide">
+                                    <a href="" class="slider-item-products-ads__image -ai"><img src="{{ ad.photos.photo_1.url }}" alt=""></a>
+                                 </div>
+                                  {% endif %}
+                              </div>
+                           </div>
+                           <a href="" class="slider-item-products-ads__pagination -slider-pagination-row"></a>
+                        </div>
+                        <div class="item-products-ads__content item-content">
+                           <div class="item-content__meta">
+                              <span><span class="-icon-map"></span>{{ ad.address }}</span>
+                           </div>
+                           <a href="" class="item-content__title">{{ ad.title }}</a>
+                           <div class="item-content__row item-content__row_df">
+                              <div class="item-content__category">{{ ad.category }}</div>
+                              <div class="item-content__price-green">{{ ad.price }}</div>
+                           </div>
+                           <div class="item-content__footer item-content__footer_df">
+                              <div class="item-content__rating item-content__rating_nmb"><span class="-icon-star"></span>4.7 (145 review)</div>
+                              <div class="item-content__actions">
+                                 <a href="" class="item-content__share"><span class="-icon-share"></span></a>
+                                 <a href="" class="item-content__like"><span class="-icon-like"></span></a>
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+
+                      {% endfor %}
+
+
+                  </div>
+                  <div class="products-seller-popup__footer">
+                     <a href="" class="products-seller-popup__btn btn-item-info btn-item-info_blue">See All</a>
+                  </div>
+               </div>
+               <div class="seller-popup__footer">
+                  <form action="#" class="seller-popup__form form-review">
+                     <div class="form-review__btns">
+                        <a href="" class="form-review__btn -btn-review-input-show">+ Add review</a>
+                        <button type="submit" class="form-review__btn">Save</button>
+                     </div>
+                     <div class="form-review__body">
+                        <div class="form-review__input"><textarea class="-req" name="message"></textarea></div>
+                     </div>
+                  </form>
+
+                  <div class="seller-popup__wrap" data-scroll>
+                     <div class="seller-popup__comments" data-scroll-content>
+                        <div class="seller-popup__comment comment-review">
+                           <div class="comment-review__profile">
+                              <a href="" class="comment-review__avatar -ai"><img src="{% static 'img/news-single/avatar.jpg' %}" alt=""></a>
+                              <div class="comment-review__info">
+                                 <div class="comment-review__name">Jane Cooper</div>
+                                 <div class="comment-review__date">7/18/17</div>
+                              </div>
+                           </div>
+                           <div class="comment-review__text">Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet sint. Velit officia consequat duis enim velit mollit. Exercitation veniam consequat sunt nostrud amet.</div>
+                        </div>
+                        <div class="seller-popup__comment comment-review">
+                           <div class="comment-review__profile">
+                              <a href="" class="comment-review__avatar -ai"><img src="{% static 'img/news-single/avatar.jpg' %}" alt=""></a>
+                              <div class="comment-review__info">
+                                 <div class="comment-review__name">Jane Cooper</div>
+                                 <div class="comment-review__date">7/18/17</div>
+                              </div>
+                           </div>
+                           <div class="comment-review__text">Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet sint. Velit officia consequat duis enim velit mollit. Exercitation veniam consequat sunt nostrud amet.</div>
+                        </div>
+                        <div class="seller-popup__comment comment-review">
+                           <div class="comment-review__profile">
+                              <a href="" class="comment-review__avatar -ai"><img src="{% static 'img/news-single/avatar.jpg' %}" alt=""></a>
+                              <div class="comment-review__info">
+                                 <div class="comment-review__name">Jane Cooper</div>
+                                 <div class="comment-review__date">7/18/17</div>
+                              </div>
+                           </div>
+                           <div class="comment-review__text">Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet sint. Velit officia consequat duis enim velit mollit. Exercitation veniam consequat sunt nostrud amet.</div>
+                        </div>
+                        <div class="seller-popup__comment comment-review">
+                           <div class="comment-review__profile">
+                              <a href="" class="comment-review__avatar -ai"><img src="{% static 'img/news-single/avatar.jpg' %}" alt=""></a>
+                              <div class="comment-review__info">
+                                 <div class="comment-review__name">Jane Cooper</div>
+                                 <div class="comment-review__date">7/18/17</div>
+                              </div>
+                           </div>
+                           <div class="comment-review__text">Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet sint. Velit officia consequat duis enim velit mollit. Exercitation veniam consequat sunt nostrud amet.</div>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+   </div>

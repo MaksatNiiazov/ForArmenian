@@ -1,0 +1,126 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+
+
+
+
+      <div class="page">
+         <div class="page__top-block top-block top-block_padding top-block_useful">
+            <div class="top-block__image -ai"><img src="{% static 'img/top-block/image.jpg' %}" alt=""></div>
+            <div class="top-block__container -container">
+               <div class="top-block__body">
+                  <h2 class="top-block__title top-title top-title_ads-single">Useful resources</h2>
+                  <div class="top-block__search search search_top">
+                     <div class="search__body">
+                        <form action="#" class="search__row">
+                           <div class="search__input"><input class="-req -name" autocomplete="off" type="text" name="keyword"
+                                 data-value="Your keyword" value="{{ request.GET.keyword }}"></div>
+                           <button type="submit" class="search__btn"><span>Search</span><span
+                                 class="-icon-search"></span></button>
+                        </form>
+                     </div>
+                  </div>
+                  <!-- <div class="top-block__row"> -->
+                     <!-- <div class="top-block__breadcrumbs breadcrumbs-top-block">
+                        <ul class="breadcrumbs-top-block__list">
+                           <li><a href="">Home</a></li>
+                           <li>News</li>
+                        </ul>
+                     </div> -->
+                  <!-- </div> -->
+               </div>
+            </div>
+         </div>
+         <div class="page__useful useful">
+            <div class="useful__container -container">
+               <div class="useful__side">
+                  <div class="useful__filter">
+                     <a href="" class="catalog__openner filter-openner filter-openner_hide filter-openner_lock">
+                        <span class="-icon-filter"></span> Filter
+                     </a>
+                     <form action="#" class="catalog__form form-filter -event-change form-filter_abc">
+                        <a href="" class="form-filter__close form-filter__close_lock"><img src="img/icons/close.svg" alt=""></a>
+                        <h3 class="form-filter__title">Filter</h3>
+                        <div class="form-filter__main">
+                           <div class="form-filter__item">
+                              <div class="form-filter__items items-filter-categories">
+                                 <ul class="items-filter-categories__list">
+
+                                 </ul>
+                              </div>
+                           </div>
+                           <div class="form-filter__item">
+                              <div class="form-filter__question question question_filter">
+                                 <h2 class="question__title title">Do you have something to sell?</h2>
+                                 <a href="" class="question__btn btn">Submit on ad</a>
+                              </div>
+                           </div>
+                           <div class="form-filter__ads -ai"><img src="{% static 'img/ads/image-01.jpg' %}" alt=""></div>
+                        </div>
+                     </form>
+                  </div>
+                  <div class="useful__image"><img src="{% static 'img/useful/ads.jpg' %}" alt=""></div>
+               </div>
+               <div class="useful__body">
+                   {% for object in object_list %}
+                          <div class="useful__item item-useful">
+                             <a href="" class="item-useful__link"></a>
+                                                               {% if object.imgs.first %}
+
+                             <a href="{% url 'useful-detail' object.id %}" class="item-useful__preview">
+                                                                 <div class="item-useful__image -ai"><img src="{{ object.imgs.first.img.url }}" alt=""></div>
+
+                             </a>
+                                                               {% endif %}
+
+                             <div class="item-useful__body">
+                                <h4 class="item-useful__date -date-useful-item">{{ object.created_date }}<span><a href="" class="-icon-share"></a>{% include 'includes/like_list.html' %}</span></h4>
+                                <h3 class="item-useful__title -title-useful-item">{{ object.title }}
+                                </h3>
+                                <div class="item-useful__text">{{ object.description|truncatechars:100|safe }}</div>
+                                <!-- <div class="item-useful__text item-useful__text_sub">Lorem ipsum dolor sit amet, consectetur
+                                   adipiscing elit. Eget porta non nunc urna. Sed cras sit morbi eget eget semper. </div> -->
+                                <a href="{% url 'useful-detail' object.id %}" class="item-useful__btn btn-more-product">Read more</a>
+                             </div>
+                          </div>
+                   {% endfor %}
+               </div>
+            </div>
+         </div>
+         <div class="page__category category">
+            <div class="category__container -container">
+               <h2 class="category__title title title_fw">Last viewed articles</h2>
+               <div class="category__body">
+                  <div class="category__grid">
+                     <div class="category__item category-item">
+                        <a href="" class="category-item__link"></a>
+                        <div class="category-item__image -ai"><img src="{% static 'img/ads/image-01.jpg' %}" alt=""></div>
+                        <div class="category-item__body">
+                           <div class="category-item__date -date-useful-item -date-useful-item_fz">9/4/12 <span><a href="" class="-icon-share"></a><a href="" class="-icon-like"></a></span></div>
+                           <h3 class="category-item__title -title-useful-item -title-useful-item_lh">Thomas Anders &
+                              Modern Talking Band & Sandra</h3>
+                        </div>
+                     </div>
+                  </div>
+                  <div class="category__footer">
+                     <a href="" class="category__btn btn-more">Shoe More</a>
+                  </div>
+               </div>
+            </div>
+                      {% include 'includes/paginate.html' %}
+
+         </div>
+         <div class="page__question question question_useful">
+            <div class="question__container -container">
+               <h2 class="question__title title">Do you have something to sell?</h2>
+               <div class="question__subtitle subtitle">This is where businesses in Bangladesh trade, numerous business
+                  and industry services offered<br> to trade and consumers.</div>
+               <a href="" class="question__btn btn">Submit on ad</a>
+            </div>
+         </div>
+      </div>
+
+
+{% endblock %}

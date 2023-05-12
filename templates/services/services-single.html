@@ -1,0 +1,92 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+
+      <div class="page">
+         <div class="page__top-block top-block top-block_padding top-block_job-single">
+            <div class="top-block__image -ai"><img src="{% static 'img/top-block/job banner.png' %}" alt=""></div>
+            <div class="top-block__container -container">
+               <div class="top-block__body">
+                  <h2 class="top-block__title top-title" data-me="767.98, .filter__container, first">Services single</h2>
+                  <div class="top-block__search search search_top">
+                     <div class="search__body">
+                        <form action="#" class="search__row">
+                           <div class="search__input"><input class="-req -name" autocomplete="off" type="text" name="keyword"
+                                 data-value="Your keyword"></div>
+                           <button type="submit" class="search__btn"><span>Search</span><span
+                                 class="-icon-search"></span></button>
+                        </form>
+                     </div>
+                  </div>
+                  <!-- <div class="top-block__row"> -->
+                     <!-- <div class="top-block__breadcrumbs breadcrumbs-top-block">
+                        <ul class="breadcrumbs-top-block__list">
+                           <li><a href="">Home</a></li>
+                           <li>Job single</li>
+                        </ul>
+                     </div> -->
+                  <!-- </div> -->
+               </div>
+            </div>
+         </div>
+         <div class="page__product product">
+            <div class="product__container -container">
+               <div class="product__main">
+                  <div class="product__header">
+                     <div class="product__date">{{ object.created_date }}</div>
+                     <div class="product__actions">
+                        <a href="" class="product-share"><span class="-icon-share"></span></a>
+                         {% include 'includes/like.html' %}
+                     </div>
+                  </div>
+                  <div class="product__info info-product info-product_nline">
+                     <div class="info-product__body">
+                        <h2 class="info-product__title info-product__title_job-single">
+`                           <span>{{ object.title }}</span>
+`                           Sicamous, BC, V0E 2V1  Listing ID: 10161461
+                        </h2>
+                        <div class="info-product__date">{{ object.created_date }}</div>
+                     </div>
+                     <div class="info-product__side">
+                        <div class="info-product__price">${{ object.price }}</div>
+                        <div class="info-product__label info-product__label_hide"></div>
+                     </div>
+                  </div>
+
+                  <div class="product__photos photos-cafe-single">
+                      <div class="photos-cafe-single__grid">
+                          {% for img in object.imgs.all %}
+                            <div class="photos-cafe-single__image photos-cafe-single__image_small -ai"><img src="{{ img.img.url }}" alt=""></div>
+                         {% endfor %}
+                     </div>
+                  </div>
+                  <div class="product__descs">
+                     <div class="product__desc">
+                        <h3 class="product__label label-product label-product_big">Description:</h3>
+                        <p class="product__text">{{ object.description }}</p>
+                     </div>
+                  </div>
+               </div>
+{% include 'includes/detail_product_side.html' %}
+            </div>
+         </div>
+         <div class="page__banner banner-single">
+            <div class="banner-single__container -container">
+               <div class="banner-single__image -ai"><img src="{% static 'img/services/Events.png' %}" alt=""></div>
+            </div>
+         </div>
+         <div class="page__similar-ads similar-ads similar-ads_abc-single">
+ {% include 'includes/detail_similar_ads.html' %}
+         </div>
+         <div class="page__question question question_job-single">
+            <div class="question__container -container">
+               <h2 class="question__title title">Do you have something to sell?</h2>
+               <div class="question__subtitle subtitle">This is where businesses in Bangladesh trade, numerous business and industry services offered<br> to trade and consumers.</div>
+               <a href="" class="question__btn btn">Submit on ad</a>
+            </div>
+         </div>
+      </div>
+
+
+{% endblock %}

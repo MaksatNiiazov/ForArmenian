@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Login{% endblock %}
+
+
+{% block content %}
+<div class="page">
+   <div class="page__login login">
+      <div class="login__container -container">
+         <div class="login__form">
+            <form method="post" class="login-form">
+               {% csrf_token %}
+               <div class="login-form__main">
+                  <div class="login-form__inputs">
+                     
+                     <div class="login-form__top">
+                        <div class="login-form__item">
+                           <h4 class="login-form__label">Email</h4>
+                           <div class="login-form__input"><input autocomplete="off" type="text" name="username" data-value="Email address"></div>
+                        </div>
+                        <div class="login-form__item">
+                           <h4 class="login-form__label">Password</h4>
+                           <div class="login-form__input"><input autocomplete="off" type="password" name="password" data-value="Password"></div>
+                        </div>
+                     </div>
+                           <a href="{% url 'password_reset' %}" class="login-form__forgot -link-form">Forgot password?</a>
+                  </div>
+                  <div class="login-form__actions">
+                        <button type="submit" class="login-form__btn">login</button>
+                        <div class="login-form__reg">Don’t have un account? <a href="{% url 'register' %}" class="-link-form">REGISTER</a></div>
+                  </div>
+               </div>
+                     <!-- <div class="login-form__footer">
+                        <img style="max-width: 100%;" src="{% static 'img/login/google.png' %}" alt="">
+                        <img style="max-width: 100%;" src="{% static 'img/login/google.png' %}" alt="">
+                        <img style="max-width: 100%;" src="{% static 'img/login/google.png' %}" alt="">
+                     </div> -->
+               </form>
+               </div>
+               <div class="login__body">
+                  <div class="login__image -ai"><img src="{% static 'img/login/image.jpeg' %}" alt=""></div>
+                  <div class="login__label">
+                     <span>LOGIN</span>
+                     Welcome to our page
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+   </div>
+{% endblock %}

@@ -1,0 +1,138 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+
+      <div class="page">
+         <div class="page__top-block top-block top-block_padding top-block_abc">
+            <div class="top-block__image -ai"><img src="img/top-block/image.jpg" alt=""></div>
+            <div class="top-block__container -container">
+               <div class="top-block__body">
+                  <h2 class="top-block__title top-title">Armenian bussines comunity</h2>
+                  <div class="top-block__search search search_top">
+                     <div class="search__body">
+                        <form action="#" class="search__row">
+                           <div class="search__input"><input class="-req -name" autocomplete="off" type="text" name="keyword"
+                                 data-value="Your keyword"></div>
+                           <button type="submit" class="search__btn"><span>Search</span><span
+                                 class="-icon-search"></span></button>
+                        </form>
+                     </div>
+                  </div>
+                  <!-- <div class="top-block__row"> -->
+                     <!-- <div class="top-block__breadcrumbs breadcrumbs-top-block">
+                        <ul class="breadcrumbs-top-block__list">
+                           <li><a href="">Home</a></li>
+                           <li>Armenian bussines comunity</li>
+                        </ul>
+                     </div> -->
+                  <!-- </div> -->
+               </div>
+               <div class="top-block__map"><iframe src="https://www.google.com/maps/embed?pb=!1m10!1m8!1m3!1d6699051.043275679!2d21.940572607847184!3d34.9310098493962!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sru!2sua!4v1657230954283!5m2!1sru!2sua" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe></div>
+            </div>
+         </div>
+         <div class="page__filter filter filter_abc">
+            <div class="filter__container -container">
+               <div class="filter__short short-filter">
+                  <div class="short-filter__label">Short by</div>
+                  <div class="short-filter__select">
+                     <select name="short" class="short-filter-select" data-custom-select>
+                        <option value="Most relevant">Most relevant</option>
+                        <option value="Most relevant">Most relevant</option>
+                        <option value="Most relevant">Most relevant</option>
+                     </select>
+                  </div>
+               </div>
+            </div>
+         </div>
+         <div class="page__market market">
+            <div class="market__container -container">
+               <div class="market__catalog catalog">
+                  <div class="catalog__body" data-me="767.98, .filter__container, first">
+                     <a href="" class="catalog__openner filter-openner filter-openner_hide filter-openner_lock">
+                        <span class="-icon-filter"></span> Filter
+                     </a>
+                     <form action="#" class="catalog__form form-filter -event-change form-filter_abc">
+                        <a href="" class="form-filter__close form-filter__close_lock"><img src="img/icons/close.svg" alt=""></a>
+                        <h3 class="form-filter__title">Filter</h3>
+                        <div class="form-filter__main">
+                           <div class="form-filter__item">
+                              <div class="form-filter__title-item form-filter__title-item_nicon form-filter-title-item">Location</div>
+                              <div class="form-filter__body">
+                                 <div class="form-filter__select">
+                                    <select name="location" class="select-search" data-custom-select>
+                                       <option value="Los Angelos">Los Angelos1</option>
+                                       <option value="Los Angelos">Los Angelos2</option>
+                                       <option value="Los Angelos">Los Angelos3</option>
+                                    </select>
+                                 </div>
+                              </div>
+                           </div>
+                           <div class="form-filter__item">
+                              <div class="form-filter__title-item form-filter__title-item_nicon form-filter-title-item">Location</div>
+                              <div class="form-filter__body">
+                                 <div class="form-filter__select">
+                                    <select name="location" class="select-search" data-custom-select>
+                                       <option value="Los Angelos">Los Angelos1</option>
+                                       <option value="Los Angelos">Los Angelos2</option>
+                                       <option value="Los Angelos">Los Angelos3</option>
+                                    </select>
+                                 </div>
+                              </div>
+                           </div>
+                        </div>
+                     </form>
+                  </div>
+                  <div class="catalog__grid">
+                      {% for object in object_list %}
+                       <div class="catalog-market__item item-products-ads">
+                        <div class="item-products-ads__slider slider-item-products-ads">
+                           <div class="slider-item-products-ads__body swiper">
+                              <div class="slider-item-products-ads__wrapper swiper-wrapper">
+                                  {% for img in object.imgs.all %}
+                                      <div class="slider-item-products-ads__slide swiper-slide">
+                                        <a href="{% url 'abc-detail' object.id %}" class="slider-item-products-ads__image -ai"><img src="{{ img.img.url }}" alt=""></a>
+                                     </div>
+                                  {% endfor %}
+                              </div>
+                           </div>
+                           <a href="" class="slider-item-products-ads__pagination -slider-pagination-row"></a>
+                        </div>
+                        <div class="item-products-ads__content item-content">
+                           <div class="item-content__meta">
+                              <span><span class="-icon-map"></span>{{ object.addresses.first }}</span>
+                           </div>
+                           <div class="item-content__row">
+                              <a href="{% url 'abc-detail' object.id %}" class="item-content__title">{{ object.title }}</a>
+                           </div>
+                           <div class="item-content__category">{{ object.category }}</div>
+                           <div class="item-content__footer item-content__footer_df">
+                              <div class="item-content__rating item-content__rating_nmb"><span class="-icon-star"></span>{{ object.sum_of_values }} ({{ object.rating_set.count }} review)</div>
+                              <div class="item-content__actions">
+                                 <a href="" class="item-content__share"><span class="-icon-share"></span></a>
+{% include 'includes/like_list.html' %}
+
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+
+                      {% endfor %}
+
+                  </div>
+               </div>
+            </div>
+         </div>
+         <div class="page__question question question_market">
+            <div class="question__container -container">
+               <h2 class="question__title title">Do you have something to sell?</h2>
+               <div class="question__subtitle subtitle">This is where businesses in Bangladesh trade, numerous business and industry services offered<br> to trade and consumers.</div>
+               <a href="" class="question__btn btn">Submit on ad</a>
+            </div>
+         </div>
+      </div>
+
+
+{% endblock %}
+
+

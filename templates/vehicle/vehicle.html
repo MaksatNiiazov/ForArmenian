@@ -1,0 +1,73 @@
+{% extends 'base.html' %}\
+{% load static %}
+{% block content %}
+
+      <div class="page">
+         <div class="page__top-block top-block top-block_padding top-block_property">
+            <div class="top-block__image -ai"><img src="{% static 'img/top-block/Usful info.png' %}" alt=""></div>
+            <div class="top-block__container -container">
+               <div class="top-block__body">
+                  <h2 class="top-block__title top-title" data-me="767.98, .filter__container, first">Vehicle</h2>
+                  <div class="top-block__search search search_nt">
+                     <div class="search__body">
+                        <form action="#" class="search__row">
+                           <div class="search__input"><input class="-req -name" autocomplete="off" type="text" name="keyword"
+                                 data-value="Your keyword"></div>
+                           <button type="submit" class="search__btn"><span>Search</span><span
+                                 class="-icon-search"></span></button>
+                        </form>
+                     </div>
+                  </div>
+                  <!-- <div class="top-block__row top-block__row_hide"> -->
+                     <!-- <div class="top-block__breadcrumbs breadcrumbs-top-block">
+                        <ul class="breadcrumbs-top-block__list">
+                           <li><a href="">Home</a></li>
+                           <li>Cafe reasourant</li>
+                        </ul>
+                     </div> -->
+                  <!-- </div> -->
+               </div>
+            </div>
+         </div>
+         <div class="page__job job job_property">
+            <div class="job__container -container">
+               <div class="job__items">
+                  <div class="job__item item-job">
+                     <a href="{% url 'vehicle-catalog' %}" class="item-job__link"></a>
+                     <div class="item-job__image -ai"><img src="{% static 'img/vehicle/unsplash_YApS6TjKJ9c.png' %}" alt=""></div>
+                     <div class="item-job__body">
+                        <h3 class="item-job__title">Buy</h3>
+                     </div>
+                  </div>
+                  <div class="job__item item-job">
+                     <a href="{% url 'vehicle-catalog-rent' %}" class="item-job__link"></a>
+                     <div class="item-job__image -ai"><img src="{% static 'img/vehicle/unsplash_YApS6TjKJ9c.png' %}" alt=""></div>
+                     <div class="item-job__body">
+                        <h3 class="item-job__title">Rent</h3>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </div>
+         <div class="page__question-armenia question-armenia">
+            <div class="question-armenia__container -container">
+               <div class="question-armenia__body">
+                  <div class="question-armenia__item item-question-armenia">
+                     <h3 class="item-question-armenia__title">Do you have property in Armenia?</h3>
+                     <div class="item-question-armenia__btns">
+                        <a href="" class="item-question-armenia__btn item-question-armenia__btn_green">Buy</a>
+                        <a href="" class="item-question-armenia__btn item-question-armenia__btn_red">Rent</a>
+                     </div>
+                  </div>
+                  <div class="question-armenia__item item-question-armenia">
+                     <h3 class="item-question-armenia__title">Want to buy property in Armenia?</h3>
+                     <a href="" class="item-question-armenia__btn item-question-armenia__btn_green">Properties in Armenia</a>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+
+
+
+{% endblock %}

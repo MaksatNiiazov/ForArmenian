@@ -1,0 +1,85 @@
+<div id="image-upload-container">
+  <button id="add-image" type="button">AddImage</button>
+</div>
+<script>
+const addImageButton = document.querySelector('#add-image');
+const imageUploadContainer = document.querySelector('#image-upload-container');
+const maxNumOfFields = 5;
+let currNumOfFields = document.querySelectorAll('.image-upload').length;
+
+function createNewImageUpload() {
+  if (currNumOfFields >= maxNumOfFields) {
+    alert('You can only upload up to 5 images.');
+    return;
+  }
+
+  currNumOfFields++;
+
+  const newImageUpload = document.createElement('div');
+  newImageUpload.classList.add('image-upload');
+  newImageUpload.innerHTML = `
+    <label>Img ${currNumOfFields}:
+      <input type="file" name="photo-img" accept="image/*">
+      <div class="image-preview"></div>
+    </label>
+    <button class="remove-image-btn" type="button">Remove</button>
+  `;
+  imageUploadContainer.appendChild(newImageUpload);
+
+  const fileInput = newImageUpload.querySelector('input[type="file"]');
+  const imagePreview = newImageUpload.querySelector('.image-preview');
+  const removeBtn = newImageUpload.querySelector('.remove-image-btn');
+
+  fileInput.addEventListener('change', () => showSelectedImagePreview(fileInput, imagePreview));
+  removeBtn.addEventListener('click', () => {
+    newImageUpload.remove();
+    currNumOfFields--;
+  });
+}
+
+addImageButton.addEventListener('click', createNewImageUpload);
+
+function showSelectedImagePreview(fileInput, imagePreview) {
+  imagePreview.innerHTML = '';
+  for (const file of fileInput.files) {
+    const img = document.createElement('img');
+    img.src = URL.createObjectURL(file);
+    img.alt = file.name;
+    imagePreview.appendChild(img);
+  }
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+  const existingImages = document.querySelectorAll('.image-upload');
+
+  for (const imageUpload of existingImages) {
+    const fileInput = imageUpload.querySelector('input[type="file"]');
+    const imagePreview = imageUpload.querySelector('.image-preview');
+    const removeBtn = imageUpload.querySelector('.remove-image-btn');
+
+    fileInput.addEventListener('change', () => showSelectedImagePreview(fileInput, imagePreview));
+    removeBtn.addEventListener('click', () => {
+      imageUpload.remove();
+      currNumOfFields--;
+    });
+  }
+});
+
+const form = document.querySelector('form');
+const submitBtn = form.querySelector('button[type="submit"]');
+
+form.addEventListener('submit', (e) => {
+  if (imageUploadContainer.querySelectorAll('.image-upload').length === 0) {
+    e.preventDefault();
+    alert('Please add at least one image.');
+  }
+});
+
+</script>
+<style>
+  #add-image {
+    padding: 10px;
+    box-shadow: 0 0 2px black;
+    border-radius: 10px;
+  }
+</style>

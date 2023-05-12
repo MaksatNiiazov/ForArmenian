@@ -1,0 +1,87 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+
+         <div class="page__top-block top-block top-block_error top-block_title top-block_title-m">
+            <div class="top-block__image -ai"><img src="{% static 'img/top-block/image.jpg' %}" alt=""></div>
+            <div class="top-block__container -container">
+               <div class="top-block__body">
+                  <h2 class="top-block__title top-title top-title_ads-single">Useful single</h2>
+                  <!-- <div class="top-block__row"> -->
+                     <!-- <div class="top-block__breadcrumbs breadcrumbs-top-block">
+                        <ul class="breadcrumbs-top-block__list">
+                           <li><a href="">Home</a></li>
+                           <li>Group Decision Making: How to Be Effective and Efficient</li>
+                        </ul>
+                     </div> -->
+                  <!-- </div> -->
+               </div>
+            </div>
+         </div>
+         <div class="page__useful useful">
+            <div class="useful__container -container">
+               <div class="useful__side">
+                  <div class="useful__filter">
+                     <a href="" class="catalog__openner filter-openner filter-openner_hide filter-openner_lock">
+                        <span class="-icon-filter"></span> Filter
+                     </a>
+                     <form action="#" class="catalog__form form-filter -event-change form-filter_abc">
+                        <a href="" class="form-filter__close form-filter__close_lock"><img src="{% static 'img/icons/close.svg' %}" alt=""></a>
+                        <h3 class="form-filter__title">Filter</h3>
+                        <div class="form-filter__main">
+                           <div class="form-filter__item">
+                              <div class="form-filter__items items-filter-categories">
+                                 <ul class="items-filter-categories__list">
+                                    <li>
+                                       <label class="items-filter-categories__item">
+                                          <input type="checkbox" name="categories">
+                                          <span>
+                                             Раздел №1 (123)
+                                          </span>
+                                       </label>
+                                    </li>
+                                 </ul>
+                              </div>
+                           </div>
+                           <div class="form-filter__item">
+                              <div class="form-filter__question question question_filter">
+                                 <h2 class="question__title title">Do you have something to sell?</h2>
+                                 <a href="" class="question__btn btn">Submit on ad</a>
+                              </div>
+                           </div>
+                           <div class="form-filter__ads -ai"><img src="{% static 'img/ads/image-01.jpg' %}" alt=""></div>
+                        </div>
+                     </form>
+                  </div>
+                  <div class="useful__image"><img src="{% static 'img/useful/ads.jpg' %}" alt=""></div>
+               </div>
+               <div class="useful__body news-single news-single_col1">
+                  <div class="news-single__main">
+                     <div class="news-single__header">
+                        <h4 class="news-single__subtitle">Business Strategy</h4>
+                        <h2 class="news-single__title title">{{ object.title }}</h2>
+                        <div class="news-single__desc">by {{ object.created_by.first_name }} {{ object.created_by.last_name }} on {{ object.created_date }}</div>
+                     </div>
+                     <div class="news-single__image -ai"><img src="{{ object.imgs.first.img.url }}" alt=""></div>
+                  </div>`
+                  <div class="news-single__body">
+                      {{ object.description|safe }}
+                     <div class="news-single__comments comments-news-single">
+                         {% include 'includes/stars.html' %}
+{% include 'includes/detail_comments.html' %}
+            </div>
+
+         <div class="page__question question question_news">
+            <div class="question__container -container">
+               <h2 class="question__title title">Do you have something to sell?</h2>
+               <div class="question__subtitle subtitle">This is where businesses in Bangladesh trade, numerous business and industry services offered<br> to trade and consumers.</div>
+               <a href="" class="question__btn btn">Submit on ad</a>
+            </div>
+         </div>
+      </div>
+    </div>
+    </div>
+         </div>
+
+{% endblock %}

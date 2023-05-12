@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+    <head>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+        {{form.media}}
+    </head>
+    <form action="{% url 'add-location' %}">
+
+    <div class="container" style="margin: 15% 5%">
+         {{form}}
+
+    <button type="submit">submit</button>
+    </div>
+    </form>
+    <style>
+    .container input{
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.54);
+        padding: 10px;
+        width: 500px;
+    }
+    </style>
+{% endblock %}

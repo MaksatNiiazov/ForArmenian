@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container">
+{% include 'includes/sort_filter.html' %}
+   {% for object in object_list %}
+                     <div class="events-page__item item-events-page" style="max-width:90%; margin: 10px auto">
+                     <a href="{% url 'events-detail' object.id %}" class="item-events-page__preview">
+                         {% if object.imgs %}
+                                        <div class="item-events-page__image -ai"><img src="{{ object.imgs.first.img.url }}" alt=""></div>
+                         {% endif %}
+                     </a>
+                     <div class="item-events-page__body">
+                        <h3 class="item-events-page__title -title-useful-item">{{ object.title }}</h3>
+                        <div class="item-events-page__row">
+                           <div class="item-events-page__info info-item-events-page">
+                                <div class="info-item-events-page__item"><span class="-icon-map"></span>{{ object.address }}</div>
+                                 <div class="info-item-events-page__item"><span class="-icon-calendar"></span>{{ object.date }}</div>
+                                 <div class="info-item-events-page__item"><span class="-icon-time"></span>{{ object.start_time }}</div>
+                              </div>
+                              <a href="{{ object.ticket_link }}" class="item-events-page__btn btn-more-product">Buy ticket</a>
+                           </div>
+                        <div class="item-events-page__footer">
+                           <a href="{% url 'events-detail' object.pk %}" class="item-events-page__link">Read more</a>
+                           <div class="item-events-page__actions">
+                              <a href="" class="item-events-page__share"><span class="-icon-share"></span></a>
+                            {% include 'includes/like_list.html' %}
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+                   {% endfor %}
+{% include 'includes/paginate.html' %}
+</div>
+
+{% endblock %}

@@ -1,0 +1,63 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+
+      <div class="page">
+         <div class="page__top-block top-block top-block_padding top-block_job">
+            <div class="top-block__image -ai"><img src="{% static 'img/top-block/image.jpg' %}" alt=""></div>
+            <div class="top-block__container -container">
+               <div class="top-block__body">
+                  <h2 class="top-block__title top-title" data-me="767.98, .filter__container, first">JOB</h2>
+                  <div class="top-block__search search search_nt">
+                     <div class="search__body">
+                        <form action="#" class="search__row">
+                           <div class="search__input"><input class="-req -name" autocomplete="off" type="text" name="keyword"
+                                 data-value="Your keyword"></div>
+                           <button type="submit" class="search__btn"><span>Search</span><span
+                                 class="-icon-search"></span></button>
+                        </form>
+                     </div>
+                  </div>
+                  <!-- <div class="top-block__row top-block__row_hide"> -->
+                     <!-- <div class="top-block__breadcrumbs breadcrumbs-top-block">
+                        <ul class="breadcrumbs-top-block__list">
+                           <li><a href="">Home</a></li>
+                           <li>Cafe reasourant</li>
+                        </ul>
+                     </div> -->
+                  <!-- </div> -->
+               </div>
+            </div>
+         </div>
+         <div class="page__job job">
+            <div class="job__container -container">
+               <div class="job__items">
+                  <div class="job__item item-job">
+                     <a href="{% url 'job-catalog-vacancy' %}" class="item-job__link"></a>
+                     <div class="item-job__image -ai"><img src="{% static 'img/job-items/image.png' %}" alt=""></div>
+                     <div class="item-job__body">
+                        <h3 class="item-job__title" style="text-shadow: rgba(0,0,0,0.68) 0 0 5px">Vacancies</h3>
+                     </div>
+                  </div>
+                  <div class="job__item item-job">
+                     <a href="{% url 'job-catalog-resume' %}" class="item-job__link"></a>
+                     <div class="item-job__image -ai"><img src="{% static 'img/job-items/image-02.png' %}" alt=""></div>
+                     <div class="item-job__body">
+                        <h3 class="item-job__title" style="text-shadow: rgba(0,0,0,0.68) 0 0 5px">Resumes</h3>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </div>
+         <div class="page__question question question_job">
+            <div class="question__container -container">
+               <h2 class="question__title question__title_af title">Do you have something to sell?</h2>
+               <div class="question__subtitle subtitle">This is where businesses in Bangladesh trade, numerous business
+                  and industry services offered<br> to trade and consumers.</div>
+               <a href="" class="question__btn btn">Submit on ad</a>
+            </div>
+         </div>
+      </div>
+
+{% endblock %}

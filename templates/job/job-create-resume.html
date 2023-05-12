@@ -1,0 +1,251 @@
+{% extends 'base_create.html' %}
+{% block create_content %}
+    <form action="{% url 'job-create-resume' %}" method="POST" enctype="multipart/form-data">
+    {% csrf_token %}
+     <p>
+    <label for="id_photo-img">Img:</label>
+    <input type="file" name="photo-img" accept="image/*" id="id_photo-img">
+  </p>
+<p>
+    <label for="id_ad-title">Title:</label>
+    <input type="text" name="ad-title" maxlength="100" required="" id="id_ad-title">
+  </p>
+  <p>
+    <label for="id_ad-description">Description:</label>
+    <textarea name="ad-description" cols="40" rows="10" required="" id="id_ad-description"></textarea>
+  </p>
+  <p>
+    <label for="id_ad-price">Price:</label>
+    <input type="number" name="ad-price" value="0" min="0" id="id_ad-price">
+  </p>
+  <p>
+    <label for="id_ad-currency">Currency:</label>
+    <input type="text" name="ad-currency" value="USD" maxlength="20" id="id_ad-currency">
+  </p>
+  <p>
+    <label for="id_ad-is_active">Is active:</label>
+    <input type="checkbox" name="ad-is_active" id="id_ad-is_active" checked="">
+  </p>
+  <p>
+    <label for="id_ad-work_graphic">Work graphic:</label>
+    <select name="ad-work_graphic" required="" id="id_ad-work_graphic">
+        {% for item in work_grapfics %}
+                  <option value="{{ item.id }}" selected="">{{ item.graphic }}</option>
+        {% endfor %}
+    </select>
+  </p>
+  <p>
+    <label for="id_ad-education">Education:</label>
+    <select name="ad-education" required="" id="id_ad-education">
+  {% for item in educations %}
+            <option value="{{ item.id }}" selected="">{{ item.education }}</option>
+
+  {% endfor %}
+
+</select>
+  </p>
+  <p>
+    <label for="id_ad-frequency_of_payment">Frequency of payment:</label>
+    <select name="ad-frequency_of_payment" required="" id="id_ad-frequency_of_payment">
+        {% for item in fops %}
+          <option value="{{ item.id }}" selected="">{{ item.fop }}</option>
+        {% endfor %}
+</select>
+  </p>
+  <p>
+    <label for="id_ad-salary_from">Salary from:</label>
+    <input type="number" name="ad-salary_from" value="1" min="0" required="" id="id_ad-salary_from">
+  </p>
+  <p>
+    <label for="id_ad-salary_to">Salary to:</label>
+    <input type="number" name="ad-salary_to" value="1" min="0" required="" id="id_ad-salary_to">
+  </p>
+
+        <p>
+    <label for="id_address-address">Address:</label>
+    <input type="text" name="address-address" maxlength="100" id="id_address-address">
+  </p>
+<button type="button" id="add-language">Add Language</button>
+<div id="language-container">
+  <div class="language-container">
+    <p>
+      <label for="id_languages-language">Language:</label>
+      <input type="text" name="languages-language" required="" id="id_languages-language">
+      <label for="id_languages-level">Level:</label>
+      <input type="text" name="languages-level" required="" id="id_languages-level">
+    </p>
+  </div>
+</div>
+        <div>
+<div id="experience-container">
+  <div class="input-group">
+    <label for="experience-work-place">Work place:</label>
+    <input type="text" name="experience-work_place" maxlength="300" required id="experience-work-place">
+  </div>
+  <div class="input-group">
+    <label for="experience-month">Month:</label>
+    <input type="number" name="experience-month" required id="experience-month">
+  </div>
+  <div class="input-group">
+    <label for="experience-experience">Experience:</label>
+    <textarea name="experience-experience" cols="40" rows="10" required id="experience-experience"></textarea>
+  </div>
+</div>
+
+<button id="add-experience-btn" type="button">Add Work Place</button>
+
+<div id="skills-container">
+  <div class="input-group">
+    <label for="id_key_skills-skill">Skill:</label>
+    <input type="text" name="key_skills-skill" maxlength="50" required="" id="id_key_skills-skill">
+    <button class="remove-skill-btn" type="button">Remove</button>
+  </div>
+</div>
+
+<button id="add-skill-btn" type="button">Add skill</button>
+
+</div>
+
+
+    <button type="submit">Save</button>
+</form>
+
+
+<script>
+var addButton = document.getElementById('add-language');
+var languageContainer = document.getElementById('language-container');
+var index = 1;
+
+addButton.addEventListener('click', function() {
+  var languageDiv = document.createElement('div');
+  languageDiv.setAttribute('class', 'language-container');
+
+  var p = document.createElement('p');
+
+  var languageLabel = document.createElement('label');
+  languageLabel.setAttribute('for', 'id_languages-language');
+  languageLabel.textContent = 'Language: ';
+  p.appendChild(languageLabel);
+
+  var languageInput = document.createElement('input');
+  languageInput.setAttribute('type', 'text');
+  languageInput.setAttribute('name', 'languages-language');
+  languageInput.setAttribute('required', '');
+  languageInput.setAttribute('id', 'id_languages-language-' + index);
+  p.appendChild(languageInput);
+
+  var levelLabel = document.createElement('label');
+  levelLabel.setAttribute('for', 'id_languages-level');
+  levelLabel.textContent = 'Level: ';
+  p.appendChild(levelLabel);
+
+  var levelInput = document.createElement('input');
+  levelInput.setAttribute('type', 'text');
+  levelInput.setAttribute('name', 'languages-level');
+  levelInput.setAttribute('required', '');
+  levelInput.setAttribute('id', 'id_languages-level-' + index);
+  p.appendChild(levelInput);
+
+  languageDiv.appendChild(p);
+  languageContainer.appendChild(languageDiv);
+  index++;
+});
+const experienceContainer = document.getElementById('experience-container');
+const addExperienceBtn = document.getElementById('add-experience-btn');
+
+addExperienceBtn.addEventListener('click', () => {
+  // Создаем новый контейнер для рабочего места
+  const newExperienceContainer = document.createElement('div');
+  newExperienceContainer.classList.add('experience');
+
+  // Добавляем инпут для названия места работы
+  const workPlaceGroup = document.createElement('div');
+  workPlaceGroup.classList.add('input-group');
+  workPlaceGroup.innerHTML = `
+    <label for="experience-work-place">Work place:</label>
+    <input type="text" name="experience-work_place" maxlength="300" required id="experience-work-place">
+  `;
+  newExperienceContainer.appendChild(workPlaceGroup);
+
+  // Добавляем инпут для количества месяцев
+  const monthGroup = document.createElement('div');
+  monthGroup.classList.add('input-group');
+  monthGroup.innerHTML = `
+    <label for="experience-month">Month:</label>
+    <input type="number" name="experience-month" required id="experience-month">
+  `;
+  newExperienceContainer.appendChild(monthGroup);
+
+  // Добавляем инпут для описания опыта работы
+  const experienceGroup = document.createElement('div');
+  experienceGroup.classList.add('input-group');
+  experienceGroup.innerHTML = `
+    <label for="experience-experience">Experience:</label>
+    <textarea name="experience-experience" cols="40" rows="10" required id="experience-experience"></textarea>
+<hr>
+<br>
+
+  `;
+  newExperienceContainer.appendChild(experienceGroup);
+
+  // Добавляем новый контейнер в общий контейнер
+  experienceContainer.appendChild(newExperienceContainer);
+});
+</script>
+<script>
+  const skillsContainer = document.getElementById('skills-container');
+  const addSkillButton = document.getElementById('add-skill-btn');
+
+  addSkillButton.addEventListener('click', () => {
+    const newSkillGroup = document.createElement('div');
+    newSkillGroup.classList.add('input-group');
+
+    const skillLabel = document.createElement('label');
+    skillLabel.textContent = 'Skill:';
+
+    const skillInput = document.createElement('input');
+    skillInput.type = 'text';
+    skillInput.name = 'key_skills-skill';
+    skillInput.maxLength = 50;
+    skillInput.required = true;
+
+    const removeSkillButton = document.createElement('button');
+    removeSkillButton.classList.add('remove-skill-btn');
+    removeSkillButton.type = 'button';
+    removeSkillButton.textContent = 'Remove';
+
+    newSkillGroup.appendChild(skillLabel);
+    newSkillGroup.appendChild(skillInput);
+    newSkillGroup.appendChild(removeSkillButton);
+
+    skillsContainer.appendChild(newSkillGroup);
+
+    removeSkillButton.addEventListener('click', () => {
+      newSkillGroup.remove();
+    });
+  });
+</script>
+
+
+
+    <style>
+    .language-container{
+        padding: 10px;
+        box-shadow: 0 0 5px black;
+        margin: 5px 0;
+    }
+    #experience-container{
+        padding: 10px;
+        box-shadow: 0 0 5px black;
+        margin: 5px 0;
+    }
+    .input-group{
+        display: flex;
+        flex-wrap: wrap;
+    }
+    .input-group > input{
+        display: block;
+    }
+    </style>
+{% endblock %}
+
